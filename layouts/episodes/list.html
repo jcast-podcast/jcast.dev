@@ -1,0 +1,35 @@
+{{ define "main" }}
+<section class="episode-list-page">
+    <h1 class="list-page-title">Alle Afleveringen</h1>
+    <div class="episode-list">
+        {{ range .Pages.ByDate.Reverse }}
+        <article class="episode-card">
+            <h2 class="episode-title-list">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+
+            <div class="episode-card-body">
+                {{ with .Params.thumbnail }}
+                <a href="{{ $.RelPermalink }}" class="episode-thumb-link">
+                    <img src="{{ . }}" alt="Thumbnail {{ $.Title }}" class="episode-thumb" loading="lazy" />
+                </a>
+                {{ end }}
+
+                <div class="episode-meta">
+                    <div class="episode-summary">
+                        {{ .Summary | plainify | htmlUnescape | truncate 250 "..." }}
+                    </div>
+
+                    {{ with .Params.spotify }}
+                    <a href="{{ . }}" class="spotify-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-spotify"></i>
+                        <span>Luister op Spotify</span>
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Welkom bij JCast on JCast</title>
-    <link>http://localhost:1313/</link>
-    <description>Recent content in Welkom bij JCast on JCast</description>
+    <title>Afleveringen on JCast</title>
+    <link>http://localhost:1313/episodes/</link>
+    <description>Recent content in Afleveringen on JCast</description>
     <generator>Hugo</generator>
     <language>nl-be</language>
     <lastBuildDate>Wed, 30 Apr 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/episodes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Afl 1: Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer</title>
       <link>http://localhost:1313/episodes/aflevering-1/</link>
       <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/episodes/aflevering-1/</guid>
       <description>&lt;p&gt;In deze allereerste episode gaan Oumaima, Viktor en Maarten in gesprek over wat het betekent om een professionele ontwikkelaar te zijn.&#xA;Geïnspireerd door Uncle Bob (Robert C. Martin) duiken we in topics als Clean Code, TDD en professionele standaarden in softwareontwikkeling.&#xA;Hoe verhouden wij ons tot die principes? Wat doen we al, waar twijfelen we aan, en waarin willen we nog groeien?&#xA;Een eerlijke babbel over gewoontes, verantwoordelijkheden en hoe we beter willen worden in ons vak.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>De JCrew</title>
-      <link>http://localhost:1313/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

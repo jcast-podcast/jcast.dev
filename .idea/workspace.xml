@@ -5,8 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="089d62a2-b2ea-47cf-83e2-72128d233c9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/terraform/main.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/about.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/episodes/_index.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/episodes/aflevering-1.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/_default/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/_default/baseof.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/episodes/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/episodes/single.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/partials/head.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/apple-touch-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/avatars/maarten-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/avatars/oumaima-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/avatars/viktor-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo-without-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/thumbnails/afl-1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hugo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/hugo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/404/page/1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/apple-touch-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/bluesky.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/page/1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/github.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/highlight.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/instagram.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/linkedin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/main.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mastodon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/rss.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/sitemap.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/tags/index.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/tags/page/1/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/theme.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/theme.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/threads.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/twitter.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,40 +66,54 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "denmette"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;denmette&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/nanxiaobei/hugo-paper",
-    "accountId": "f0112c52-4da9-4b57-a39a-423282f8d3da"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nanxiaobei/hugo-paper&quot;,
+    &quot;accountId&quot;: &quot;f0112c52-4da9-4b57-a39a-423282f8d3da&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2wLRLuktFaMORdQfsAtnOhq5ToC" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "trunk",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;trunk&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/oumaimazerouali/Desktop/JCast/jcast.dev/static/images/thumbnails&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/images/thumbnails" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/layouts/_default/page" />
+      <recent name="$PROJECT_DIR$/static/images" />
+      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$PROJECT_DIR$/layouts" />
+      <recent name="$PROJECT_DIR$/static/images/avatars" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,6 +130,10 @@
       <option name="presentableId" value="Default" />
       <updated>1745818815046</updated>
       <workItem from="1745818816137" duration="3061000" />
+      <workItem from="1747213543370" duration="494000" />
+      <workItem from="1747249869888" duration="14187000" />
+      <workItem from="1747329792689" duration="33000" />
+      <workItem from="1747329846904" duration="1386000" />
     </task>
     <servers />
   </component>

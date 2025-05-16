@@ -1,4 +1,11 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'JCast'
-theme = 'paper'
+title = "JCast"
+baseURL = "https://jcast.dev"
+
+languageCode = "nl-be"
+defaultContentLanguage = "nl"
+
+enableRobotsTXT = true
+
+[params.assets]
+customCSS = ["css/styles.css"]
+

@@ -1,0 +1,23 @@
+{{ define "main" }}
+<article class="episode-single">
+    <h1 class="episode-title">{{ .Title }}</h1>
+    <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-date">
+    {{ .Date.Format "2 January 2006" }}
+    </time>
+
+    {{ with .Params.thumbnail }}
+    <img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="episode-thumbnail">
+    {{ end }}
+
+    <div class="episode-body">
+        {{ .Content }}
+    </div>
+
+    {{ with .Params.spotify }}
+    <a href="{{ . }}" class="spotify-link large" target="_blank" aria-label="Luister op Spotify">
+        <i class="fab fa-spotify"></i>
+        <span>Beluister op Spotify</span>
+    </a>
+    {{ end }}
+</article>
+{{ end }}

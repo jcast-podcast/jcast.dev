@@ -1,0 +1,39 @@
+{{ define "main" }}
+<section class="home-page">
+    <h1 class="intro-title">{{ .Title }}</h1>
+    <div class="intro">
+        <p>Welkom op de officiële site van JCast — de podcast over development, soft skills en nerd life.</p>
+        <p>Bekijk de <a href="/episodes/">afleveringen</a> of luister direct op
+            <a href="https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W?si=icTB9tDwS1aNH8SwXURH7g" target="_blank">Spotify</a>.
+        </p>
+    </div>
+
+    <div class="recent-episodes">
+        <h2>Laatste Aflevering</h2>
+        {{ $latest := first 1 (where .Site.Pages "Section" "episodes" ) }}
+        {{ if $latest }}
+        {{ with index $latest 0 }}
+        <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless="" src="{{ .Params.player }}"></iframe>
+        {{ end }}
+        {{ else }}
+        <p>Geen afleveringen beschikbaar.</p>
+        {{ end }}
+
+    </div>
+
+    <div class="recent-episodes">
+        <h2>Recente Afleveringen</h2>
+        <ul class="home-episode-list">
+            {{ $episodes := .Site.GetPage "section" "episodes" }}
+            {{ range first 3 $episodes.Pages }}
+            <li class="home-episode-card">
+                <a href="{{ .Permalink }}">
+                    <img src="{{ .Params.thumbnail }}" alt="Thumbnail van {{ .Title }}" class="home-episode-thumbnail">
+                    <h4 class="home-episode-title">{{ .Title }}</h4>
+                </a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</section>
+{{ end }}
