@@ -4,20 +4,98 @@
     <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-date">
     {{ .Date.Format "2 January 2006" }}
     </time>
-
     {{ with .Params.thumbnail }}
-    <img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="episode-thumbnail">
+    <div class="episode-thumbnail-container">
+        <img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="episode-thumbnail">
+    </div>
+    {{ end }}
+
+    {{ with .Params.guest }}
+    {{ $guestKey := . }} {{ $guestData := index $.Site.Data.guest $guestKey }}
+    {{ if $guestData }}
+    <div class="guest-info">
+        {{ with $guestData.thumbnail }}
+        <img src="{{ . }}" alt="{{ $guestData.name }}" class="guest-thumbnail">
+        {{ end }}
+        <div class="guest-details">
+            <strong>Gast: {{ $guestData.name }}</strong>
+            {{ with $guestData.description }}
+            <p class="guest-description">{{ . }}</p>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
     {{ end }}
 
     <div class="episode-body">
         {{ .Content }}
     </div>
-
-    {{ with .Params.spotify }}
-    <a href="{{ . }}" class="spotify-link large" target="_blank" aria-label="Luister op Spotify">
-        <i class="fab fa-spotify"></i>
-        <span>Beluister op Spotify</span>
-    </a>
-    {{ end }}
 </article>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PodcastEpisode",
+        "name": "{{ .Title }}",
+        "description": "{{ .Params.description | default .Summary | plainify }}",
+        "url": "{{ .Permalink }}",
+        "datePublished": "{{ .Date.Format "2006-01-02" }}",
+        "partOfSeries": {
+            "@type": "PodcastSeries",
+            "name": "JCast",
+            "url": "https://jcast.dev"
+        },
+        "associatedMedia": [
+            {{ with .Params.spotify }}
+            {
+                "@type": "MediaObject",
+                "name": "Spotify",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.apple }}
+            {
+                "@type": "MediaObject",
+                "name": "Apple Podcasts",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.amazon }}
+            {
+                "@type": "MediaObject",
+                "name": "Amazon Music",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.deezer }}
+            {
+                "@type": "MediaObject",
+                "name": "Deezer",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.itunes }}
+            {
+                "@type": "MediaObject",
+                "name": "iTunes",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.podcastaddict }}
+            {
+                "@type": "MediaObject",
+                "name": "Podcast Addict",
+                "contentUrl": "{{ . }}"
+            },
+            {{ end }}
+            {{ with .Params.playerfm }}
+            {
+                "@type": "MediaObject",
+                "name": "PlayerFM",
+                "contentUrl": "{{ . }}"
+            }
+            {{ end }}
+        ]
+    }
+</script>
 {{ end }}

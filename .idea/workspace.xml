@@ -4,59 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="089d62a2-b2ea-47cf-83e2-72128d233c9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/_index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/about.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/episodes/_index.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/content/episodes/aflevering-1.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/_default/about.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/_default/baseof.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/episodes/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/episodes/single.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/layouts/partials/head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/apple-touch-icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/avatars/maarten-avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/avatars/oumaima-avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/avatars/viktor-avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/logo-without-bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/logo.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/thumbnails/afl-1.png" afterDir="false" />
+    <list default="true" id="089d62a2-b2ea-47cf-83e2-72128d233c9f" name="Changes" comment="fix: Viktor about fixed">
+      <change afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/content/episodes/aflevering-2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/guest/jeroen_bastijns.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/layouts/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/avatars/jeroen-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/favicon-16x16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/thumbnails/afl-2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content/episodes/aflevering-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/content/episodes/aflevering-1.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hugo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/hugo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/404/page/1.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/apple-touch-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/bluesky.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/page/1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/github.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/highlight.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/_default/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/_default/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/_default/baseof.html" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/_default/baseof.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/episodes/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/episodes/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/episodes/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/episodes/single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layouts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/layouts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/about/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/about/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/episodes/aflevering-1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/episodes/aflevering-1/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/episodes/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/episodes/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/episodes/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/episodes/index.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/instagram.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/linkedin.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/main.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mastodon.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/rss.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/sitemap.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/sitemap.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/tags/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/tags/index.xml" beforeDir="false" afterPath="$PROJECT_DIR$/public/tags/index.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/tags/page/1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/theme.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/theme.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/threads.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/twitter.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,11 +81,11 @@
       <recent name="$PROJECT_DIR$/static/images/thumbnails" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/layouts/_default/page" />
       <recent name="$PROJECT_DIR$/static/images" />
-      <recent name="$PROJECT_DIR$/static" />
-      <recent name="$PROJECT_DIR$/layouts" />
       <recent name="$PROJECT_DIR$/static/images/avatars" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/static/images/thumbnails" />
+      <recent name="$PROJECT_DIR$/static" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -133,11 +107,42 @@
       <workItem from="1747213543370" duration="494000" />
       <workItem from="1747249869888" duration="14187000" />
       <workItem from="1747329792689" duration="33000" />
-      <workItem from="1747329846904" duration="1386000" />
+      <workItem from="1747329846904" duration="27006000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: JCast.dev">
+      <option name="closed" value="true" />
+      <created>1747377731085</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747377731085</updated>
+    </task>
+    <task id="LOCAL-00002" summary="fix: links">
+      <option name="closed" value="true" />
+      <created>1747378216893</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747378216893</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix: Viktor about fixed">
+      <option name="closed" value="true" />
+      <created>1747378278117</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747378278117</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: JCast.dev" />
+    <MESSAGE value="fix: links" />
+    <MESSAGE value="fix: Viktor about fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Viktor about fixed" />
   </component>
 </project>

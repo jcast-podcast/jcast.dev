@@ -1,0 +1,2 @@
+RewriteCond %{HTTP_HOST} ^www\.jcast\.dev$
+RewriteRule ^/?$ "http\:\/\/jcast\.dev\/" [R=301,L]

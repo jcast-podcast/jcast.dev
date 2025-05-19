@@ -22,6 +22,9 @@ Welkom bij de codebase van **JCast.dev** — een statische website gebouwd met [
 │   └── episodes/
 │       ├── afl-1.md
 │       └── ...
+├── data/
+│   ├── guest
+│   │   ├── name_lastname.yml
 ├── layouts/
 │   ├── \_default/
 │   │   ├── baseof.html
@@ -86,17 +89,40 @@ aws s3 sync public/ s3://your-jcast-bucket-name --delete
 
 ```yaml
 ---
-title: "Afl X: Titel van de aflevering"
-date: YYYY-MM-DD
-thumbnail: "/images/thumbnails/afl-x.png"
-spotify: "https://open.spotify.com/episode/...."
-summary: "Korte beschrijving voor de afleveringenlijst"
+title: "Afl 1: Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer"
+date: 2025-04-30
+thumbnail: "/images/thumbnails/afl-1.png"
+player: "https://share.transistor.fm/e/jcast/latest"
+section: episodes
+spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
+apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
+amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"
+itunes: "https://pca.st/itunes/1814550001"
+podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
+deezer: "https://www.deezer.com/show/1001888441"
+playerfm: "https://player.fm/series/series-3665934"
+guest: "spongebob_squarepants"
 ---
 Volledige show notes of beschrijving.
 ```
 
 3. Voeg een bijhorende thumbnail toe in `static/images/thumbnails/`
 
+## Gast toevoegen
+
+Wanneer een aflevering een gast bevat:
+
+1. Voeg een `.yml` bestand toe in `data/guest/` met als bestandsnaam de slug die je in het `guest:` veld gebruikt (bijv. `spongebob_squarepants.yml`)
+
+2. Voorbeeld van zo'n YML-bestand:
+
+```yaml
+name: "Spongebob Squarepants"
+bio: "Krusty Krab chef en enthousiast over eten. Houdt van schaalbaarheid en teamflow."
+avatar: "/images/avatars/spongebob-avatar.png"
+```
+
+3. De site zal automatisch de juiste gastinfo tonen op de episode-pagina.
 
 ## Over de crew
 
@@ -106,7 +132,6 @@ Je vindt bios en sociale links van Oumaima, Viktor en Maarten op de **/about** p
 static/images/avatars/
 ```
 
-
 ## Features in gebruik
 
 * Hugo (static site generator)
@@ -114,7 +139,7 @@ static/images/avatars/
 * Responsive layout (handgemaakt)
 * Collapsible episode cards (initial design)
 * Markdown for content management
-* Clean CSS in `/assets/css/jcast.css`
+* Clean CSS in `/assets/css/styles.css`
 
 
 ## 📄 Licentie

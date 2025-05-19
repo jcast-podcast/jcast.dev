@@ -1,11 +1,17 @@
 title = "JCast"
 baseURL = "https://jcast.dev"
-
 languageCode = "nl-be"
 defaultContentLanguage = "nl"
-
 enableRobotsTXT = true
+
+[params]
+description = "De podcast over IT, dev life, soft skills en gezonde meningsverschillen."
+author = "Oumaima, Viktor & Maarten"
 
 [params.assets]
 customCSS = ["css/styles.css"]
+
+[outputs]
+home = ["HTML", "RSS", "JSON", "SITEMAP"]
+
 
