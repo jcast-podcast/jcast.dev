@@ -31,10 +31,6 @@
         {{ .Content }}
 
         <div class="episode-meta">
-            <div class="episode-summary">
-                {{ .Summary | plainify | htmlUnescape | truncate 250 "..." }}
-            </div>
-
             <div class="platform-icons">
                 {{ with .Params.spotify }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
