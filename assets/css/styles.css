@@ -682,3 +682,39 @@ footer {
     font-style: italic;
     color: #888;
 }
+
+/* COOKIE BANNER */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #111;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1000;
+}
+
+.cookie-buttons {
+    margin-top: 0.5rem;
+}
+
+.cookie-buttons button {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--accent, #1DB954);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.cookie-buttons button:hover {
+    opacity: 0.9;
+}
+
+.cookie-banner.hidden {
+    display: none;
+}
