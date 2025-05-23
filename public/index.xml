@@ -6,15 +6,8 @@
     <description>Recent content in Welkom bij JCast on JCast</description>
     <generator>Hugo</generator>
     <language>nl-be</language>
-    <lastBuildDate>Fri, 02 May 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Afl 2: Clean Architecture met Jeroen Bastijns – Over code, context en het groeipad van een gepassioneerde ontwikkelaar</title>
-      <link>http://localhost:1313/episodes/aflevering-2/</link>
-      <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/episodes/aflevering-2/</guid>
-      <description>&lt;p&gt;In deze aflevering schuift Jeroen Bastijns aan bij Oumaima, Viktor en Maarten voor een diepgaand gesprek over Clean Architecture.&#xA;Jeroen vertelt hoe hij in contact kwam met dit concept, waarom het hem raakte en hoe zijn manier van denken en bouwen doorheen de jaren is geëvolueerd.&#xA;Verwacht een boeiend parcours met verwijzingen naar projecten uit het verleden, inzichten uit de praktijk en een passie voor structuur, duidelijkheid en goed doordachte code.&#xA;Een aflevering voor wie verder wil kijken dan alleen technische keuzes, en op zoek is naar duurzame softwareontwerp principes.&lt;/p&gt;</description>
-    </item>
     <item>
       <title>Afl 1: Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer</title>
       <link>http://localhost:1313/episodes/aflevering-1/</link>

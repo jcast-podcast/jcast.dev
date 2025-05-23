@@ -43,9 +43,17 @@
 <footer>
     © {{ now.Year }} JCast
 </footer>
+
+<div id="cookie-consent-banner" class="cookie-banner hidden">
+    <p>
+        🍪 Deze website gebruikt cookies voor analytics (anoniem). Wil je dat we je bezoek meten?
+    </p>
+    <div class="cookie-buttons">
+        <button id="accept-cookies">Ja, is goed</button>
+        <button id="decline-cookies">Nee, liever niet</button>
+    </div>
+</div>
+
+<script src="/js/cookie-consent.js" defer></script>
 </body>
 </html>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XW26YSCBZG"></script>
-<script src="/js/ga-init.js" defer></script>
-
