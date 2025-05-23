@@ -114,7 +114,7 @@ resource "aws_cloudfront_response_headers_policy" "response_headers_policy" {
     content_security_policy {
       override = true
       # content_security_policy = "default-src 'self';"
-      content_security_policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; frame-src 'self' https://share.transistor.fm; script-src-elem 'self' https://giscus.app/client.js;"
+      content_security_policy = "default-src 'self'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://giscus.app; font-src 'self' https://cdnjs.cloudflare.com; frame-src 'self' https://share.transistor.fm https://giscus.app; script-src-elem 'self' https://giscus.app;"
     }
 
     content_type_options {
