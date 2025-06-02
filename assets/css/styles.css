@@ -332,6 +332,11 @@ header .container {
     color: var(--accent);
 }
 
+.episode-player {
+    margin: 1.5rem 0;
+
+}
+
 .guest-info {
     display: flex;
     align-items: center;

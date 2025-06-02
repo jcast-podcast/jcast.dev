@@ -2,7 +2,7 @@
 title: "Afl 1: Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer"
 date: 2025-04-30
 thumbnail: "/images/thumbnails/afl-1.png"
-player: "https://share.transistor.fm/e/jcast/latest"
+player: "https://share.transistor.fm/e/5ccc7d14"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"

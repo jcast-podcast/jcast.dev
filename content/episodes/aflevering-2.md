@@ -2,7 +2,7 @@
 title: "Afl 2: Clean Architecture met Jeroen Bastijns – Over code, context en het groeipad van een gepassioneerde ontwikkelaar"
 date: 2025-06-02
 thumbnail: "/images/thumbnails/afl-2.png"
-player: "https://share.transistor.fm/e/jcast/latest"
+player: "https://share.transistor.fm/e/39accfc1"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
