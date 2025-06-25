@@ -146,15 +146,25 @@ header .container {
 .home-episode-card {
     flex: 1 1 200px;
     max-width: 220px;
-    text-align: center;
     background-color: #f8f8f8;
     border-radius: 8px;
     padding: 1rem;
     transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 280px;
+    justify-content: space-between;
 }
 
 .home-episode-card a {
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    color: inherit;
+    height: 100%;
 }
 
 .home-episode-thumbnail {
@@ -169,6 +179,21 @@ header .container {
     line-height: 1.3;
     color: #333;
     margin: 0;
+    text-align: left;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.episode-tag {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: var(--text);
+    background-color: var(--beige);
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0.5rem 0 0;
+    text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
@@ -233,7 +258,8 @@ header .container {
     .home-episode-card {
         display: flex;
         flex: 0;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -241,6 +267,7 @@ header .container {
         transition: transform 0.2s ease-in-out;
         padding: 10px;
         max-width: 100%;
+        min-height: auto;
     }
 
     .home-episode-card:hover {
@@ -249,18 +276,21 @@ header .container {
 
     .home-episode-card a {
         display: flex;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
         text-decoration: none;
         color: inherit;
         width: 100%;
         box-sizing: border-box;
+        height: 100%;
     }
 
     .home-episode-thumbnail {
-        width: 80px;
+        width: 100%;
         height: auto;
         border-radius: 4px;
-        margin-right: 15px;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
     }
 
     .home-episode-title {
@@ -269,9 +299,18 @@ header .container {
         color: #333;
         margin: 0;
         flex-grow: 1;
+        text-align: left;
+    }
+
+    .episode-tag {
+        font-size: 0.75em;
+        padding: 0.2rem 0.4rem;
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+        flex-shrink: 0;
+        align-self: flex-start;
     }
 }
-
 /* EPISODE - DETAILED */
 .episode-single {
     max-width: 700px;

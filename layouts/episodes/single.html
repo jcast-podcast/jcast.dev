@@ -1,5 +1,6 @@
 {{ define "main" }}
 <article class="episode-single">
+    <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
     <h1 class="episode-title">{{ .Title }}</h1>
     <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-date">
     {{ .Date.Format "2 January 2006" }}

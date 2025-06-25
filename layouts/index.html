@@ -29,6 +29,7 @@
                 <a href="{{ .Permalink }}">
                     <img src="{{ .Params.thumbnail }}" alt="Thumbnail van {{ .Title }}" class="home-episode-thumbnail">
                     <h4 class="home-episode-title">{{ .Title }}</h4>
+                    <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
                 </a>
             </li>
             {{ end }}
