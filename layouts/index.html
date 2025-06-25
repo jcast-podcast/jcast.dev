@@ -10,9 +10,9 @@
 
     <div class="recent-episodes latest-episode">
         <h2>Laatste Aflevering</h2>
-        {{ $latest := first 1 (where .Site.Pages "Section" "episodes" ) }}
-        {{ if $latest }}
-        {{ with index $latest 0 }}
+        {{ $latestEpisode := first 1 (.Site.GetPage "section" "episodes").Pages.ByDate.Reverse }}
+        {{ if $latestEpisode }}
+        {{ with index $latestEpisode 0 }}
         <div class="latest-episode-player">
             <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless="" src="{{ .Params.player }}"></iframe>
         </div>
