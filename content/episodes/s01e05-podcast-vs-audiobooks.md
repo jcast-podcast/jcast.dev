@@ -4,7 +4,7 @@ episode: 5
 title: "(Audio)Books vs Podcasts"
 date: 2025-08-29
 thumbnail: "/images/thumbnails/s01e05-podcasts-vs-audiobooks.png"
-player: "https://share.transistor.fm/e/0b43dec1"
+player: "https://share.transistor.fm/e/b0afff90"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
