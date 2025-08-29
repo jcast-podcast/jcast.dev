@@ -2,7 +2,7 @@
 season: 1
 episode: 5
 title: "(Audio)Books vs Podcasts"
-date: 2025-08-29
+date: 2025-09-01
 thumbnail: "/images/thumbnails/s01e05-podcasts-vs-audiobooks.png"
 player: "https://share.transistor.fm/e/b0afff90"
 section: episodes
