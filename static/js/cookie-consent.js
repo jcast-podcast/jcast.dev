@@ -6,19 +6,19 @@
     const consent = localStorage.getItem("cookieConsent");
 
     function loadAnalytics() {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+
         const gtagScript = document.createElement('script');
         gtagScript.setAttribute('async', '');
         gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-XW26YSCBZG';
-        document.head.appendChild(gtagScript);
 
-        const inlineScript = document.createElement('script');
-        inlineScript.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XW26YSCBZG');
-    `;
-        document.head.appendChild(inlineScript);
+        gtagScript.onload = function() {
+            gtag('js', new Date());
+            gtag('config', 'G-XW26YSCBZG');
+        };
+
+        document.head.appendChild(gtagScript);
     }
 
     if (!consent) {
