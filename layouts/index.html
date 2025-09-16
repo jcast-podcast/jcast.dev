@@ -1,39 +1,50 @@
 {{ define "main" }}
-<section class="home-page">
-    <h1 class="intro-title">{{ .Title }}</h1>
-    <div class="intro">
-        <p>Welkom op de officiële site van JCast — de podcast over development, soft skills en nerd life.</p>
-        <p>Bekijk de <a href="/episodes/">afleveringen</a> of luister direct op
-            <a href="https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W" target="_blank" rel="noopener noreferrer">Spotify</a>.
-        </p>
-    </div>
+<main>
+    <section class="home-page">
+        <h1 class="intro-title">{{ .Title }}</h1>
 
-    <div class="recent-episodes latest-episode">
-        <h2>Laatste Aflevering</h2>
-        {{ $latestEpisode := first 1 (.Site.GetPage "section" "episodes").Pages.ByDate.Reverse }}
-        {{ if $latestEpisode }}
-        {{ with index $latestEpisode 0 }}
-        <div class="latest-episode-player">
-            <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless="" src="{{ .Params.player }}"></iframe>
+        <div class="intro">
+            <p>Welkom op de officiële site van JCast, de podcast over development, soft skills en nerd life.</p>
+            <p>
+                Bekijk de <a href="/episodes/">afleveringen</a> of luister direct op
+                <a href="https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W"
+                   target="_blank"
+                   rel="noopener noreferrer">Spotify</a>.
+            </p>
         </div>
-        {{ end }}
-        {{ end }}
-    </div>
 
-    <div class="recent-episodes other-episodes">
-        <h2>Recente Afleveringen</h2>
-        <ul class="home-episode-list">
-            {{ $episodes := .Site.GetPage "section" "episodes" }}
-            {{ range first 3 $episodes.Pages }}
-            <li class="home-episode-card">
-                <a href="{{ .Permalink }}">
-                    <img src="{{ .Params.thumbnail }}" alt="Thumbnail van {{ .Title }}" class="home-episode-thumbnail">
-                    <h4 class="home-episode-title">{{ .Title }}</h4>
-                    <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
-                </a>
-            </li>
+        <section class="recent-episodes latest-episode" aria-labelledby="laatste-aflevering">
+            <h2 id="laatste-aflevering">Laatste Aflevering</h2>
+            {{ $latestEpisode := first 1 (.Site.GetPage "section" "episodes").Pages.ByDate.Reverse }}
+            {{ if $latestEpisode }}
+            {{ with index $latestEpisode 0 }}
+            <div class="latest-episode-player">
+                <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless
+                        src="{{ .Params.player }}"
+                        title="Audio speler van aflevering {{ .Title }}">
+                </iframe>
+            </div>
             {{ end }}
-        </ul>
-    </div>
-</section>
+            {{ end }}
+        </section>
+
+        <section class="recent-episodes other-episodes" aria-labelledby="recente-afleveringen">
+            <h2 id="recente-afleveringen">Recente Afleveringen</h2>
+            <ul class="home-episode-list">
+                {{ $episodes := .Site.GetPage "section" "episodes" }}
+                {{ range first 3 $episodes.Pages }}
+                <li class="home-episode-card">
+                    <a href="{{ .Permalink }}">
+                        <img src="{{ .Params.thumbnail }}"
+                             alt="Thumbnail van aflevering {{ .Title }}"
+                             class="home-episode-thumbnail">
+                        <h3 class="home-episode-title">{{ .Title }}</h3>
+                        <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
+                    </a>
+                </li>
+                {{ end }}
+            </ul>
+        </section>
+    </section>
+</main>
 {{ end }}
