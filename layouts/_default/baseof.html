@@ -24,33 +24,35 @@
     {{ partial "head.html" . }}
 </head>
 <body>
-<header>
+<a href="#main-content" class="skip-to-content">Direct naar de inhoud</a>
+
+<header role="banner">
     <div class="container">
         <a href="/" class="logo-link">
             <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" />
         </a>
-        <nav class="nav">
+        <nav class="nav" role="navigation" aria-label="Hoofdmenu">
             <a href="/episodes/">Afleveringen</a>
             <a href="/about/">Over ons</a>
         </nav>
     </div>
 </header>
 
-<main>
+<main id="main-content">
     {{ block "main" . }}{{ end }}
 </main>
 
-<footer>
+<footer role="contentinfo">
     © {{ now.Year }} JCast
 </footer>
 
-<div id="cookie-consent-banner" class="cookie-banner hidden">
+<div id="cookie-consent-banner" class="cookie-banner hidden" role="dialog" aria-live="polite" aria-label="Cookie toestemming">
     <p>
         🍪 Deze website gebruikt cookies voor analytics (anoniem). Wil je dat we je bezoek meten?
     </p>
     <div class="cookie-buttons">
-        <button id="accept-cookies">Ja, is goed</button>
-        <button id="decline-cookies">Nee, liever niet</button>
+        <button id="accept-cookies" aria-label="Cookies accepteren">Ja, is goed</button>
+        <button id="decline-cookies" aria-label="Cookies weigeren">Nee, liever niet</button>
     </div>
 </div>
 
