@@ -4,15 +4,15 @@ episode: 6
 title: "Java, Soft Skills & Mensenkennis"
 date: 2025-09-06
 thumbnail: "/images/thumbnails/s01e06-softskills.png"
-player: ""
+player: "https://share.transistor.fm/e/ffa35c7d"
 section: episodes
-spotify: ""
-apple: ""
-amazon: ""         
-itunes: ""
-podcastaddict: ""
-deezer: ""
-playerfm: ""
+spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
+apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
+amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"         
+itunes: "https://pca.st/itunes/1814550001"
+podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
+deezer: "https://www.deezer.com/show/1001888441"
+playerfm: "https://player.fm/series/series-3665934"
 guest: "bjorn_de_craemer"
 ---
 
