@@ -1,8 +1,22 @@
 {{ define "main" }}
 <section class="episode-list-page">
     <h1 class="list-page-title">Alle Afleveringen</h1>
+
+    {{ $allPages := .Pages.ByDate.Reverse }}
+
+    {{ $seasons := slice }}
+    {{ range $allPages }}
+    {{ $season := .Params.season }}
+    {{ if not (in $seasons $season) }}
+    {{ $seasons = $seasons | append $season }}
+    {{ end }}
+    {{ end }}
+
+    {{ range $season := $seasons }}
+    <h2 class="season-title">Seizoen {{ printf "%2d" $season }}</h2>
     <div class="episode-list">
-        {{ range .Pages.ByDate.Reverse }}
+        {{ range $allPages }}
+        {{ if eq .Params.season $season }}
         <article class="episode-card">
             <h2 class="episode-title-list">
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
@@ -61,6 +75,9 @@
             </div>
         </article>
         {{ end }}
+        {{ end }}
     </div>
+    {{ end }}
+
 </section>
 {{ end }}
