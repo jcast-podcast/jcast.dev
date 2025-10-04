@@ -823,17 +823,6 @@ footer {
     margin-bottom: 2rem;
 }
 
-.bug-icon-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-}
-
-.bug-icon {
-    animation: bounce 1s infinite;
-}
-
 .error-log {
     background-color: var(--bg);
     padding: 1rem;

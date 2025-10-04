@@ -3,9 +3,10 @@
     <div class="terminal-container">
             <div class="terminal-body">
                 <div class="content-section">
-                    <div class="bug-icon-container">
-                        <img class="bug-icon" src="https://i.ibb.co/r2jPjJTD/bug.png" alt="bug" border="0" width="48" height="48">
-                    </div>
+                    <h1 class="error-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        404 - Deze route bestaat niet
+                    </h1>
 
                     <div class="error-log">
                         <pre><code>ERROR: 404_PAGE_NOT_FOUND
@@ -15,10 +16,6 @@ at processRequest(http.js:223:5)
 at Server.handleRequest(server.js:12:3)</code></pre>
                     </div>
 
-                    <h1 class="error-title">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                        404 - Deze route bestaat niet
-                    </h1>
                     <p class="error-description">
                         We hebben de URL gevolgd... maar de server gaf een
                         <span class="highlight-error">NullPointerException</span>
