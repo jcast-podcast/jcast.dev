@@ -394,13 +394,20 @@ header .container {
 }
 
 .guest-info {
+    margin-bottom: 1.5rem;
+}
+
+.guest-info-desktop {
     display: flex;
     align-items: center;
-    margin-bottom: 1.5rem;
     padding: 1rem;
     background: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+}
+
+.guest-info-mobile {
+    display: none;
 }
 
 .guest-thumbnail {
@@ -428,6 +435,68 @@ header .container {
     color: #555;
     line-height: 1.5;
     margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .guest-info-desktop {
+        display: none;
+    }
+
+    .guest-info-mobile {
+        display: block;
+        background: #f9f9f9;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+    }
+
+    .guest-info-mobile summary {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--text);
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .guest-info-mobile summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .guest-info-mobile summary::after {
+        content: '▼';
+        font-size: 0.8rem;
+        transition: transform 0.2s;
+    }
+
+    .guest-info-mobile[open] summary::after {
+        transform: rotate(-180deg);
+    }
+
+    .guest-content {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .guest-info-mobile .guest-thumbnail {
+        display: none;
+    }
+
+    .guest-info-mobile .guest-details {
+        flex-grow: 1;
+    }
+
+    .guest-info-mobile .guest-details strong {
+        display: none;
+    }
+
+    .guest-info-mobile .guest-description {
+        font-size: 0.9rem;
+        margin-top: 0;
+    }
 }
 
 /* EPISODES - LIST */
@@ -741,42 +810,40 @@ header .container {
 }
 
 @media (max-width: 768px) {
-    .crew-list {
-        gap: 1.5rem;
-    }
-
-    .crew-member {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .crew-photo-container {
-        margin-bottom: 1rem;
-    }
-
-    .crew-photo {
-        width: 120px;
-        height: 120px;
-    }
-
     .jcast-contact {
-        padding: 1.5rem 1rem;
-        margin-top: 3rem;
+        padding: 1rem;
+        margin-top: 2rem;
+        border-radius: 10px;
     }
 
     .jcast-contact h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .jcast-contact p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        padding: 0 0.5rem;
     }
 
     .jcast-contact-links {
         flex-direction: column;
-        gap: 1rem;
+        align-items: stretch;
+        gap: 0.8rem;
+        width: 100%;
     }
 
     .jcast-contact-link {
-        width: 100%;
         justify-content: center;
+        padding: 0.7rem 1rem;
+        font-size: 0.95rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .jcast-contact-link i {
+        font-size: 1.1rem;
     }
 }
 
@@ -798,6 +865,25 @@ header .container {
     .crew-photo {
         width: 120px;
         height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .jcast-contact {
+        padding: 0.8rem;
+    }
+
+    .jcast-contact h2 {
+        font-size: 1.2rem;
+    }
+
+    .jcast-contact p {
+        font-size: 0.9rem;
+    }
+
+    .jcast-contact-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 0.8rem;
     }
 }
 

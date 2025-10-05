@@ -16,15 +16,31 @@
     {{ $guestKey := . }} {{ $guestData := index $.Site.Data.guest $guestKey }}
     {{ if $guestData }}
     <div class="guest-info">
-        {{ with $guestData.thumbnail }}
-        <img src="{{ . }}" alt="{{ $guestData.name }}" class="guest-thumbnail">
-        {{ end }}
-        <div class="guest-details">
-            <strong>Gast: {{ $guestData.name }}</strong>
-            {{ with $guestData.description }}
-            <p class="guest-description">{{ . }}</p>
+        <div class="guest-info-desktop">
+            {{ with $guestData.thumbnail }}
+            <img src="{{ . }}" alt="{{ $guestData.name }}" class="guest-thumbnail">
             {{ end }}
+            <div class="guest-details">
+                <strong>Gast: {{ $guestData.name }}</strong>
+                {{ with $guestData.description }}
+                <p class="guest-description">{{ . }}</p>
+                {{ end }}
+            </div>
         </div>
+
+        <details class="guest-info-mobile">
+            <summary>Gast: {{ $guestData.name }}</summary>
+            <div class="guest-content">
+                {{ with $guestData.thumbnail }}
+                <img src="{{ . }}" alt="{{ $guestData.name }}" class="guest-thumbnail">
+                {{ end }}
+                <div class="guest-details">
+                    {{ with $guestData.description }}
+                    <p class="guest-description">{{ . }}</p>
+                    {{ end }}
+                </div>
+            </div>
+        </details>
     </div>
     {{ end }}
     {{ end }}
