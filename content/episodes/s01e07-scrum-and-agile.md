@@ -4,7 +4,7 @@ episode: 7
 title: "Meetings, stand-ups & agile drama "
 date: 2025-11-03
 thumbnail: "/images/thumbnails/s01e06-softskills.png"
-player: "https://share.transistor.fm/e/ffa35c7d"
+player: "https://share.transistor.fm/e/2bdcb265"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
