@@ -2,8 +2,8 @@
 season: 1
 episode: 7
 title: "Meetings, stand-ups & agile drama "
-date: 2025-11-03
-thumbnail: "/images/thumbnails/s01e06-softskills.png"
+date: 2025-10-03
+thumbnail: "/images/thumbnails/s01e07-scrum-and-agile.png"
 player: "https://share.transistor.fm/e/2bdcb265"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
@@ -27,7 +27,7 @@ Met **Oumaima, Viktor en Maarten** achter de microfoon:
 - Waarom developers soms meetings haten en hoe je er wél iets uithaalt
 - De rol van de scrummaster: coach, leider of toeschouwer?
 - Het verschil tussen bugs, change requests en pure frustratie
-- En natuurlijk: een scherpe **Quick Fire ronde** over daily’s, Jira-comments en vrijdagavondreleases 🎯
+- En natuurlijk: een scherpe **Quick Fire ronde** over daily’s, Jira-comments en vrijdagavondreleases 
 
 Een aflevering vol herkenning voor iedereen die ooit in een sprint zat en dacht: “Is dit nu samenwerking of improvisatie?”
 
