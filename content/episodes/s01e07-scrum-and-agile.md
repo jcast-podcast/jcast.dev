@@ -1,8 +1,8 @@
 ---
 season: 1
 episode: 7
-title: "Meetings, stand-ups & agile drama "
-date: 2025-10-03
+title: "Meetings, stand-ups & agile drama"
+date: 2025-11-03
 thumbnail: "/images/thumbnails/s01e07-scrum-and-agile.png"
 player: "https://share.transistor.fm/e/2bdcb265"
 section: episodes
