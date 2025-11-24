@@ -16,4 +16,4 @@ playerfm: "https://player.fm/series/series-3665934"
 guest: "jan_van_wassenhove"
 ---
 
-Dit moet nog gemaakt worden xd
+In deze aflevering schuift Jan Van Wassenhove bij ons aan voor een gesprek over Java, AI en de menselijke kant van softwareontwikkeling. We hebben het over zijn groei van developer naar spreker, waarom AI vandaag meer is dan hype, hoe teams ermee kunnen omgaan en welke skills in de toekomst het verschil zullen maken. Luchtig, eerlijk en met plenty zijsporen.
