@@ -25,6 +25,20 @@
                 {{ with $guestData.description }}
                 <p class="guest-description">{{ . }}</p>
                 {{ end }}
+                {{ with $guestData.socials }}
+                <div class="guest-socials">
+                    {{ range $platform, $url := . }}
+                    <a href="{{ $url }}"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek {{ $guestData.name }} op {{ $platform }}">
+                        {{ partial "icons/social" (dict "platform" $platform) }}
+                        <span class="sr-only">{{ $platform }}</span>
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
             </div>
         </div>
 
@@ -40,6 +54,20 @@
                     {{ end }}
                 </div>
             </div>
+            {{ with $guestData.socials }}
+            <div class="guest-socials">
+                {{ range $platform, $url := . }}
+                <a href="{{ $url }}"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek {{ $guestData.name }} op {{ $platform }}">
+                    {{ partial "icons/social" (dict "platform" $platform) }}
+                    <span class="sr-only">{{ $platform }}</span>
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
         </details>
     </div>
     {{ end }}

@@ -16,4 +16,24 @@ playerfm: "https://player.fm/series/series-3665934"
 guest: "jan_van_wassenhove"
 ---
 
-In deze aflevering schuift Jan Van Wassenhove bij ons aan voor een gesprek over Java, AI en de menselijke kant van softwareontwikkeling. We hebben het over zijn groei van developer naar spreker, waarom AI vandaag meer is dan hype, hoe teams ermee kunnen omgaan en welke skills in de toekomst het verschil zullen maken. Luchtig, eerlijk en met plenty zijsporen.
+In deze aflevering verwelkomen we Jan Van Wassenhove, een ervaren developer, consultant en conferentiespreker op onder meer Devoxx en Techorama. We duiken mee in zijn weg van PHP en C# naar Java, hoe zijn passie voor spreken ontstond, en waarom kennis delen voor hem zo’n belangrijk onderdeel van het vak is.
+
+Samen met Oumaima, Maarten en Viktor verkent Jan hoe AI de dagelijkse praktijk van developers verandert. Hij vertelt hoe hij zijn zoon hielp een Pokémon-spel te bouwen met een AI-agent en hoe zulke tools taken versnellen zonder de mens overbodig te maken. We hebben het over de toekomst van testen, de rol van data en bias, en waarom menselijke controle cruciaal blijft, zelfs in een wereld vol slimme assistenten.
+
+Verder bespreken we hoe developers relevant blijven, welke vaardigheden belangrijker worden, en waarom AI vooral kansen biedt voor wie bereid is ermee te werken. Zoals altijd eindigen we met een reeks snelle vragen die laten zien hoe sterk AI vandaag al verweven is met ons werk en denkproces.
+
+**Kortom**: een luchtige, eerlijke en inhoudelijke aflevering over Java, AI en de menselijke kant van softwareontwikkeling, met heel wat inzichten en zijsporen onderweg.
+
+### Show notes
+
+- [Outcoded by Our Kids: It Took Us 20 Years, They Used 20 Prompts! by Jan Van Wassenhove, Bart Wullems](https://www.youtube.com/watch?v=ZO-619lqjK0)
+- [Unveiling the simple math that powers AI by Marianne Hoornenborg](https://www.youtube.com/watch?v=wY2JEeRZSI8)
+- [ Accelerating Maven Builds: From Snail's Pace 🐌 to Rocket Speed 🚀 by Maarten Mulders ](https://www.youtube.com/watch?v=sCkJURhQZUM)
+- [Local Development in the AI Era by Kevin Dubois](https://www.youtube.com/watch?v=HeQErLzvnhc)
+
+##### AI Tools
+- [Bolt](https://www.bolt.new/)
+- [ChatGPT](https://https://chatgpt.com/)
+- [Lovable](https://lovable.dev/)
+- [Claude](https://claude.ai/)
+- [replit](https://replit.com/)
