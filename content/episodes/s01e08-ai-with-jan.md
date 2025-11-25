@@ -31,7 +31,7 @@ Verder bespreken we hoe developers relevant blijven, welke vaardigheden belangri
 - [ Accelerating Maven Builds: From Snail's Pace 🐌 to Rocket Speed 🚀 by Maarten Mulders ](https://www.youtube.com/watch?v=sCkJURhQZUM)
 - [Local Development in the AI Era by Kevin Dubois](https://www.youtube.com/watch?v=HeQErLzvnhc)
 
-##### AI Tools
+#### AI Tools
 - [Bolt](https://www.bolt.new/)
 - [ChatGPT](https://https://chatgpt.com/)
 - [Lovable](https://lovable.dev/)
