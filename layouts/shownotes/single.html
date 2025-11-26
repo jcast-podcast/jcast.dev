@@ -1,0 +1,28 @@
+{{ define "main" }}
+<article class="shownotes-single">
+    <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
+    <h1 class="shownotes-title">{{ .Title }}</h1>
+    <time datetime="{{ .Date.Format "2006-01-02" }}" class="shownotes-date">
+        {{ .Date.Format "2 January 2006" }}
+    </time>
+
+    {{ with .Params.thumbnail }}
+    <div class="shownotes-thumbnail-container">
+        <img src="{{ . }}" alt="{{ $.Title }} thumbnail" class="shownotes-thumbnail">
+    </div>
+    {{ end }}
+
+    <div class="shownotes-body">
+        {{ .Content }}
+    </div>
+
+    {{ with .Params.episode_link }}
+    <nav class="back-to-episode" aria-label="Navigatie naar aflevering">
+        <a href="{{ . }}" aria-label="Terug naar de podcast aflevering {{ $.Title }}">
+            <span aria-hidden="true">←</span> Terug naar aflevering
+        </a>
+    </nav>
+    {{ end }}
+</article>
+{{ end }}
+

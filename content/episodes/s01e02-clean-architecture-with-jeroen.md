@@ -14,6 +14,7 @@ podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
 deezer: "https://www.deezer.com/show/1001888441"
 playerfm: "https://player.fm/series/series-3665934"
 guest: "jeroen_bastijns"
+shownotes_link: "/shownotes/s01e02-clean-architecture-with-jeroen/"
 ---
 In deze aflevering schuift Jeroen Bastijns aan bij Oumaima, Viktor en Maarten voor een diepgaand gesprek over Clean Architecture. 
 Jeroen vertelt hoe hij in contact kwam met dit concept, waarom het hem raakte en hoe zijn manier van denken en bouwen doorheen de jaren is geëvolueerd. 

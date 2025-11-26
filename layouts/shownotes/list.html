@@ -1,0 +1,59 @@
+{{ define "main" }}
+<section class="shownotes-list-page">
+    <h1 class="list-page-title">Alle Shownotes</h1>
+
+    {{ $allPages := .Pages.ByDate.Reverse }}
+
+    {{ $seasons := slice }}
+    {{ range $allPages }}
+    {{ $season := .Params.season }}
+    {{ if not (in $seasons $season) }}
+    {{ $seasons = $seasons | append $season }}
+    {{ end }}
+    {{ end }}
+
+    {{ range $season := $seasons }}
+    <h2 class="season-title">Seizoen {{ printf "%2d" $season }}</h2>
+    <div class="shownotes-list">
+        {{ range $allPages }}
+        {{ if eq .Params.season $season }}
+        <article class="shownotes-card">
+            <div class="shownotes-card-header">
+                <div class="episode-number">Aflevering {{ .Params.episode }}</div>
+            </div>
+            <h2 class="shownotes-title-list">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h2>
+
+            <div class="shownotes-card-body">
+                {{ with .Params.thumbnail }}
+                <a href="{{ $.RelPermalink }}" class="shownotes-thumb-link">
+                    <img src="{{ . }}" alt="Thumbnail {{ $.Title }}" class="shownotes-thumb" loading="lazy" />
+                </a>
+                {{ end }}
+
+                <div class="shownotes-meta">
+                    <time datetime="{{ .Date.Format "2006-01-02" }}" class="shownotes-date-list">
+                        {{ .Date.Format "2 January 2006" }}
+                    </time>
+                    <div class="shownotes-summary">
+                        {{ .Summary | plainify | htmlUnescape | truncate 200 "..." }}
+                    </div>
+                    {{ with .Params.episode_link }}
+                    <div class="episode-link-text">
+                        <a href="{{ . }}" aria-label="Luister naar de podcast aflevering {{ $.Title }}">
+                            Luister naar deze aflevering
+                        </a>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </article>
+        {{ end }}
+        {{ end }}
+    </div>
+    {{ end }}
+
+</section>
+{{ end }}
+

@@ -13,6 +13,7 @@ itunes: "https://pca.st/itunes/1814550001"
 podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
 deezer: "https://www.deezer.com/show/1001888441"
 playerfm: "https://player.fm/series/series-3665934"
+shownotes_link: "/shownotes/s01e01-professional-developer-what/"
 ---
 In deze allereerste episode gaan Oumaima, Viktor en Maarten in gesprek over wat het betekent om een professionele ontwikkelaar te zijn.
 Geïnspireerd door Uncle Bob (Robert C. Martin) duiken we in topics als Clean Code, TDD en professionele standaarden in softwareontwikkeling. 

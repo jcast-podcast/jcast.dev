@@ -47,9 +47,18 @@
 
     <div class="episode-body">
         {{ .Content }}
+    </div>
 
-        <div class="episode-meta">
-            <div class="platform-icons">
+    {{ with .Params.shownotes_link }}
+    <div class="shownotes-link-inline">
+        <a href="{{ . }}" aria-label="Lees de volledige shownotes voor {{ $.Title }}">
+            Lees de volledige shownotes
+        </a>
+    </div>
+    {{ end }}
+
+    <div class="episode-meta">
+        <div class="platform-icons">
                 {{ with .Params.spotify }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
                     <i class="fab fa-spotify"></i>
