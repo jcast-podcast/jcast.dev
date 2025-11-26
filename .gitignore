@@ -257,4 +257,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#Copilot instructions
+.github/instructions
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,intellij+all,webstorm+all,hugo,terraform

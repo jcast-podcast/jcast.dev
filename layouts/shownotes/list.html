@@ -27,8 +27,8 @@
 
             <div class="shownotes-card-body">
                 {{ with .Params.thumbnail }}
-                <a href="{{ $.RelPermalink }}" class="shownotes-thumb-link">
-                    <img src="{{ . }}" alt="Thumbnail {{ $.Title }}" class="shownotes-thumb" loading="lazy" />
+                <a href="{{ $.RelPermalink }}" class="shownotes-thumb-link" aria-label="Bekijk shownotes voor {{ $.Title }}">
+                    <img src="{{ . }}" alt="" class="shownotes-thumb" loading="lazy" />
                 </a>
                 {{ end }}
 

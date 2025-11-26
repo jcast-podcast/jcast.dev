@@ -19,9 +19,11 @@
             {{ if $latestEpisode }}
             {{ with index $latestEpisode 0 }}
             <div class="latest-episode-player">
-                <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless
+                <iframe width="100%" height="180"
                         src="{{ .Params.player }}"
-                        title="Audio speler van aflevering {{ .Title }}">
+                        title="Audio speler voor {{ .Title }}"
+                        aria-label="Audio speler voor {{ .Title }}"
+                        style="border: none;">
                 </iframe>
             </div>
             {{ end }}
@@ -36,7 +38,7 @@
                 <li class="home-episode-card">
                     <a href="{{ .Permalink }}">
                         <img src="{{ .Params.thumbnail }}"
-                             alt="Thumbnail van aflevering {{ .Title }}"
+                             alt=""
                              class="home-episode-thumbnail">
                         <h3 class="home-episode-title">{{ .Title }}</h3>
                         <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
