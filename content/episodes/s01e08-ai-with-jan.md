@@ -33,7 +33,7 @@ Verder bespreken we hoe developers relevant blijven, welke vaardigheden belangri
 
 #### AI Tools
 - [Bolt](https://www.bolt.new/)
-- [ChatGPT](https://https://chatgpt.com/)
+- [ChatGPT](https://chatgpt.com/)
 - [Lovable](https://lovable.dev/)
 - [Claude](https://claude.ai/)
 - [replit](https://replit.com/)
