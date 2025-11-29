@@ -13,18 +13,19 @@
     {{ end }}
 
     {{ range $season := $seasons }}
-    <h2 class="season-title">Seizoen {{ printf "%2d" $season }}</h2>
-    <div class="episode-list">
-        {{ range $allPages }}
-        {{ if eq .Params.season $season }}
-        <article class="episode-card">
-            <div class="episode-card-header">
-                <div class="episode-number">Aflevering {{ .Params.episode }}</div>
-                <div class="spacer"></div>
-            </div>
-            <h2 class="episode-title-list">
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </h2>
+    <section aria-labelledby="season-{{ $season }}-title">
+        <h2 class="season-title" id="season-{{ $season }}-title">Seizoen {{ printf "%2d" $season }}</h2>
+        <div class="episode-list">
+            {{ range $allPages }}
+            {{ if eq .Params.season $season }}
+            <article class="episode-card">
+                <div class="episode-card-header">
+                    <div class="episode-number">Aflevering {{ .Params.episode }}</div>
+                    <div class="spacer"></div>
+                </div>
+                <h3 class="episode-title-list">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </h3>
 
             <div class="episode-card-body">
                 {{ with .Params.thumbnail }}
@@ -40,38 +41,38 @@
 
                     <div class="platform-icons">
                         {{ with .Params.spotify }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Spotify">
-                            <i class="fab fa-spotify"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Spotify">
+                            <i class="fab fa-spotify" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.apple }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Apple Podcasts">
-                            <i class="fab fa-apple"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Apple Podcasts">
+                            <i class="fab fa-apple" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.amazon }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Amazon Music">
-                            <i class="fab fa-amazon"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Amazon Music">
+                            <i class="fab fa-amazon" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.itunes }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="iTunes">
-                            <i class="fas fa-podcast"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op iTunes">
+                            <i class="fas fa-podcast" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.deezer }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Deezer">
-                            <i class="fab fa-deezer"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Deezer">
+                            <i class="fab fa-deezer" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.playerfm }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="PlayerFM">
-                            <i class="fas fa-headphones"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op PlayerFM">
+                            <i class="fas fa-headphones" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                         {{ with .Params.podcastaddict }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Podcast Addict">
-                            <i class="fas fa-rss"></i>
+                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Podcast Addict">
+                            <i class="fas fa-rss" aria-hidden="true"></i>
                         </a>
                         {{ end }}
                     </div>
@@ -80,7 +81,8 @@
         </article>
         {{ end }}
         {{ end }}
-    </div>
+        </div>
+    </section>
     {{ end }}
 
 </section>
