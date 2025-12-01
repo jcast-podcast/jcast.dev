@@ -30,7 +30,7 @@
             <div class="episode-card-body">
                 {{ with .Params.thumbnail }}
                 <a href="{{ $.RelPermalink }}" class="episode-thumb-link">
-                    <img src="{{ . }}" alt="Thumbnail {{ $.Title }}" class="episode-thumb" loading="lazy" />
+                    <img src="{{ . }}" alt="Thumbnail voor aflevering {{ $.Title }}" class="episode-thumb" loading="lazy" />
                 </a>
                 {{ end }}
 
@@ -86,4 +86,26 @@
     {{ end }}
 
 </section>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ .Site.BaseURL }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Afleveringen",
+            "item": "{{ .Permalink }}"
+        }
+    ]
+}
+</script>
 {{ end }}

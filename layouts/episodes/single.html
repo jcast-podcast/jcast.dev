@@ -8,7 +8,7 @@
 
     {{ with .Params.thumbnail }}
     <div class="episode-thumbnail-container">
-        <img src="{{ . }}" alt="Thumbnail voor {{ $.Title }}" class="episode-thumbnail">
+        <img src="{{ . }}" alt="Thumbnail voor {{ $.Title }}" class="episode-thumbnail" loading="lazy">
     </div>
     {{ end }}
 
@@ -18,7 +18,7 @@
     <div class="guest-info">
         <div class="guest-info-desktop">
             {{ with $guestData.thumbnail }}
-            <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail">
+            <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
             {{ end }}
             <div class="guest-details">
                 <strong>Gast: {{ $guestData.name }}</strong>
@@ -46,7 +46,7 @@
             <summary>Gast: {{ $guestData.name }}</summary>
             <div class="guest-content">
                 {{ with $guestData.thumbnail }}
-                <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail">
+                <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
                 {{ end }}
                 <div class="guest-details">
                     {{ with $guestData.description }}
@@ -122,7 +122,8 @@
         <iframe width="100%" height="180" frameborder="no" scrolling="no" seamless=""
                 src="{{ . }}"
                 title="Audiospeler voor {{ $.Title }}"
-                aria-label="Audiospeler voor {{ $.Title }}"></iframe>
+                aria-label="Audiospeler voor {{ $.Title }}"
+                loading="lazy"></iframe>
     </div>
     {{ end }}
 
@@ -146,70 +147,68 @@
     </div>
 </article>
 
+<!-- Structured Data: PodcastEpisode -->
 <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "PodcastEpisode",
-        "name": "{{ .Title }}",
-        "description": "{{ .Params.description | default .Summary | plainify }}",
-        "url": "{{ .Permalink }}",
-        "datePublished": "{{ .Date.Format "2006-01-02" }}",
-        "partOfSeries": {
-            "@type": "PodcastSeries",
-            "name": "JCast",
-            "url": "https://jcast.dev"
+{
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    "name": "{{ .Title }}",
+    "description": "{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}",
+    "url": "{{ .Permalink }}",
+    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    {{ with .Params.thumbnail }}
+    "image": "{{ . | absURL }}",
+    {{ end }}
+    "episodeNumber": {{ .Params.episode }},
+    "partOfSeason": {
+        "@type": "PodcastSeason",
+        "seasonNumber": {{ .Params.season }}
+    },
+    "partOfSeries": {
+        "@type": "PodcastSeries",
+        "name": "{{ .Site.Title }}",
+        "url": "{{ .Site.BaseURL }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ .Site.Params.author }}"
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "{{ .Site.Params.author }}"
+    }{{ with .Params.spotify }},
+    "associatedMedia": {
+        "@type": "MediaObject",
+        "contentUrl": "{{ . }}"
+    }{{ end }}
+}
+</script>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ .Site.BaseURL }}"
         },
-        "associatedMedia": [
-            {{ with .Params.spotify }}
-            {
-                "@type": "MediaObject",
-                "name": "Spotify",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.apple }}
-            {
-                "@type": "MediaObject",
-                "name": "Apple Podcasts",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.amazon }}
-            {
-                "@type": "MediaObject",
-                "name": "Amazon Music",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.deezer }}
-            {
-                "@type": "MediaObject",
-                "name": "Deezer",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.itunes }}
-            {
-                "@type": "MediaObject",
-                "name": "iTunes",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.podcastaddict }}
-            {
-                "@type": "MediaObject",
-                "name": "Podcast Addict",
-                "contentUrl": "{{ . }}"
-            },
-            {{ end }}
-            {{ with .Params.playerfm }}
-            {
-                "@type": "MediaObject",
-                "name": "PlayerFM",
-                "contentUrl": "{{ . }}"
-            }
-            {{ end }}
-        ]
-    }
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Afleveringen",
+            "item": "{{ .Site.BaseURL }}episodes/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ .Title }}",
+            "item": "{{ .Permalink }}"
+        }
+    ]
+}
 </script>
 {{ end }}

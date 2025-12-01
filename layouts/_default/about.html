@@ -8,10 +8,10 @@
     <div class="crew-list">
         <article class="crew-member">
             <div class="crew-photo-container">
-                <img src="/images/avatars/viktor-avatar.png" alt="Portret van Viktor" class="crew-photo">
+                <img src="/images/avatars/viktor-avatar.png" alt="Portret van Viktor Van Steenweghen" class="crew-photo" loading="lazy">
             </div>
             <div class="crew-info">
-                <h3>Viktor Van Steenweghen</h3>
+                <h2>Viktor Van Steenweghen</h2>
                 <p>
                     Viktor is een software engineer die leeft voor clean code en automatisatie. Dol op AI-tools,
                     nerdy discussies en altijd nieuwsgierig naar nieuwe shortcuts.
@@ -88,4 +88,42 @@
         </div>
     </div>
 </section>
+
+<!-- Structured Data: BreadcrumbList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ .Site.BaseURL }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Over ons",
+            "item": "{{ .Permalink }}"
+        }
+    ]
+}
+</script>
+
+<!-- Structured Data: AboutPage -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "{{ .Title }}",
+    "description": "Wij zijn Oumaima, Viktor en Maarten. Drie developers met een liefde voor code en een gezonde dosis chaos.",
+    "url": "{{ .Permalink }}",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "{{ .Site.Title }}",
+        "url": "{{ .Site.BaseURL }}"
+    }
+}
+</script>
 {{ end }}
