@@ -4,7 +4,7 @@ episode: 8
 title: "AI, Java & de menselijke kant van ontwikkeling"
 date: 2025-12-01
 thumbnail: "/images/thumbnails/s01e08-java-with-ai.png"
-player: "https://share.transistor.fm/e/ffa35c7d"
+player: "https://share.transistor.fm/e/798ef0f6"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
