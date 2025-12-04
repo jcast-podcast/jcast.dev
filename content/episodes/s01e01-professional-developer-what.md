@@ -3,6 +3,7 @@ season: 1
 episode: 1
 title: "Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer"
 date: 2025-04-30
+description: "In deze eerste JCast aflevering bespreken Oumaima, Viktor en Maarten wat het betekent om een professionele ontwikkelaar te zijn. Een eerlijke babbel over Clean Code, TDD en professionele standaarden in softwareontwikkeling."
 thumbnail: "/images/thumbnails/afl-1.png"
 player: "https://share.transistor.fm/e/5ccc7d14"
 section: episodes

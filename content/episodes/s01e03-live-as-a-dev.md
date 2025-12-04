@@ -3,6 +3,7 @@ season: 1
 episode: 3
 title: "Life as a Dev: Openhartig gesprek tussen ons drie"
 date: 2025-07-07
+description: "Viktor, Oumaima en Maarten delen hun ervaringen als developers: van eerste bugs in productie tot tools waar ze niet meer zonder kunnen. Een openhartig gesprek vol herkenbare situaties en zelfspot."
 thumbnail: "/images/thumbnails/s01e03-life-as-a-dev.png"
 player: "https://share.transistor.fm/e/0b43dec1"
 section: episodes

@@ -4,14 +4,28 @@ languageCode = "nl-be"
 defaultContentLanguage = "nl"
 enableRobotsTXT = true
 
+[pagination]
+pagerSize = 10
+
 [params]
 description = "De podcast over IT, dev life, soft skills en gezonde meningsverschillen."
-author = "Oumaima, Viktor & Maarten"
+author = "Oumaima Zerouali, Viktor Van Steenweghen & Maarten Casteels"
+keywords = "Nederlandstalige podcast, Belgische podcast, tech podcast, Java podcast, software development podcast, IT podcast België, developer podcast, programmeren, clean code, agile"
+ogImage = "/images/logo-without-bg.png"
 
 [params.assets]
 customCSS = ["css/styles.css"]
 
+[sitemap]
+changefreq = "weekly"
+priority = 0.5
+filename = "sitemap.xml"
+
 [outputs]
 home = ["HTML", "RSS", "JSON", "SITEMAP"]
+
+[taxonomies]
+tag = "tags"
+category = "categories"
 
 
