@@ -34,6 +34,10 @@ resource "aws_acm_certificate" "blog_cert" {
   lifecycle {
     create_before_destroy = true
   }
+  subject_alternative_names = [
+    "*.jcast.dev",
+    "www.jcast.dev"
+  ]
 }
 
 resource "aws_route53_record" "cert_validation" {
