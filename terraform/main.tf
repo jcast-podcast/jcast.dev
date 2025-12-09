@@ -35,8 +35,7 @@ resource "aws_acm_certificate" "blog_cert" {
     create_before_destroy = true
   }
   subject_alternative_names = [
-    "*.jcast.dev",
-    "www.jcast.dev"
+    "*.jcast.dev"
   ]
 }
 
