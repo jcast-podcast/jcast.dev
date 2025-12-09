@@ -161,14 +161,22 @@ resource "aws_cloudfront_function" "rewrite_function" {
 }
 
 resource "aws_cloudfront_distribution" "www_redirect" {
-  enabled             = true
-  default_root_object = ""
+  enabled         = true
+  is_ipv6_enabled = true
+  comment         = "Redirect www.jcast.dev to jcast.dev"
 
   aliases = ["www.jcast.dev"]
 
   origin {
-    domain_name = aws_s3_bucket.www_redirect.bucket_regional_domain_name
+    domain_name = aws_s3_bucket_website_configuration.www_redirect.website_endpoint
     origin_id   = "s3-www-redirect"
+
+    custom_origin_config {
+      http_port              = 80
+      https_port             = 443
+      origin_protocol_policy = "http-only"
+      origin_ssl_protocols   = ["TLSv1.2"]
+    }
   }
 
   default_cache_behavior {
@@ -186,9 +194,12 @@ resource "aws_cloudfront_distribution" "www_redirect" {
     }
   }
 
+  price_class = "PriceClass_100"
+
   viewer_certificate {
     acm_certificate_arn = aws_acm_certificate_validation.blog_cert.certificate_arn
     ssl_support_method  = "sni-only"
+    minimum_protocol_version = "TLSv1.2_2021"
   }
 
   restrictions {
