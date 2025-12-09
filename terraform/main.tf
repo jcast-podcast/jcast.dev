@@ -70,3 +70,15 @@ resource "aws_route53_record" "blog" {
     evaluate_target_health = false
   }
 }
+
+resource "aws_route53_record" "www" {
+  zone_id = "Z014427436PMWA745G0F4"
+  name    = "www"
+  type    = "A"
+
+  alias {
+    name                   = aws_cloudfront_distribution.www_redirect.domain_name
+    zone_id                = aws_cloudfront_distribution.www_redirect.hosted_zone_id
+    evaluate_target_health = false
+  }
+}

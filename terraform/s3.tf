@@ -32,3 +32,18 @@ resource "aws_s3_bucket_policy" "blog" {
     }]
   })
 }
+
+### Adding www bucket
+resource "aws_s3_bucket" "www_redirect" {
+  bucket   = "www.jcast.dev"
+  provider = aws.eu-west-1
+}
+
+resource "aws_s3_bucket_website_configuration" "www_redirect" {
+  bucket = aws_s3_bucket.www_redirect.id
+
+  redirect_all_requests_to {
+    host_name = "jcast.dev"
+    protocol  = "https"
+  }
+}
