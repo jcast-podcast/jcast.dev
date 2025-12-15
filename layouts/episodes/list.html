@@ -28,11 +28,10 @@
                 </h3>
 
             <div class="episode-card-body">
-                {{ with .Params.thumbnail }}
+
                 <a href="{{ $.RelPermalink }}" class="episode-thumb-link">
-                    <img src="{{ . }}" alt="Thumbnail voor aflevering {{ $.Title }}" class="episode-thumb" loading="lazy" />
+                    {{ partial "episode-thumb.html" (dict "page" . "class" "episode-thumb") }}
                 </a>
-                {{ end }}
 
                 <div class="episode-meta">
                     <div class="episode-summary">
