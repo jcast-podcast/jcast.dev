@@ -28,32 +28,10 @@
                 </h3>
 
             <div class="episode-card-body">
-                {{ $thumb := resources.Get .Params.thumbnail }}
-                {{ if $thumb }}
-                {{ $small  := $thumb.Resize "320x webp" }}
-                {{ $medium := $thumb.Resize "640x webp" }}
-                {{ $large  := $thumb.Resize "1024x webp" }}
-                {{ $fallback := $thumb.Resize "640x jpg" }}
 
                 <a href="{{ $.RelPermalink }}" class="episode-thumb-link">
-                    <picture>
-                        <source type="image/webp"
-                                srcset="{{ $small.RelPermalink }} 320w,
-                      {{ $medium.RelPermalink }} 640w,
-                      {{ $large.RelPermalink }} 1024w">
-                        <img src="{{ $fallback.RelPermalink }}"
-                             alt="Thumbnail voor aflevering {{ $.Title }}"
-                             class="episode-thumb"
-                             loading="lazy">
-                    </picture>
+                    {{ partial "episode-thumb.html" (dict "page" . "class" "episode-thumb") }}
                 </a>
-                {{ end }}
-
-<!--                {{ with .Params.thumbnail }}-->
-<!--                <a href="{{ $.RelPermalink }}" class="episode-thumb-link">-->
-<!--                    <img src="{{ . }}" alt="Thumbnail voor aflevering {{ $.Title }}" class="episode-thumb" loading="lazy" />-->
-<!--                </a>-->
-<!--                {{ end }}-->
 
                 <div class="episode-meta">
                     <div class="episode-summary">
