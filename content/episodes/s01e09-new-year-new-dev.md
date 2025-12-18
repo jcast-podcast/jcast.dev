@@ -1,11 +1,11 @@
 ---
 season: 1
 episode: 9
-title: "New year, new dev: goede voornemens, slechte gewoontes & code-reflecties "
+title: "New year, new dev: goede voornemens, slechte gewoontes & code-reflecties"
 date: 2026-01-05
 description: "In deze nieuwjaarsaflevering van JCast kijken Oumaima, Maarten en Viktor terug op hun professionele en persoonlijke groei in 2025, bespreken ze lessen en uitdagingen als developers en podcasthosts, de invloed van AI, en delen ze hun ambities en goede voornemens voor 2026 met een optimistische blik vooruit."
-thumbnail: ""
-player: "https://share.transistor.fm/e/798ef0f6"
+thumbnail: "/images/thumbnails/s01e09-reflect-groei-ontwikkel.webp"
+player: "https://share.transistor.fm/e/ff88cae3"
 section: episodes
 spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
 apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
@@ -15,25 +15,21 @@ podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
 deezer: "https://www.deezer.com/show/1001888441"
 playerfm: "https://player.fm/series/series-3665934"
 ---
-Een nieuw jaar, een nieuwe aflevering en een perfect moment om even stil te staan.
 
-In deze **speciale nieuwjaarseditie van JCast** blikken Oumaima, Maarten en Viktor terug op het voorbije jaar. 
-Opgenomen in de laatste dagen van 2025, maar uitgekomen op de **allereerste maandag van januari**, is dit een aflevering vol reflectie, goede voornemens en eerlijke gesprekken tussen de lijnen code door.
+In deze nieuwjaarsaflevering van JCast blikken Oumaima, Maarten en Viktor terug op 2025 en kijken ze vooruit naar wat 2026 mag brengen. Opgenomen in de laatste dagen van het jaar, maar bedoeld als frisse start voor januari, voelt deze aflevering als een warme babbel met reflectie, ambities en de nodige zijsporen.
 
-Wat hebben we geleerd als developers én als mensen?
-Waar liepen we tegen muren, soms meer dan één keer?
-Wat nemen we mee naar 2026 en wat laten we bewust los?
+Het voorbije jaar bleek er eentje vol lessen. Niet alleen technisch, maar vooral menselijk. De drie hosts praten openlijk over vallen en opstaan, zowel letterlijk als figuurlijk. Over projecten die groeiden, plannen die soms ontspoorden, en het besef dat developer zijn vandaag veel meer is dan alleen code schrijven. Communicatie, verwachtingen, samenwerken en soms politieke spelletjes blijken evenzeer deel van het vak.
 
-We hebben het over:
+De podcast zelf komt uitgebreid aan bod als een onverwacht maar waardevol bucketlist-item. Wat begon als een idee, groeide uit tot een vaste afspraak met betere audio, meer zelfvertrouwen en een duidelijke goesting om verder te doen. Inclusief leermomenten zoals afleveringen opnieuw moeten opnemen omdat niet alle microfoons bleken te werken.
 
-* groeien en falen in tech
-* planning, chaos en ambities
-* AI, testen, Java en craftsmanship
-* lopen, spreken, leren en grenzen bewaken
-* en natuurlijk: JCast zelf en waar we naartoe willen
+Op technisch vlak gaat het onder meer over AI als hulpmiddel, niet als vervanging. Over hoe snel dingen vandaag verwacht worden van starters, en hoe belangrijk het blijft om te begrijpen wat je doet. Testen krijgen een prominente plaats in het gesprek, met TDD, clean architecture en het belang van gedrag testen in plaats van implementatiedetails. Ook side projecten zoals JTires tonen hoe leuk het kan zijn om samen te experimenteren zonder druk.
 
-Geen perfecte antwoorden, geen grootse beloftes. Wel drie hosts die luidop nadenken, elkaar challengen en vooruit kijken.
+Naast code is er ruimte voor het leven errond. Verhalen over samenwonen, opnieuw papa worden, lopen met blessures, plannen voor marathons en zelfs woestijnraces passeren de revue. Balans blijkt een terugkerend thema. Tussen werk, leren, gezin en rust zoeken de hosts naar wat haalbaar is, en erkennen ze hoe moeilijk dat soms is.
 
-Pak er iets warms bij, zet je koptelefoon op en start het nieuwe jaar samen met ons. 
+Voor 2026 worden er doelen uitgesproken, sommige bewust hardop zodat ze niet meer te ontwijken zijn. Denk aan spreken op conferenties, beter plannen, meer coachen, blijven leren, maar ook dingen loslaten. Niet alles moet groter of sneller. Soms is tevreden zijn ook een skill.
+
+De aflevering sluit af met een snelle, speelse quick fire ronde en een blik op de toekomst van JCast zelf. Ambities zijn er genoeg: nieuwe gasten, misschien internationale gesprekken, aanwezigheid op podcastfestivals en vooral blijven doen wat ze graag doen. Praten over development, Java als vertrekpunt, en alles errond als speelveld.
+
+Een aflevering die perfect samenvat waar JCast voor staat: eerlijk, herkenbaar, inhoudelijk en met veel goesting.
 
 {{< shownotes "s01e09-new-year-new-dev" >}}
