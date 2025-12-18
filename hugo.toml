@@ -21,9 +21,6 @@ changefreq = "weekly"
 priority = 0.5
 filename = "sitemap.xml"
 
-[outputs]
-home = ["HTML", "RSS", "JSON", "SITEMAP"]
-
 [taxonomies]
 tag = "tags"
 category = "categories"
