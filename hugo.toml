@@ -31,3 +31,7 @@ priority = 0.5
 filename = "sitemap.xml"
 
 [taxonomies]
+tag = "tags"
+category = "categories"
+
+

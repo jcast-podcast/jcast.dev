@@ -7,13 +7,6 @@ description: "In deze nieuwjaarsaflevering van JCast kijken Oumaima, Maarten en 
 thumbnail: "/images/thumbnails/s01e09-reflecteer-groei-ontwikkel.webp"
 player: "https://share.transistor.fm/e/ff88cae3"
 section: episodes
-spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
-apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
-amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"         
-itunes: "https://pca.st/itunes/1814550001"
-podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
-deezer: "https://www.deezer.com/show/1001888441"
-playerfm: "https://player.fm/series/series-3665934"
 ---
 
 In deze nieuwjaarsaflevering van JCast blikken Oumaima, Maarten en Viktor terug op 2025 en kijken ze vooruit naar wat 2026 mag brengen. Opgenomen in de laatste dagen van het jaar, maar bedoeld als frisse start voor januari, voelt deze aflevering als een warme babbel met reflectie, ambities en de nodige zijsporen.
