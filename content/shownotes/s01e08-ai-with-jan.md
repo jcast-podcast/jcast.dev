@@ -1,11 +1,3 @@
----
-_build:
-  render: false
-  list: never
-sitemap:
-  disable: true
----
-
 ### Show notes
 
 - [Outcoded by Our Kids: It Took Us 20 Years, They Used 20 Prompts! by Jan Van Wassenhove, Bart Wullems](https://www.youtube.com/watch?v=ZO-619lqjK0)

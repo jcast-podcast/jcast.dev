@@ -1,9 +1,12 @@
 ---
-title: "Shownotes"
 _build:
   render: false
   list: never
-sitemap:
-  disable: true
+cascade:
+  _build:
+    render: false
+    list: never
+  sitemap:
+    disable: true
 ---
 

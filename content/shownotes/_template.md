@@ -1,11 +1,3 @@
----
-_build:
-  render: false
-  list: never
-sitemap:
-  disable: true
----
-
 ### Show notes
 
 - [Link titel 1](URL)
