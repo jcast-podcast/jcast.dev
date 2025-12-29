@@ -1,0 +1,57 @@
+name: Auto Release Episode
+
+on:
+  schedule:
+    # Runs every hour from 06:00–08:00 UTC on days 1–7
+    # Local-time check will ensure 08:00 Europe/Brussels
+    - cron: '0 6-8 1-7 * *'
+  workflow_dispatch:
+
+jobs:
+  release-episode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if it's Monday 08:00 in Belgium
+        id: check-time
+        run: |
+          HOUR=$(TZ=Europe/Brussels date +%H)
+          DAY=$(TZ=Europe/Brussels date +%u)
+
+          if [ "$HOUR" -eq 8 ] && [ "$DAY" -eq 1 ]; then
+            echo "run_job=true" >> $GITHUB_OUTPUT
+          else
+            echo "run_job=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Checkout repository
+        if: steps.check-time.outputs.run_job == 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Find and merge episode branch
+        if: steps.check-time.outputs.run_job == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git fetch --all
+
+          EPISODE_BRANCH=$(git branch -r | grep -E 'origin/feature/s[0-9]{2}e[0-9]{2}$' | head -n 1 | xargs)
+
+          if [ -z "$EPISODE_BRANCH" ]; then
+            echo "No episode branch found matching pattern feature/sXXeXX"
+            exit 0
+          fi
+
+          BRANCH_NAME=${EPISODE_BRANCH#origin/}
+          echo "Found episode branch: $BRANCH_NAME"
+
+          git checkout trunk
+          git merge "$EPISODE_BRANCH" --no-ff -m "Auto-release: Merge $BRANCH_NAME"
+          git push origin trunk
+
+          git push origin --delete "$BRANCH_NAME"
+
+          echo "Successfully merged and deleted $BRANCH_NAME"
