@@ -783,6 +783,8 @@ header .container {
     flex-direction: column;
     gap: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    --episode-thumb-size: 120px;
+    position: relative;
 }
 
 .episode-card-header {
@@ -798,9 +800,15 @@ header .container {
 .episode-title-list a {
     text-decoration: none;
     color: var(--text);
+    position: relative;
+    z-index: 2;
 }
 
 .episode-title-list a:hover {
+    text-decoration: underline;
+}
+
+.episode-card:hover .episode-title-list a {
     text-decoration: underline;
 }
 
@@ -813,11 +821,15 @@ header .container {
 
 .episode-thumb-link {
     flex-shrink: 0;
+    display: block;
+    width: var(--episode-thumb-size);
+    position: relative;
+    z-index: 2;
 }
 
 .episode-thumb {
-    width: 120px;
-    height: 120px;
+    width: var(--episode-thumb-size);
+    height: var(--episode-thumb-size);
     object-fit: cover;
     border-radius: 8px;
 }
@@ -826,6 +838,21 @@ header .container {
     flex: 1;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+}
+
+.episode-listen {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.listen-label {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text);
 }
 
 .episode-date-list {
@@ -840,7 +867,7 @@ header .container {
     font-size: 0.95rem;
     color: var(--text);
     line-height: 1.6;
-    margin-bottom: 0.75rem;
+    margin: 0;
 }
 
 .episode-number {
@@ -857,9 +884,10 @@ header .container {
 }
 
 .platform-icons {
-    display: flex;
+    display: inline-flex;
     gap: 0.75rem;
-    margin-top: 0.5rem;
+    justify-content: flex-start;
+    width: auto;
     flex-wrap: wrap;
 }
 
@@ -867,6 +895,10 @@ header .container {
     font-size: 1.4rem;
     color: var(--text);
     transition: color 0.2s;
+    flex: 0 0 auto;
+    padding: 0.2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .platform-icons a:hover {
@@ -921,10 +953,9 @@ header .container {
         gap: 0;
     }
 
-    .episode-meta {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
+    .episode-listen {
+        align-items: flex-start;
+        gap: 0.5rem;
     }
 
     .episode-summary {
@@ -939,14 +970,17 @@ header .container {
     }
 
     .platform-icons {
-        display: flex;
+        display: inline-flex;
         gap: 0.5rem;
         flex-wrap: wrap;
-        margin-top: 0;
     }
 
     .platform-icons a {
         font-size: 1.2rem;
+    }
+
+    .episode-listen {
+        display: none;
     }
 }
 
@@ -1460,4 +1494,10 @@ footer {
 
 .cookie-banner.hidden {
     display: none;
+}
+.episode-card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
 }
