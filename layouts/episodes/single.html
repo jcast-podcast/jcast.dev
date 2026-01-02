@@ -12,8 +12,9 @@
     </div>
     {{ end }}
 
-    {{ with .Params.guest }}
-    {{ $guestKey := . }} {{ $guestData := index $.Site.Data.guest $guestKey }}
+    {{ with .Params.guests }}
+    {{ range . }}
+    {{ $guestKey := .id }} {{ $guestData := index $.Site.Data.guest $guestKey }}
     {{ if $guestData }}
     <div class="guest-info">
         <div class="guest-info-desktop">
@@ -72,45 +73,46 @@
     </div>
     {{ end }}
     {{ end }}
+    {{ end }}
 
     <div class="episode-body">
         {{ .Content }}
 
         <div class="episode-meta">
             <div class="platform-icons">
-                {{ with .Params.spotify }}
+                {{ with .Site.Params.podcast.platforms.spotify }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Spotify">
-                    <i class="fab fa-spotify" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "brand-spotify" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.apple }}
+                {{ with .Site.Params.podcast.platforms.apple }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Apple Podcasts">
-                    <i class="fab fa-apple" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "brand-apple" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.amazon }}
+                {{ with .Site.Params.podcast.platforms.amazon }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Amazon Music">
-                    <i class="fab fa-amazon" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "brand-amazon" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.itunes }}
+                {{ with .Site.Params.podcast.platforms.itunes }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op iTunes">
-                    <i class="fas fa-podcast" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.deezer }}
+                {{ with .Site.Params.podcast.platforms.deezer }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Deezer">
-                    <i class="fab fa-deezer" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "brand-deezer" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.playerfm }}
+                {{ with .Site.Params.podcast.platforms.playerfm }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op PlayerFM">
-                    <i class="fas fa-headphones" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
                 </a>
                 {{ end }}
-                {{ with .Params.podcastaddict }}
+                {{ with .Site.Params.podcast.platforms.podcastaddict }}
                 <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Podcast Addict">
-                    <i class="fas fa-rss" aria-hidden="true"></i>
+                    {{ partial "ui/icon.html" (dict "name" "rss" "decorative" true) }}
                 </a>
                 {{ end }}
             </div>
@@ -147,68 +149,4 @@
     </div>
 </article>
 
-<!-- Structured Data: PodcastEpisode -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "PodcastEpisode",
-    "name": "{{ .Title }}",
-    "description": "{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}",
-    "url": "{{ .Permalink }}",
-    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
-    {{ with .Params.thumbnail }}
-    "image": "{{ . | absURL }}",
-    {{ end }}
-    "episodeNumber": {{ .Params.episode }},
-    "partOfSeason": {
-        "@type": "PodcastSeason",
-        "seasonNumber": {{ .Params.season }}
-    },
-    "partOfSeries": {
-        "@type": "PodcastSeries",
-        "name": "{{ .Site.Title }}",
-        "url": "{{ .Site.BaseURL }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ .Site.Params.author }}"
-        }
-    },
-    "author": {
-        "@type": "Person",
-        "name": "{{ .Site.Params.author }}"
-    }{{ with .Params.spotify }},
-    "associatedMedia": {
-        "@type": "MediaObject",
-        "contentUrl": "{{ . }}"
-    }{{ end }}
-}
-</script>
-
-<!-- Structured Data: BreadcrumbList -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{{ .Site.BaseURL }}"
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Afleveringen",
-            "item": "{{ .Site.BaseURL }}episodes/"
-        },
-        {
-            "@type": "ListItem",
-            "position": 3,
-            "name": "{{ .Title }}",
-            "item": "{{ .Permalink }}"
-        }
-    ]
-}
-</script>
 {{ end }}

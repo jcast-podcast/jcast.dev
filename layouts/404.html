@@ -1,5 +1,5 @@
 {{ define "main" }}
-<main class="terminal-main">
+<section class="terminal-main">
     <div class="terminal-container">
             <div class="terminal-body">
                 <div class="content-section">
@@ -52,14 +52,12 @@ at Server.handleRequest(server.js:12:3)</code></pre>
 
                 <div class="footer-section">
                     <p>Geen paniek. Alles werkt in productie. Toch?</p>
-                    <button>
-                        <a href="/" class="footer-section-button">
-                            <span>$ sudo restart --force</span>
-                        </a>
-                    </button>
+                    <a href="/" class="footer-section-button">
+                        <span>$ sudo restart --force</span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</section>
 {{ end }}

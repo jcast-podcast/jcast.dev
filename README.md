@@ -112,7 +112,7 @@ Volledige show notes of beschrijving.
 
 Wanneer een aflevering een gast bevat:
 
-1. Voeg een `.yml` bestand toe in `data/guest/` met als bestandsnaam de slug die je in het `guest:` veld gebruikt (bijv. `spongebob_squarepants.yml`)
+1. Voeg een `.yml` bestand toe in `data/guest/` met als bestandsnaam de slug die je in het `guests`-veld gebruikt (bijv. `spongebob_squarepants.yml`)
 
 2. Voorbeeld van zo'n YML-bestand:
 
@@ -122,7 +122,14 @@ bio: "Krusty Krab chef en enthousiast over eten. Houdt van schaalbaarheid en tea
 avatar: "/images/avatars/spongebob-avatar.png"
 ```
 
-3. De site zal automatisch de juiste gastinfo tonen op de episode-pagina.
+3. Gebruik in episode front matter bij voorkeur `guests` met een of meerdere ids:
+
+```yaml
+guests:
+  - id: "spongebob_squarepants"
+```
+
+4. Legacy `guest: "<id>"` blijft werken, maar is verouderd.
 
 ## Over de crew
 

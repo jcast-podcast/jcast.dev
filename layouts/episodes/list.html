@@ -19,6 +19,7 @@
             {{ range $allPages }}
             {{ if eq .Params.season $season }}
             <article class="episode-card">
+                <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
                 <div class="episode-card-header">
                     <div class="episode-number">Aflevering {{ .Params.episode }}</div>
                     <div class="spacer"></div>
@@ -28,52 +29,52 @@
                 </h3>
 
             <div class="episode-card-body">
-
-                <a href="{{ $.RelPermalink }}" class="episode-thumb-link">
+                <a class="episode-thumb-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
                     {{ partial "episode-thumb.html" (dict "page" . "class" "episode-thumb") }}
                 </a>
-
                 <div class="episode-meta">
                     <div class="episode-summary">
                         {{ .Summary | plainify | htmlUnescape | truncate 250 "..." }}
                     </div>
-
-                    <div class="platform-icons">
-                        {{ with .Params.spotify }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Spotify">
-                            <i class="fab fa-spotify" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.apple }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Apple Podcasts">
-                            <i class="fab fa-apple" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.amazon }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Amazon Music">
-                            <i class="fab fa-amazon" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.itunes }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op iTunes">
-                            <i class="fas fa-podcast" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.deezer }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Deezer">
-                            <i class="fab fa-deezer" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.playerfm }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op PlayerFM">
-                            <i class="fas fa-headphones" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
-                        {{ with .Params.podcastaddict }}
-                        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Podcast Addict">
-                            <i class="fas fa-rss" aria-hidden="true"></i>
-                        </a>
-                        {{ end }}
+                    <div class="episode-listen">
+                        <span class="listen-label">Beluister via:</span>
+                        <div class="platform-icons">
+                            {{ with .Site.Params.podcast.platforms.spotify }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Spotify">
+                                {{ partial "ui/icon.html" (dict "name" "brand-spotify" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.apple }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Apple Podcasts">
+                                {{ partial "ui/icon.html" (dict "name" "brand-apple" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.amazon }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Amazon Music">
+                                {{ partial "ui/icon.html" (dict "name" "brand-amazon" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.itunes }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op iTunes">
+                                {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.deezer }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Deezer">
+                                {{ partial "ui/icon.html" (dict "name" "brand-deezer" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.playerfm }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op PlayerFM">
+                                {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                            {{ with .Site.Params.podcast.platforms.podcastaddict }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Podcast Addict">
+                                {{ partial "ui/icon.html" (dict "name" "rss" "decorative" true) }}
+                            </a>
+                            {{ end }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,25 +87,4 @@
 
 </section>
 
-<!-- Structured Data: BreadcrumbList -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{{ .Site.BaseURL }}"
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Afleveringen",
-            "item": "{{ .Permalink }}"
-        }
-    ]
-}
-</script>
 {{ end }}
