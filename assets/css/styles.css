@@ -401,7 +401,7 @@ header .container {
 }
 
 /* Shownotes Section Styling - Modern & Sleek Titles */
-.episode-body h3 {
+.episode-body h2 {
     font-size: 1.5rem;
     color: var(--text);
     margin-top: 3rem;
@@ -412,7 +412,7 @@ header .container {
     padding-left: 1rem;
 }
 
-.episode-body h3::before {
+.episode-body h2::before {
     content: "";
     position: absolute;
     left: 0;
@@ -423,7 +423,7 @@ header .container {
     border-radius: 2px;
 }
 
-.episode-body h4 {
+.episode-body h3 {
     font-size: 1.1rem;
     color: var(--text);
     margin-top: 2.5rem;
@@ -432,11 +432,11 @@ header .container {
     letter-spacing: -0.01em;
 }
 
-.episode-body h3 + ul {
+.episode-body h2 + ul {
     margin-top: 1.5rem;
 }
 
-.episode-body h4 + ul {
+.episode-body h3 + ul {
     margin-top: 0.75rem;
 }
 
@@ -454,13 +454,13 @@ header .container {
 }
 
 /* Subsectie lijsten (na h4) krijgen 2 kolommen voor korte links */
-.episode-body h4 + ul {
+.episode-body h3 + ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.75rem 1.5rem;
 }
 
-.episode-body h4 + ul li {
+.episode-body h3 + ul li {
     margin-bottom: 0;
 }
 
@@ -638,27 +638,27 @@ header .container {
         padding: 0;
     }
 
-    .episode-body h3 {
+    .episode-body h2 {
         font-size: 1.35rem;
         margin-top: 2.5rem;
         margin-bottom: 1.25rem;
     }
 
-    .episode-body h4 {
+    .episode-body h3 {
         font-size: 1.05rem;
         margin-top: 2rem;
         margin-bottom: 0.85rem;
     }
 
-    .episode-body h3 + ul {
+    .episode-body h2 + ul {
         margin-top: 1.25rem;
     }
 
-    .episode-body h4 + ul {
+    .episode-body h3 + ul {
         margin-top: 0.65rem;
     }
 
-    .episode-body h4 + ul {
+    .episode-body h3 + ul {
         grid-template-columns: 1fr;
     }
 
@@ -1039,7 +1039,7 @@ header .container {
     flex: 1;
 }
 
-.crew-info h3 {
+.crew-info h2 {
     margin: 0 0 0.4rem;
     font-size: 1.25rem;
     color: var(--text);
