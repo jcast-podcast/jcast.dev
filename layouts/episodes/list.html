@@ -39,37 +39,37 @@
                     </div>
 
                     <div class="platform-icons">
-                        {{ with .Params.spotify }}
+                        {{ with .Site.Params.podcast.platforms.spotify }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Spotify">
                             {{ partial "ui/icon.html" (dict "name" "brand-spotify" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.apple }}
+                        {{ with .Site.Params.podcast.platforms.apple }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Apple Podcasts">
                             {{ partial "ui/icon.html" (dict "name" "brand-apple" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.amazon }}
+                        {{ with .Site.Params.podcast.platforms.amazon }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Amazon Music">
                             {{ partial "ui/icon.html" (dict "name" "brand-amazon" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.itunes }}
+                        {{ with .Site.Params.podcast.platforms.itunes }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op iTunes">
                             {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.deezer }}
+                        {{ with .Site.Params.podcast.platforms.deezer }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Deezer">
                             {{ partial "ui/icon.html" (dict "name" "brand-deezer" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.playerfm }}
+                        {{ with .Site.Params.podcast.platforms.playerfm }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op PlayerFM">
                             {{ partial "ui/icon.html" (dict "name" "headphones" "decorative" true) }}
                         </a>
                         {{ end }}
-                        {{ with .Params.podcastaddict }}
+                        {{ with .Site.Params.podcast.platforms.podcastaddict }}
                         <a href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Beluister op Podcast Addict">
                             {{ partial "ui/icon.html" (dict "name" "rss" "decorative" true) }}
                         </a>

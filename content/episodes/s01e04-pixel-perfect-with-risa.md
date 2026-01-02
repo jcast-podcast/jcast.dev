@@ -7,24 +7,12 @@ description: "Risa Somers, UI/UX designer, neemt ons mee in de wereld van design
 thumbnail: "/images/thumbnails/s01e04-pixel-perfect-with-risa.png"
 player: "https://share.transistor.fm/e/5ec11365"
 section: episodes
-spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
-apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
-amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"         
-itunes: "https://pca.st/itunes/1814550001"
-podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
-deezer: "https://www.deezer.com/show/1001888441"
-playerfm: "https://player.fm/series/series-3665934"
-guest: "risa_somers"
 hosts:
   - "oumaima"
   - "viktor"
 guests:
-  - name: "Risa Somers"
-    sameAs:
-      - "https://www.linkedin.com/in/risa-somers-53a705144/"
-    image: "/images/avatars/risa-avatar.png"
+  - id: "risa_somers"
 ---
-
 Vandaag duiken we in de wereld van design: van scherpe hoeken tot smooth animaties, en van wireframes tot real-life frustraties tussen developers en designers.
 
 Te gast: **Risa**, UI/UX designer met een uitgesproken mening, bakken ervaring, en een passie voor gebruiksvriendelijke digitale producten. Ze neemt ons mee in haar wereld, vertelt wat "goed design" echt betekent en deelt tips voor een betere samenwerking tussen frontend, backend én design.

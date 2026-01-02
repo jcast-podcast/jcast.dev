@@ -7,13 +7,6 @@ description: "Boeken of podcasts? Lezen of luisteren? Oumaima, Viktor en Maarten
 thumbnail: "/images/thumbnails/s01e05-podcasts-vs-audiobooks.png"
 player: "https://share.transistor.fm/e/b0afff90"
 section: episodes
-spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
-apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
-amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"         
-itunes: "https://pca.st/itunes/1814550001"
-podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
-deezer: "https://www.deezer.com/show/1001888441"
-playerfm: "https://player.fm/series/series-3665934"
 ---
 📚🎧 Boeken of podcasts? Lezen of luisteren?  
 In deze aflevering duiken **Oumaima, Viktor en Maarten** in hun eigen luister- en leesgewoontes. Riskeer je liever een *paper cut* met een papieren boek, of dompel je je liever onder in een warme stem via een podcast?

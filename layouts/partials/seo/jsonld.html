@@ -77,6 +77,33 @@
   {{ end }}
 {{ end }}
 
+{{ $platformUrls := slice }}
+{{ with .Site.Params.podcast.platforms }}
+  {{ range $key, $url := . }}
+    {{ if $url }}
+      {{ $platformUrls = $platformUrls | append $url }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $seriesSameAs := slice }}
+{{ $seriesSameAsSeen := dict }}
+{{ range $url := $platformUrls }}
+  {{ $u := strings.TrimSpace $url }}
+  {{ if and $u (not (isset $seriesSameAsSeen $u)) }}
+    {{ $seriesSameAs = $seriesSameAs | append $u }}
+    {{ $seriesSameAsSeen = merge $seriesSameAsSeen (dict $u true) }}
+  {{ end }}
+{{ end }}
+{{ with $podcast.sameAs }}
+  {{ range . }}
+    {{ $u := strings.TrimSpace . }}
+    {{ if and $u (not (isset $seriesSameAsSeen $u)) }}
+      {{ $seriesSameAs = $seriesSameAs | append $u }}
+      {{ $seriesSameAsSeen = merge $seriesSameAsSeen (dict $u true) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
 {{ if or .IsHome (and .IsSection (eq .Section "episodes")) }}
   {{ $series := dict
     "@type" "PodcastSeries"
@@ -94,10 +121,8 @@
   {{ with $podcast.webFeed }}
     {{ $series = merge $series (dict "webFeed" (. | absURL)) }}
   {{ end }}
-  {{ with $podcast.sameAs }}
-    {{ if gt (len .) 0 }}
-      {{ $series = merge $series (dict "sameAs" .) }}
-    {{ end }}
+  {{ if gt (len $seriesSameAs) 0 }}
+    {{ $series = merge $series (dict "sameAs" $seriesSameAs) }}
   {{ end }}
   {{ if gt (len $seriesHostRoles) 0 }}
     {{ $series = merge $series (dict "actor" $seriesHostRoles) }}

@@ -7,15 +7,7 @@ description: "Viktor, Oumaima en Maarten delen hun ervaringen als developers: va
 thumbnail: "/images/thumbnails/s01e03-life-as-a-dev.png"
 player: "https://share.transistor.fm/e/0b43dec1"
 section: episodes
-spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
-apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
-amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"         
-itunes: "https://pca.st/itunes/1814550001"
-podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
-deezer: "https://www.deezer.com/show/1001888441"
-playerfm: "https://player.fm/series/series-3665934"
 ---
-
 In deze aflevering van JCast kruipen we met z'n drieën, Viktor, Oumaima en Maarten, achter de microfoon voor een openhartig gesprek over het leven als developer. Geen gast deze keer, maar wél veel herkenbaarheid, meningen en een gezonde portie zelfspot.
 
 We trappen af met een **Quick Fire-ronde**: dark mode of light mode? Deployen op vrijdag, doen of net niet? Pair programming forever of liever solo? Daarna duiken we dieper in onze eigen ervaringen:
