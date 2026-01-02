@@ -15,6 +15,14 @@ podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
 deezer: "https://www.deezer.com/show/1001888441"
 playerfm: "https://player.fm/series/series-3665934"
 guest: "risa_somers"
+hosts:
+  - "oumaima"
+  - "viktor"
+guests:
+  - name: "Risa Somers"
+    sameAs:
+      - "https://www.linkedin.com/in/risa-somers-53a705144/"
+    image: "/images/avatars/risa-avatar.png"
 ---
 
 Vandaag duiken we in de wereld van design: van scherpe hoeken tot smooth animaties, en van wireframes tot real-life frustraties tussen developers en designers.

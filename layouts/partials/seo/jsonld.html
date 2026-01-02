@@ -1,0 +1,359 @@
+{{ $podcast := site.Data.podcast }}
+{{ $hostsData := site.Data.hosts }}
+{{ $baseURL := .Site.BaseURL }}
+{{ $seriesBase := or $podcast.url $baseURL }}
+{{ $seriesId := printf "%s#podcast-series" $seriesBase }}
+{{ $graph := slice }}
+
+{{ $spotify := "" }}
+{{ with .Site.Params.spotifyShow }}
+  {{ $spotify = . }}
+{{ end }}
+{{ if eq $spotify "" }}
+  {{ range $podcast.sameAs }}
+    {{ if and (eq $spotify "") (in . "open.spotify.com/show") }}
+      {{ $spotify = . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $org := dict
+  "@type" "Organization"
+  "@id" (printf "%s#org" $baseURL)
+  "name" .Site.Title
+  "url" $baseURL
+}}
+{{ with .Site.Params.ogImage }}
+  {{ $org = merge $org (dict "logo" (. | absURL)) }}
+{{ end }}
+{{ with .Site.Params.description }}
+  {{ $org = merge $org (dict "description" .) }}
+{{ end }}
+{{ if $spotify }}
+  {{ $org = merge $org (dict "sameAs" (slice $spotify)) }}
+{{ end }}
+{{ $graph = $graph | append $org }}
+
+{{ $website := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" $baseURL)
+  "name" .Site.Title
+  "url" $baseURL
+  "description" (.Site.Params.description | default "")
+  "publisher" (dict "@id" (printf "%s#org" $baseURL))
+}}
+{{ $graph = $graph | append $website }}
+
+{{ $seriesHostKeys := slice }}
+{{ with $podcast.seasons }}
+  {{ range . }}
+    {{ range .hosts }}
+      {{ if not (in $seriesHostKeys .) }}
+        {{ $seriesHostKeys = $seriesHostKeys | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ $seriesHostRoles := slice }}
+{{ range $hostKey := $seriesHostKeys }}
+  {{ $host := index $hostsData $hostKey }}
+  {{ if $host }}
+    {{ $person := dict "@type" "Person" "name" $host.name }}
+    {{ with $host.id }}
+      {{ $person = merge $person (dict "@id" .) }}
+    {{ end }}
+    {{ with $host.url }}
+      {{ $person = merge $person (dict "url" .) }}
+    {{ end }}
+    {{ with $host.sameAs }}
+      {{ if gt (len .) 0 }}
+        {{ $person = merge $person (dict "sameAs" .) }}
+      {{ end }}
+    {{ end }}
+    {{ with $host.image }}
+      {{ $person = merge $person (dict "image" (. | absURL)) }}
+    {{ end }}
+    {{ $seriesHostRoles = $seriesHostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
+  {{ end }}
+{{ end }}
+
+{{ if or .IsHome (and .IsSection (eq .Section "episodes")) }}
+  {{ $series := dict
+    "@type" "PodcastSeries"
+    "@id" $seriesId
+    "name" ($podcast.name | default .Site.Title)
+    "description" ($podcast.description | default .Site.Params.description)
+    "url" ($podcast.url | default $baseURL)
+  }}
+  {{ with $podcast.inLanguage }}
+    {{ $series = merge $series (dict "inLanguage" .) }}
+  {{ end }}
+  {{ with $podcast.image }}
+    {{ $series = merge $series (dict "image" (. | absURL)) }}
+  {{ end }}
+  {{ with $podcast.webFeed }}
+    {{ $series = merge $series (dict "webFeed" (. | absURL)) }}
+  {{ end }}
+  {{ with $podcast.sameAs }}
+    {{ if gt (len .) 0 }}
+      {{ $series = merge $series (dict "sameAs" .) }}
+    {{ end }}
+  {{ end }}
+  {{ if gt (len $seriesHostRoles) 0 }}
+    {{ $series = merge $series (dict "actor" $seriesHostRoles) }}
+  {{ end }}
+  {{ $graph = $graph | append $series }}
+{{ end }}
+
+{{ if and .IsPage (eq .Section "episodes") }}
+  {{ $seasonNumber := .Params.season }}
+  {{ $seasonData := dict }}
+  {{ $seasonHosts := slice }}
+  {{ with $seasonNumber }}
+    {{ range $podcast.seasons }}
+      {{ if eq (printf "%v" .number) (printf "%v" $seasonNumber) }}
+        {{ $seasonData = . }}
+        {{ $seasonHosts = .hosts }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ $episodeHosts := slice }}
+  {{ with .Params.hosts }}
+    {{ if gt (len .) 0 }}
+      {{ $episodeHosts = . }}
+    {{ end }}
+  {{ end }}
+  {{ if and (eq (len $episodeHosts) 0) (gt (len $seasonHosts) 0) }}
+    {{ $episodeHosts = $seasonHosts }}
+  {{ end }}
+
+  {{ $hostRoles := slice }}
+  {{ range $hostKey := $episodeHosts }}
+    {{ $host := index $hostsData $hostKey }}
+    {{ if $host }}
+      {{ $person := dict "@type" "Person" "name" $host.name }}
+      {{ with $host.id }}
+        {{ $person = merge $person (dict "@id" .) }}
+      {{ end }}
+      {{ with $host.url }}
+        {{ $person = merge $person (dict "url" .) }}
+      {{ end }}
+      {{ with $host.sameAs }}
+        {{ if gt (len .) 0 }}
+          {{ $person = merge $person (dict "sameAs" .) }}
+        {{ end }}
+      {{ end }}
+      {{ with $host.image }}
+        {{ $person = merge $person (dict "image" (. | absURL)) }}
+      {{ end }}
+      {{ $hostRoles = $hostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
+    {{ end }}
+  {{ end }}
+
+  {{ $guestEntries := slice }}
+  {{ $guestSeen := dict }}
+  {{ with .Params.guests }}
+    {{ range . }}
+      {{ $guestId := "" }}
+      {{ with .id }}
+        {{ $guestId = . }}
+      {{ end }}
+      {{ $base := dict }}
+      {{ if $guestId }}
+        {{ $data := index site.Data.guest $guestId }}
+        {{ with $data }}
+          {{ with .name }}
+            {{ $base = merge $base (dict "name" .) }}
+          {{ end }}
+          {{ with .url }}
+            {{ $base = merge $base (dict "url" .) }}
+          {{ end }}
+          {{ with .sameAs }}
+            {{ if gt (len .) 0 }}
+              {{ $base = merge $base (dict "sameAs" .) }}
+            {{ end }}
+          {{ end }}
+          {{ with .image }}
+            {{ $base = merge $base (dict "image" .) }}
+          {{ end }}
+          {{ with .thumbnail }}
+            {{ if not (isset $base "image") }}
+              {{ $base = merge $base (dict "image" .) }}
+            {{ end }}
+          {{ end }}
+          {{ with .socials }}
+            {{ if not (isset $base "sameAs") }}
+              {{ $socialList := slice }}
+              {{ range $platform, $url := . }}
+                {{ if $url }}
+                  {{ $socialList = $socialList | append $url }}
+                {{ end }}
+              {{ end }}
+              {{ if gt (len $socialList) 0 }}
+                {{ $base = merge $base (dict "sameAs" $socialList) }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+      {{ $guest := merge $base . }}
+      {{ if $guestId }}
+        {{ $guest = merge $guest (dict "id" $guestId) }}
+      {{ end }}
+      {{ $guestName := "" }}
+      {{ with $guest.name }}
+        {{ $guestName = . }}
+      {{ end }}
+      {{ if ne (strings.TrimSpace $guestName) "" }}
+        {{ $dedupeKey := "" }}
+        {{ with $guest.id }}
+          {{ $dedupeKey = . }}
+        {{ end }}
+        {{ if eq $dedupeKey "" }}
+          {{ with $guest.url }}
+            {{ $dedupeKey = . }}
+          {{ end }}
+        {{ end }}
+        {{ if eq $dedupeKey "" }}
+          {{ $dedupeKey = $guestName }}
+        {{ end }}
+        {{ $dedupeKey = lower (strings.TrimSpace $dedupeKey) }}
+        {{ if not (isset $guestSeen $dedupeKey) }}
+          {{ $guestEntries = $guestEntries | append $guest }}
+          {{ $guestSeen = merge $guestSeen (dict $dedupeKey true) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ else }}
+    {{ with .Params.guest }}
+      {{ $guestId := . }}
+      {{ $data := index site.Data.guest $guestId }}
+      {{ if $data }}
+        {{ $guest := dict "id" $guestId }}
+        {{ with $data.name }}
+          {{ $guest = merge $guest (dict "name" .) }}
+        {{ end }}
+        {{ with $data.url }}
+          {{ $guest = merge $guest (dict "url" .) }}
+        {{ end }}
+        {{ with $data.sameAs }}
+          {{ if gt (len .) 0 }}
+            {{ $guest = merge $guest (dict "sameAs" .) }}
+          {{ end }}
+        {{ end }}
+        {{ with $data.image }}
+          {{ $guest = merge $guest (dict "image" .) }}
+        {{ end }}
+        {{ with $data.thumbnail }}
+          {{ if not (isset $guest "image") }}
+            {{ $guest = merge $guest (dict "image" .) }}
+          {{ end }}
+        {{ end }}
+        {{ with $data.socials }}
+          {{ if not (isset $guest "sameAs") }}
+            {{ $socialList := slice }}
+            {{ range $platform, $url := . }}
+              {{ if $url }}
+                {{ $socialList = $socialList | append $url }}
+              {{ end }}
+            {{ end }}
+            {{ if gt (len $socialList) 0 }}
+              {{ $guest = merge $guest (dict "sameAs" $socialList) }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ $guestName := "" }}
+        {{ with $guest.name }}
+          {{ $guestName = . }}
+        {{ end }}
+        {{ if ne (strings.TrimSpace $guestName) "" }}
+          {{ $dedupeKey := lower (strings.TrimSpace $guestId) }}
+          {{ if not (isset $guestSeen $dedupeKey) }}
+            {{ $guestEntries = $guestEntries | append $guest }}
+            {{ $guestSeen = merge $guestSeen (dict $dedupeKey true) }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ $guestRoles := slice }}
+  {{ range $guest := $guestEntries }}
+    {{ $person := dict "@type" "Person" "name" $guest.name }}
+    {{ $personId := "" }}
+    {{ with $guest.id }}
+      {{ $personId = . }}
+    {{ end }}
+    {{ if and $personId (not (hasPrefix $personId "http")) }}
+      {{ $personId = printf "%s#guest-%s" $baseURL $personId }}
+    {{ end }}
+    {{ if eq $personId "" }}
+      {{ with $guest.url }}
+        {{ $personId = . }}
+      {{ end }}
+    {{ end }}
+    {{ if ne $personId "" }}
+      {{ $person = merge $person (dict "@id" $personId) }}
+    {{ end }}
+    {{ with $guest.url }}
+      {{ $person = merge $person (dict "url" .) }}
+    {{ end }}
+    {{ with $guest.sameAs }}
+      {{ if gt (len .) 0 }}
+        {{ $person = merge $person (dict "sameAs" .) }}
+      {{ end }}
+    {{ end }}
+    {{ with $guest.image }}
+      {{ $person = merge $person (dict "image" (. | absURL)) }}
+    {{ end }}
+    {{ $guestRoles = $guestRoles | append (dict "@type" "Role" "roleName" "guest" "actor" $person) }}
+  {{ end }}
+
+  {{ $actors := $hostRoles }}
+  {{ range $guestRoles }}
+    {{ $actors = $actors | append . }}
+  {{ end }}
+
+  {{ if $seasonNumber }}
+    {{ $seasonId := printf "%s#season-%v" $seriesBase $seasonNumber }}
+    {{ $season := dict
+      "@type" "PodcastSeason"
+      "@id" $seasonId
+      "seasonNumber" $seasonNumber
+      "partOfSeries" (dict "@id" $seriesId)
+    }}
+    {{ with $seasonData.image }}
+      {{ $season = merge $season (dict "image" (. | absURL)) }}
+    {{ end }}
+    {{ $graph = $graph | append $season }}
+  {{ end }}
+
+  {{ $episodeDescription := .Summary | plainify }}
+  {{ with .Params.description }}
+    {{ $episodeDescription = . }}
+  {{ end }}
+  {{ $episode := dict
+    "@type" "PodcastEpisode"
+    "name" .Title
+    "url" .Permalink
+    "description" $episodeDescription
+    "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+    "partOfSeries" (dict "@id" $seriesId)
+  }}
+  {{ with .Params.episode }}
+    {{ $episode = merge $episode (dict "episodeNumber" .) }}
+  {{ end }}
+  {{ with .Params.thumbnail }}
+    {{ $episode = merge $episode (dict "image" (. | absURL)) }}
+  {{ end }}
+  {{ if $seasonNumber }}
+    {{ $episode = merge $episode (dict "partOfSeason" (dict "@id" (printf "%s#season-%v" $seriesBase $seasonNumber))) }}
+  {{ end }}
+  {{ if gt (len $actors) 0 }}
+    {{ $episode = merge $episode (dict "actor" $actors) }}
+  {{ end }}
+  {{ $graph = $graph | append $episode }}
+{{ end }}
+
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

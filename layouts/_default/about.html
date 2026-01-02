@@ -89,41 +89,4 @@
     </div>
 </section>
 
-<!-- Structured Data: BreadcrumbList -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-        {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "{{ .Site.BaseURL }}"
-        },
-        {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "Over ons",
-            "item": "{{ .Permalink }}"
-        }
-    ]
-}
-</script>
-
-<!-- Structured Data: AboutPage -->
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "{{ .Title }}",
-    "description": "Wij zijn Oumaima, Viktor en Maarten. Drie developers met een liefde voor code en een gezonde dosis chaos.",
-    "url": "{{ .Permalink }}",
-    "mainEntity": {
-        "@type": "Organization",
-        "name": "{{ .Site.Title }}",
-        "url": "{{ .Site.BaseURL }}"
-    }
-}
-</script>
 {{ end }}
