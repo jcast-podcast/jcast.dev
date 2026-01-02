@@ -75,7 +75,15 @@
 </main>
 
 <footer role="contentinfo">
-    © {{ now.Year }} JCast
+    <div class="site-footer">
+        <span class="footer-copyright">© {{ now.Year }} JCast</span>
+        <span>&middot;</span>
+        <a class="footer-instagram" href="https://www.instagram.com/jcast_crew/" target="_blank" rel="noopener noreferrer"
+           aria-label="Volg JCast op Instagram">
+            {{ partial "ui/icon.html" (dict "name" "brand-instagram" "decorative" true) }}
+            <span>Volg ons! @jcast_crew</span>
+        </a>
+    </div>
 </footer>
 
 <dialog id="cookie-consent-banner" class="cookie-banner hidden" aria-live="polite" aria-label="Cookie toestemming">
