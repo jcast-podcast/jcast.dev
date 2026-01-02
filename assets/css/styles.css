@@ -35,6 +35,16 @@ a:hover {
     text-decoration: underline;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 .skip-to-content {
     position: absolute;
     top: -40px;
@@ -149,6 +159,8 @@ header .container {
     font-size: 1.2em;
     text-align: center;
     color: #555;
+    font-weight: 500;
+    line-height: 1.6;
 }
 
 .home-episode-list {
@@ -361,11 +373,11 @@ header .container {
 
 .episode-date {
     display: block;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #888;
     margin-bottom: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.01em;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .episode-thumbnail-container {
@@ -540,7 +552,8 @@ header .container {
 .guest-description {
     font-size: 0.95rem;
     color: #555;
-    line-height: 1.5;
+    line-height: 1.65;
+    font-weight: 500;
     margin-bottom: auto;
 }
 
@@ -602,6 +615,8 @@ header .container {
         font-size: 0.95rem;
         color: #666;
         margin-bottom: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.02em;
     }
 
     .episode-thumbnail-container {
@@ -817,6 +832,8 @@ header .container {
     font-size: 0.9rem;
     color: #888;
     margin-bottom: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 .episode-summary {
@@ -912,12 +929,13 @@ header .container {
 
     .episode-summary {
         font-size: 0.9rem;
-        line-height: 1.45;
+        line-height: 1.55;
         color: #666;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        font-weight: 500;
     }
 
     .platform-icons {
@@ -1213,6 +1231,23 @@ footer {
     margin-top: auto;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .home-episode-card,
+    .links-section li,
+    .jcast-contact-link {
+        transform: none !important;
+    }
+}
+
 /* 404 NOT FOUND */
 @keyframes bounce {
     0%, 100% {
@@ -1346,6 +1381,8 @@ footer {
 .links-section .comment {
     color: #999;
     margin-left: 0.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
 }
 
 /* Footer Sectie */
@@ -1354,6 +1391,9 @@ footer {
     font-size: 0.875rem;
     color: #888;
     font-style: italic;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1.5;
 }
 
 .footer-section p {
