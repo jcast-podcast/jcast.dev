@@ -8,7 +8,7 @@
 
     {{ with .Params.thumbnail }}
     <div class="episode-thumbnail-container">
-        <img src="{{ . }}" alt="Thumbnail voor {{ $.Title }}" class="episode-thumbnail" loading="lazy">
+        {{ partial "episode-thumb.html" (dict "page" $ "class" "episode-thumbnail") }}
     </div>
     {{ end }}
 
