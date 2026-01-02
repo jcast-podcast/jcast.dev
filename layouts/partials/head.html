@@ -1,15 +1,3 @@
 {{ $style := resources.Get "css/styles.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
-<link rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      as="style"
-      data-fa-preload>
-<noscript>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer">
-</noscript>
-<script src="/js/preload-css.js" defer></script>
 {{ partial "seo/jsonld.html" . }}
