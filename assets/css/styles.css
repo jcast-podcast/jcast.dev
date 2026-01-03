@@ -1301,6 +1301,11 @@ footer {
         flex-direction: column;
         gap: 0.75rem;
     }
+
+    .footer-separator,
+    .footer-instagram {
+        display: none;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
