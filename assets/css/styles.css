@@ -106,6 +106,10 @@ header .container {
         text-align: left;
     }
 
+    main {
+        padding: 1rem;
+    }
+
     .logo-link {
         margin-right: auto;
         margin-bottom: 0;
@@ -360,6 +364,7 @@ header .container {
     border-radius: 12px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.08);
     padding: 2.5rem;
+    overflow-x: hidden;
 }
 
 .episode-title {
@@ -398,6 +403,9 @@ header .container {
     font-size: 1rem;
     line-height: 1.6;
     color: #333;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
 }
 
 /* Shownotes Section Styling - Modern & Sleek Titles */
@@ -751,6 +759,54 @@ header .container {
     .episode-links a svg,
     .episode-links a i {
         line-height: 1;
+    }
+
+    /* Extra mobile fixes voor blog content */
+    .episode-body pre {
+        overflow-x: auto;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding: 1rem;
+        border-radius: 0;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .episode-body code {
+        word-break: break-word;
+        font-size: 0.85rem;
+    }
+
+    .episode-body pre code {
+        word-break: normal;
+    }
+
+    .episode-body table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        width: calc(100% + 2rem);
+    }
+
+    .episode-body img {
+        max-width: 100%;
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .episode-body blockquote {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 1rem;
+        font-size: 1rem;
+    }
+
+    .episode-body ul,
+    .episode-body ol {
+        padding-left: 1.5rem;
     }
 }
 
@@ -1543,4 +1599,70 @@ footer {
     inset: 0;
     z-index: 1;
     border-radius: inherit;
+}
+
+/* BLOG STYLES */
+.blog-intro {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+}
+
+.reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.blog-meta-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.blog-list .episode-card {
+    position: relative;
+}
+
+.blog-card-meta {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.recent-blog {
+    margin-top: 3rem;
+}
+
+.section-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.section-link a {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.back-link a {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+@media (max-width: 768px) {
+    .blog-meta-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

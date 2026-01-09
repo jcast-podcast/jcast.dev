@@ -1,0 +1,104 @@
+{{ define "main" }}
+<article class="episode-single">
+    <h1 class="episode-title">{{ .Title }}</h1>
+    <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-date">
+        {{ partial "nl-date.html" .Date }}
+    </time>
+
+    {{ with .Params.image }}
+    <div class="episode-thumbnail-container">
+        <img src="{{ . }}" alt="" class="episode-thumbnail" loading="lazy">
+    </div>
+    {{ end }}
+
+    {{- /* Calculate reading time automatically: ~200 words per minute */ -}}
+    {{- $wordCount := .WordCount -}}
+    {{- $readingTime := div (add $wordCount 199) 200 -}}
+
+    {{- /* Support both legacy string author and new array of author IDs */ -}}
+    {{- $authors := slice -}}
+    {{- if .Params.authors -}}
+        {{- $authors = .Params.authors -}}
+    {{- else if .Params.author -}}
+        {{- /* Legacy: try to find author by name or treat as string */ -}}
+        {{- $authors = slice (dict "name" .Params.author) -}}
+    {{- end -}}
+
+    {{ if $authors }}
+    {{- range $authors -}}
+    {{- $authorData := dict -}}
+    {{- if .id -}}
+        {{- /* New way: author ID that references data file */ -}}
+        {{- $authorData = index $.Site.Data.author .id -}}
+    {{- else if .name -}}
+        {{- /* Legacy: just a name string */ -}}
+        {{- $authorData = . -}}
+    {{- end -}}
+
+    {{ if $authorData }}
+    <div class="guest-info">
+        <div class="guest-info-desktop">
+            {{ with $authorData.thumbnail }}
+            <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
+            {{ end }}
+            <div class="guest-details">
+                <strong>Auteur: {{ $authorData.name }}</strong>
+                {{ with $authorData.bio }}
+                <p class="guest-description">{{ . }}</p>
+                {{ end }}
+                {{ with $authorData.socials }}
+                <div class="guest-socials">
+                    {{ range $platform, $url := . }}
+                    <a href="{{ $url }}"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek {{ $authorData.name }} op {{ $platform }}">
+                        {{ partial "icons/social" (dict "platform" $platform) }}
+                        <span class="sr-only">{{ $platform }}</span>
+                    </a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </div>
+        </div>
+
+        <details class="guest-info-mobile">
+            <summary>Auteur: {{ $authorData.name }}</summary>
+            <div class="guest-content">
+                {{ with $authorData.thumbnail }}
+                <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
+                {{ end }}
+                <div class="guest-details">
+                    {{ with $authorData.bio }}
+                    <p class="guest-description">{{ . }}</p>
+                    {{ end }}
+                    <p class="guest-description">{{ $readingTime }} minuten leestijd ({{ $wordCount }} woorden)</p>
+                </div>
+            </div>
+            {{ with $authorData.socials }}
+            <div class="guest-socials">
+                {{ range $platform, $url := . }}
+                <a href="{{ $url }}"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek {{ $authorData.name }} op {{ $platform }}">
+                    {{ partial "icons/social" (dict "platform" $platform) }}
+                    <span class="sr-only">{{ $platform }}</span>
+                </a>
+                {{ end }}
+            </div>
+            {{ end }}
+        </details>
+    </div>
+    {{ end }}
+    {{- end -}}
+    {{ end }}
+
+    <div class="episode-body">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
+
