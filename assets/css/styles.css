@@ -1564,12 +1564,26 @@ footer {
     position: fixed;
     bottom: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100%;
+    margin: 0;
     background: #111;
     color: #fff;
     padding: 1rem;
     text-align: center;
     z-index: 1000;
+    border: none;
+    transform: none;
+}
+
+dialog.cookie-banner {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    max-height: none;
 }
 
 .cookie-buttons {
