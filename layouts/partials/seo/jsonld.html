@@ -4,6 +4,7 @@
 {{ $seriesBase := or $podcast.url $baseURL }}
 {{ $seriesId := printf "%s#podcast-series" $seriesBase }}
 {{ $graph := slice }}
+{{ $pageMainEntityId := "" }}
 
 {{ $spotify := "" }}
 {{ with .Site.Params.spotifyShow }}
@@ -58,22 +59,12 @@
 {{ range $hostKey := $seriesHostKeys }}
   {{ $host := index $hostsData $hostKey }}
   {{ if $host }}
-    {{ $person := dict "@type" "Person" "name" $host.name }}
-    {{ with $host.id }}
-      {{ $person = merge $person (dict "@id" .) }}
+    {{ $personScratch := newScratch }}
+    {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
+    {{ $person := $personScratch.Get "person" }}
+    {{ if $person.name }}
+      {{ $seriesHostRoles = $seriesHostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
     {{ end }}
-    {{ with $host.url }}
-      {{ $person = merge $person (dict "url" .) }}
-    {{ end }}
-    {{ with $host.sameAs }}
-      {{ if gt (len .) 0 }}
-        {{ $person = merge $person (dict "sameAs" .) }}
-      {{ end }}
-    {{ end }}
-    {{ with $host.image }}
-      {{ $person = merge $person (dict "image" (. | absURL)) }}
-    {{ end }}
-    {{ $seriesHostRoles = $seriesHostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
   {{ end }}
 {{ end }}
 
@@ -157,22 +148,12 @@
   {{ range $hostKey := $episodeHosts }}
     {{ $host := index $hostsData $hostKey }}
     {{ if $host }}
-      {{ $person := dict "@type" "Person" "name" $host.name }}
-      {{ with $host.id }}
-        {{ $person = merge $person (dict "@id" .) }}
+      {{ $personScratch := newScratch }}
+      {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
+      {{ $person := $personScratch.Get "person" }}
+      {{ if $person.name }}
+        {{ $hostRoles = $hostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
       {{ end }}
-      {{ with $host.url }}
-        {{ $person = merge $person (dict "url" .) }}
-      {{ end }}
-      {{ with $host.sameAs }}
-        {{ if gt (len .) 0 }}
-          {{ $person = merge $person (dict "sameAs" .) }}
-        {{ end }}
-      {{ end }}
-      {{ with $host.image }}
-        {{ $person = merge $person (dict "image" (. | absURL)) }}
-      {{ end }}
-      {{ $hostRoles = $hostRoles | append (dict "@type" "Role" "roleName" "host" "actor" $person) }}
     {{ end }}
   {{ end }}
 
@@ -305,34 +286,23 @@
 
   {{ $guestRoles := slice }}
   {{ range $guest := $guestEntries }}
-    {{ $person := dict "@type" "Person" "name" $guest.name }}
     {{ $personId := "" }}
     {{ with $guest.id }}
-      {{ $personId = . }}
-    {{ end }}
-    {{ if and $personId (not (hasPrefix $personId "http")) }}
-      {{ $personId = printf "%s#guest-%s" $baseURL $personId }}
-    {{ end }}
-    {{ if eq $personId "" }}
-      {{ with $guest.url }}
+      {{ if hasPrefix . "http" }}
         {{ $personId = . }}
+      {{ else }}
+        {{ $personId = printf "guest-%s" . }}
       {{ end }}
     {{ end }}
-    {{ if ne $personId "" }}
-      {{ $person = merge $person (dict "@id" $personId) }}
+    {{ if and (eq $personId "") $guest.url }}
+      {{ $personId = $guest.url }}
     {{ end }}
-    {{ with $guest.url }}
-      {{ $person = merge $person (dict "url" .) }}
+    {{ $personScratch := newScratch }}
+    {{ partial "seo/person.jsonld.html" (dict "data" $guest "baseURL" $baseURL "personId" $personId "scratch" $personScratch) }}
+    {{ $person := $personScratch.Get "person" }}
+    {{ if $person.name }}
+      {{ $guestRoles = $guestRoles | append (dict "@type" "Role" "roleName" "guest" "actor" $person) }}
     {{ end }}
-    {{ with $guest.sameAs }}
-      {{ if gt (len .) 0 }}
-        {{ $person = merge $person (dict "sameAs" .) }}
-      {{ end }}
-    {{ end }}
-    {{ with $guest.image }}
-      {{ $person = merge $person (dict "image" (. | absURL)) }}
-    {{ end }}
-    {{ $guestRoles = $guestRoles | append (dict "@type" "Role" "roleName" "guest" "actor" $person) }}
   {{ end }}
 
   {{ $actors := $hostRoles }}
@@ -358,8 +328,10 @@
   {{ with .Params.description }}
     {{ $episodeDescription = . }}
   {{ end }}
+  {{ $episodeId := printf "%s#episode" .Permalink }}
   {{ $episode := dict
     "@type" "PodcastEpisode"
+    "@id" $episodeId
     "name" .Title
     "url" .Permalink
     "description" $episodeDescription
@@ -379,6 +351,70 @@
     {{ $episode = merge $episode (dict "actor" $actors) }}
   {{ end }}
   {{ $graph = $graph | append $episode }}
+  {{ $pageMainEntityId = $episodeId }}
 {{ end }}
+
+{{ if and .IsPage (eq .Section "blog") }}
+  {{ $articleId := printf "%s#article" .Permalink }}
+
+  {{ $authors := slice }}
+  {{ if .Params.authors }}
+    {{ $authors = .Params.authors }}
+  {{ else if .Params.author }}
+    {{ $authors = slice (dict "name" .Params.author) }}
+  {{ end }}
+
+  {{ $articleAuthors := slice }}
+  {{ range $author := $authors }}
+    {{ $authorData := dict }}
+    {{ if $author.id }}
+      {{ $authorData = index site.Data.author $author.id }}
+    {{ else if $author.name }}
+      {{ $authorData = $author }}
+    {{ end }}
+    {{ if $authorData }}
+      {{ $personId := "" }}
+      {{ if $author.id }}
+        {{ $personId = printf "author-%s" $author.id }}
+      {{ end }}
+      {{ $personScratch := newScratch }}
+      {{ partial "seo/person.jsonld.html" (dict "data" $authorData "baseURL" $baseURL "personId" $personId "scratch" $personScratch) }}
+      {{ $person := $personScratch.Get "person" }}
+      {{ if $person.name }}
+        {{ $articleAuthors = $articleAuthors | append $person }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ $article := dict
+    "@type" "BlogPosting"
+    "@id" $articleId
+    "headline" .Title
+    "mainEntityOfPage" (dict "@id" (printf "%s#webpage" .Permalink))
+    "url" .Permalink
+    "datePublished" (.Date.Format "2006-01-02")
+    "publisher" (dict "@id" (printf "%s#org" $baseURL))
+  }}
+  {{ if gt (len $articleAuthors) 0 }}
+    {{ $article = merge $article (dict "author" $articleAuthors) }}
+  {{ end }}
+  {{ with .Params.image }}
+    {{ $article = merge $article (dict "image" (. | absURL)) }}
+  {{ end }}
+  {{ $graph = $graph | append $article }}
+  {{ $pageMainEntityId = $articleId }}
+{{ end }}
+
+{{ $webpage := dict
+  "@type" "WebPage"
+  "@id" (printf "%s#webpage" .Permalink)
+  "url" .Permalink
+  "name" .Title
+  "isPartOf" (dict "@id" (printf "%s#website" $baseURL))
+}}
+{{ if $pageMainEntityId }}
+  {{ $webpage = merge $webpage (dict "mainEntity" (dict "@id" $pageMainEntityId)) }}
+{{ end }}
+{{ $graph = $graph | append $webpage }}
 
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

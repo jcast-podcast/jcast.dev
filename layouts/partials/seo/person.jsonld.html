@@ -1,0 +1,56 @@
+{{- $data := .data -}}
+{{- $scratch := .scratch -}}
+{{- $person := dict -}}
+{{- if and $data $data.name -}}
+  {{- $person = dict "@type" "Person" "name" $data.name -}}
+
+  {{- $personId := "" -}}
+  {{- with $data.id -}}
+    {{- $personId = . -}}
+  {{- end -}}
+  {{- if and (eq $personId "") .personId -}}
+    {{- $personId = .personId -}}
+  {{- end -}}
+  {{- if and $personId (not (hasPrefix $personId "http")) -}}
+    {{- $personId = printf "%s#%s" .baseURL $personId -}}
+  {{- end -}}
+  {{- if $personId -}}
+    {{- $person = merge $person (dict "@id" $personId) -}}
+  {{- end -}}
+
+  {{- with $data.url -}}
+    {{- $person = merge $person (dict "url" .) -}}
+  {{- end -}}
+
+  {{- $sameAs := slice -}}
+  {{- with $data.sameAs -}}
+    {{- if gt (len .) 0 -}}
+      {{- $sameAs = . -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if and (eq (len $sameAs) 0) $data.socials -}}
+    {{- range $platform, $url := $data.socials -}}
+      {{- if $url -}}
+        {{- $sameAs = $sameAs | append $url -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if gt (len $sameAs) 0 -}}
+    {{- $person = merge $person (dict "sameAs" $sameAs) -}}
+  {{- end -}}
+
+  {{- $image := "" -}}
+  {{- with $data.image -}}
+    {{- $image = . -}}
+  {{- end -}}
+  {{- if and (eq $image "") $data.thumbnail -}}
+    {{- $image = $data.thumbnail -}}
+  {{- end -}}
+  {{- if $image -}}
+    {{- $person = merge $person (dict "image" ($image | absURL)) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $scratch -}}
+  {{- $scratch.Set "person" $person -}}
+{{- end -}}
