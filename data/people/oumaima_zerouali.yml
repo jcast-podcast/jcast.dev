@@ -1,6 +1,13 @@
 name: "Oumaima Zerouali"
 id: "https://jcast.dev/#person-oumaima_zerouali"
+url: "https://www.ozerouali.com"
+sameAs:
+  - "https://github.com/OumaimaZerouali"
+  - "https://www.instagram.com/_oumietje_/"
+  - "https://www.linkedin.com/in/oumaima-zerouali-16b189223/"
 bio: "Co-host van JCast, software developer met passie voor clean code en user experience."
 image: "/images/avatars/oumaima-avatar.png"
 socials:
   linkedin: "https://www.linkedin.com/in/oumaima-zerouali-16b189223/"
+  instagram: "https://www.instagram.com/_oumietje_/"
+  github: "https://github.com/OumaimaZerouali"
