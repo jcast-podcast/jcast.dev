@@ -1,5 +1,4 @@
 {{ $podcast := site.Data.podcast }}
-{{ $hostsData := site.Data.hosts }}
 {{ $peopleData := site.Data.people }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $siteRoot := strings.TrimSuffix "/" $baseURL }}
@@ -59,15 +58,7 @@
 {{ end }}
 {{ $seriesHostRoles := slice }}
 {{ range $hostKey := $seriesHostKeys }}
-  {{ $hostRef := index $hostsData $hostKey }}
-  {{ $personKey := "" }}
-  {{ with $hostRef.person }}
-    {{ $personKey = . }}
-  {{ end }}
-  {{ if eq $personKey "" }}
-    {{ $personKey = $hostKey }}
-  {{ end }}
-  {{ $host := index $peopleData $personKey }}
+  {{ $host := index $peopleData $hostKey }}
   {{ if $host }}
     {{ $personScratch := newScratch }}
     {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
@@ -156,15 +147,7 @@
 
   {{ $hostRoles := slice }}
   {{ range $hostKey := $episodeHosts }}
-    {{ $hostRef := index $hostsData $hostKey }}
-    {{ $personKey := "" }}
-    {{ with $hostRef.person }}
-      {{ $personKey = . }}
-    {{ end }}
-    {{ if eq $personKey "" }}
-      {{ $personKey = $hostKey }}
-    {{ end }}
-    {{ $host := index $peopleData $personKey }}
+    {{ $host := index $peopleData $hostKey }}
     {{ if $host }}
       {{ $personScratch := newScratch }}
       {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
