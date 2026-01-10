@@ -5,7 +5,7 @@ authors:
   - id: "oumaima_zerouali"
   - id: "maarten_casteels"
 summary: "Een kijkje achter de schermen: hoe we onze podcast website bouwden met Hugo, pure CSS, en AWS. Van custom layouts tot CloudFront CDN, van cookie consent tot Giscus comments."
-image: "/images/blog/jcast-tech-stack.jpg"
+image: "/images/blog/20260109-jcast-tech-stack.webp"
 draft: false
 ---
 

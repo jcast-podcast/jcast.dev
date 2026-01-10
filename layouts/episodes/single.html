@@ -14,11 +14,12 @@
 
     {{ with .Params.guests }}
     {{ range . }}
-    {{ $guestKey := .id }} {{ $guestData := index $.Site.Data.guest $guestKey }}
+    {{ $guestKey := .id }} {{ $guestData := index $.Site.Data.people $guestKey }}
     {{ if $guestData }}
     <div class="guest-info">
         <div class="guest-info-desktop">
-            {{ with $guestData.thumbnail }}
+            {{ $guestImage := $guestData.image | default $guestData.thumbnail }}
+            {{ with $guestImage }}
             <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
             {{ end }}
             <div class="guest-details">
@@ -46,7 +47,8 @@
         <details class="guest-info-mobile">
             <summary>Gast: {{ $guestData.name }}</summary>
             <div class="guest-content">
-                {{ with $guestData.thumbnail }}
+                {{ $guestImage := $guestData.image | default $guestData.thumbnail }}
+                {{ with $guestImage }}
                 <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
                 {{ end }}
                 <div class="guest-details">

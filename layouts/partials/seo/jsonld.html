@@ -1,6 +1,8 @@
 {{ $podcast := site.Data.podcast }}
 {{ $hostsData := site.Data.hosts }}
+{{ $peopleData := site.Data.people }}
 {{ $baseURL := .Site.BaseURL }}
+{{ $siteRoot := strings.TrimSuffix "/" $baseURL }}
 {{ $seriesBase := or $podcast.url $baseURL }}
 {{ $seriesId := printf "%s#podcast-series" $seriesBase }}
 {{ $graph := slice }}
@@ -57,7 +59,15 @@
 {{ end }}
 {{ $seriesHostRoles := slice }}
 {{ range $hostKey := $seriesHostKeys }}
-  {{ $host := index $hostsData $hostKey }}
+  {{ $hostRef := index $hostsData $hostKey }}
+  {{ $personKey := "" }}
+  {{ with $hostRef.person }}
+    {{ $personKey = . }}
+  {{ end }}
+  {{ if eq $personKey "" }}
+    {{ $personKey = $hostKey }}
+  {{ end }}
+  {{ $host := index $peopleData $personKey }}
   {{ if $host }}
     {{ $personScratch := newScratch }}
     {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
@@ -146,7 +156,15 @@
 
   {{ $hostRoles := slice }}
   {{ range $hostKey := $episodeHosts }}
-    {{ $host := index $hostsData $hostKey }}
+    {{ $hostRef := index $hostsData $hostKey }}
+    {{ $personKey := "" }}
+    {{ with $hostRef.person }}
+      {{ $personKey = . }}
+    {{ end }}
+    {{ if eq $personKey "" }}
+      {{ $personKey = $hostKey }}
+    {{ end }}
+    {{ $host := index $peopleData $personKey }}
     {{ if $host }}
       {{ $personScratch := newScratch }}
       {{ partial "seo/person.jsonld.html" (dict "data" $host "baseURL" $baseURL "scratch" $personScratch) }}
@@ -167,7 +185,7 @@
       {{ end }}
       {{ $base := dict }}
       {{ if $guestId }}
-        {{ $data := index site.Data.guest $guestId }}
+        {{ $data := index site.Data.people $guestId }}
         {{ with $data }}
           {{ with .name }}
             {{ $base = merge $base (dict "name" .) }}
@@ -234,7 +252,7 @@
   {{ else }}
     {{ with .Params.guest }}
       {{ $guestId := . }}
-      {{ $data := index site.Data.guest $guestId }}
+      {{ $data := index site.Data.people $guestId }}
       {{ if $data }}
         {{ $guest := dict "id" $guestId }}
         {{ with $data.name }}
@@ -254,19 +272,6 @@
         {{ with $data.thumbnail }}
           {{ if not (isset $guest "image") }}
             {{ $guest = merge $guest (dict "image" .) }}
-          {{ end }}
-        {{ end }}
-        {{ with $data.socials }}
-          {{ if not (isset $guest "sameAs") }}
-            {{ $socialList := slice }}
-            {{ range $platform, $url := . }}
-              {{ if $url }}
-                {{ $socialList = $socialList | append $url }}
-              {{ end }}
-            {{ end }}
-            {{ if gt (len $socialList) 0 }}
-              {{ $guest = merge $guest (dict "sameAs" $socialList) }}
-            {{ end }}
           {{ end }}
         {{ end }}
         {{ $guestName := "" }}
@@ -355,6 +360,7 @@
 {{ end }}
 
 {{ if and .IsPage (eq .Section "blog") }}
+  {{ $blogId := printf "%s/blog/#blog" $siteRoot }}
   {{ $articleId := printf "%s#article" .Permalink }}
 
   {{ $authors := slice }}
@@ -368,7 +374,7 @@
   {{ range $author := $authors }}
     {{ $authorData := dict }}
     {{ if $author.id }}
-      {{ $authorData = index site.Data.author $author.id }}
+      {{ $authorData = index site.Data.people $author.id }}
     {{ else if $author.name }}
       {{ $authorData = $author }}
     {{ end }}
@@ -391,6 +397,7 @@
     "@id" $articleId
     "headline" .Title
     "mainEntityOfPage" (dict "@id" (printf "%s#webpage" .Permalink))
+    "isPartOf" (dict "@id" $blogId)
     "url" .Permalink
     "datePublished" (.Date.Format "2006-01-02")
     "publisher" (dict "@id" (printf "%s#org" $baseURL))
@@ -399,10 +406,31 @@
     {{ $article = merge $article (dict "author" $articleAuthors) }}
   {{ end }}
   {{ with .Params.image }}
-    {{ $article = merge $article (dict "image" (. | absURL)) }}
+    {{ $imageParam := . }}
+    {{ $imagePath := strings.TrimPrefix "/" $imageParam }}
+    {{ $imageRes := resources.Get $imagePath }}
+    {{ if $imageRes }}
+      {{ $article = merge $article (dict "image" ($imageRes.RelPermalink | absURL)) }}
+    {{ else }}
+      {{ $article = merge $article (dict "image" ($imageParam | absURL)) }}
+    {{ end }}
   {{ end }}
   {{ $graph = $graph | append $article }}
   {{ $pageMainEntityId = $articleId }}
+{{ end }}
+
+{{ if and .IsSection (eq .Section "blog") }}
+  {{ $blogId := printf "%s/blog/#blog" $siteRoot }}
+  {{ $blog := dict
+    "@type" "Blog"
+    "@id" $blogId
+    "name" .Title
+    "url" .Permalink
+    "publisher" (dict "@id" (printf "%s#org" $baseURL))
+    "isPartOf" (dict "@id" (printf "%s#website" $baseURL))
+  }}
+  {{ $graph = $graph | append $blog }}
+  {{ $pageMainEntityId = $blogId }}
 {{ end }}
 
 {{ $webpage := dict

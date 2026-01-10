@@ -22,21 +22,10 @@
     {{- $person = merge $person (dict "url" .) -}}
   {{- end -}}
 
-  {{- $sameAs := slice -}}
   {{- with $data.sameAs -}}
     {{- if gt (len .) 0 -}}
-      {{- $sameAs = . -}}
+      {{- $person = merge $person (dict "sameAs" .) -}}
     {{- end -}}
-  {{- end -}}
-  {{- if and (eq (len $sameAs) 0) $data.socials -}}
-    {{- range $platform, $url := $data.socials -}}
-      {{- if $url -}}
-        {{- $sameAs = $sameAs | append $url -}}
-      {{- end -}}
-    {{- end -}}
-  {{- end -}}
-  {{- if gt (len $sameAs) 0 -}}
-    {{- $person = merge $person (dict "sameAs" $sameAs) -}}
   {{- end -}}
 
   {{- $image := "" -}}

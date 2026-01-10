@@ -7,7 +7,7 @@
 
     {{ with .Params.image }}
     <div class="episode-thumbnail-container">
-        <img src="{{ . }}" alt="" class="episode-thumbnail" loading="lazy">
+        {{ partial "blog-thumb.html" (dict "page" $ "class" "episode-thumbnail") }}
     </div>
     {{ end }}
 
@@ -29,7 +29,7 @@
     {{- $authorData := dict -}}
     {{- if .id -}}
         {{- /* New way: author ID that references data file */ -}}
-        {{- $authorData = index $.Site.Data.author .id -}}
+        {{- $authorData = index $.Site.Data.people .id -}}
     {{- else if .name -}}
         {{- /* Legacy: just a name string */ -}}
         {{- $authorData = . -}}
@@ -38,7 +38,8 @@
     {{ if $authorData }}
     <div class="guest-info">
         <div class="guest-info-desktop">
-            {{ with $authorData.thumbnail }}
+            {{ $authorImage := $authorData.image | default $authorData.thumbnail }}
+            {{ with $authorImage }}
             <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
             {{ end }}
             <div class="guest-details">
@@ -66,7 +67,8 @@
         <details class="guest-info-mobile">
             <summary>Auteur: {{ $authorData.name }}</summary>
             <div class="guest-content">
-                {{ with $authorData.thumbnail }}
+                {{ $authorImage := $authorData.image | default $authorData.thumbnail }}
+                {{ with $authorImage }}
                 <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
                 {{ end }}
                 <div class="guest-details">
@@ -101,4 +103,3 @@
     </div>
 </article>
 {{ end }}
-

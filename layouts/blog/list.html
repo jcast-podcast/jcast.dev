@@ -20,7 +20,7 @@
             <div class="episode-card-body">
                 {{ if .Params.image }}
                 <a class="episode-thumb-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
-                    <img src="{{ .Params.image }}" alt="" class="episode-thumb" loading="lazy">
+                    {{ partial "blog-thumb.html" (dict "page" . "class" "episode-thumb") }}
                 </a>
                 {{ end }}
                 <div class="episode-meta">
@@ -46,4 +46,3 @@
     </div>
 </section>
 {{ end }}
-
