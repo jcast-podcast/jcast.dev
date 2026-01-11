@@ -1,6 +1,6 @@
 ---
 title: "Hoe we jcast.dev bouwden met Hugo, Terraform en AWS"
-date: 2026-01-09
+date: 2026-01-11
 authors:
   - id: "oumaima_zerouali"
   - id: "maarten_casteels"
