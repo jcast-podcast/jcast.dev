@@ -7,8 +7,10 @@ Welkom bij de codebase van **JCast.dev** — een statische website gebouwd met [
 - Homepagina met logo en korte beschrijving
 - Overzicht van alle afleveringen
 - Detailpagina per aflevering met Spotify-link
+- **Blog sectie** met artikelen over development, Java, en tech
 - "Over ons"-pagina met crew-bios en avatars
 - Custom styling in JCast-kleuren
+- Nederlandse datums door de hele site
 
 ---
 
@@ -17,31 +19,45 @@ Welkom bij de codebase van **JCast.dev** — een statische website gebouwd met [
 ```plaintext
 .
 ├── content/
-│   ├── \_index.md
+│   ├── _index.md
 │   ├── about.md
-│   └── episodes/
-│       ├── afl-1.md
+│   ├── episodes/
+│   │   ├── s01e01-professional-developer-what.md
+│   │   └── ...
+│   └── blog/
+│       ├── _index.md
+│       ├── exceptions-emergency-brake.md
 │       └── ...
 ├── data/
-│   ├── guest
-│   │   ├── name_lastname.yml
+│   ├── guest/
+│   │   └── name_lastname.yml
+│   ├── hosts.yml
+│   └── podcast.yml
 ├── layouts/
-│   ├── \_default/
+│   ├── _default/
 │   │   ├── baseof.html
 │   │   └── single.html
 │   ├── episodes/
 │   │   ├── list.html
 │   │   └── single.html
+│   ├── blog/
+│   │   ├── list.html
+│   │   └── single.html
 │   └── partials/
-│       └── head.html
+│       ├── head.html
+│       ├── nl-date.html
+│       └── episode-thumb.html
 ├── static/
 │   └── images/
-│       └── avatars/
+│       ├── avatars/
+│       ├── thumbnails/
+│       └── blog/
 ├── assets/
 │   └── css/
-│       └── jcast.css
-├── themes/
-│   └── \[optional custom theme]
+│       └── styles.css
+├── archetypes/
+│   ├── default.md
+│   └── blog.md
 ├── hugo.toml
 └── README.md
 ````
@@ -108,6 +124,59 @@ Volledige show notes of beschrijving.
 
 3. Voeg een bijhorende thumbnail toe in `static/images/thumbnails/`
 
+---
+
+## Blog artikel toevoegen
+
+1. Maak een nieuw blog artikel aan:
+
+```bash
+hugo new blog/mijn-artikel-titel.md
+```
+
+2. Gebruik deze front matter structuur:
+
+```yaml
+---
+title: "Hoe we jcast.dev bouwden"
+date: 2026-01-09
+authors:
+  - id: "oumaima_zerouali"
+  - id: "maarten_casteels"
+summary: "Korte samenvatting voor in de lijst en op social media"
+image: "/images/blog/mijn-afbeelding.jpg"
+draft: false
+---
+
+Schrijf hier je artikel in Markdown...
+
+## Hoofdstuk 1
+
+Content met **bold**, *italic*, en [links](https://example.com).
+
+```java
+// Code blocks worden ondersteund
+public class Example {
+    public static void main(String[] args) {
+        System.out.println("Hello, JCast!");
+    }
+}
+```
+```
+
+3. **Authors** worden gedefinieerd in `data/author/` (net als gasten):
+   - `oumaima_zerouali.yml`
+   - `maarten_casteels.yml`
+   - `viktor_van_steenweghen.yml`
+
+4. **Leestijd** wordt automatisch berekend op basis van woordenaantal (~200 woorden/minuut)
+
+5. Voeg een hero afbeelding toe in `static/images/blog/` (optioneel)
+
+6. Set `draft: false` wanneer je klaar bent om te publiceren
+
+---
+
 ## Gast toevoegen
 
 Wanneer een aflevering een gast bevat:
@@ -142,17 +211,25 @@ static/images/avatars/
 ## Features in gebruik
 
 * Hugo (static site generator)
+* **Blog sectie** met Markdown support
+* **Nederlandse datum formatting** door de hele site
 * Font Awesome (social icons)
 * Responsive layout (handgemaakt)
 * Collapsible episode cards (initial design)
 * Markdown for content management
 * Clean CSS in `/assets/css/styles.css`
+* Code syntax highlighting voor blog posts
 
+## URLs
 
-## 📄 Licentie
+* Homepage: [https://jcast.dev](https://jcast.dev)
+* Afleveringen: [https://jcast.dev/episodes/](https://jcast.dev/episodes/)
+* Blog: [https://jcast.dev/blog/](https://jcast.dev/blog/)
+* Over ons: [https://jcast.dev/about/](https://jcast.dev/about/)
+
+## Licentie
 
 MIT — gebruik gerust, met liefde ✨
 
-
-**🎧 JCast – Developers met een mening.**
+**JCast – Developers met een mening.**
 [https://jcast.dev](https://jcast.dev)
