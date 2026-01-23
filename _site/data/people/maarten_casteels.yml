@@ -1,0 +1,14 @@
+name: "Maarten Casteels"
+id: "https://casteels.dev/#maarten-casteels"
+url: "https://casteels.dev"
+sameAs:
+  - "https://github.com/denmette"
+  - "https://www.linkedin.com/in/maartencasteels"
+  - "https://bsky.app/profile/casteels.dev"
+  - "https://x.com/denmette"
+bio: "Co-host van JCast, software architect en Java enthusiast."
+image: "/images/avatars/maarten-avatar.png"
+socials:
+  linkedin: "https://www.linkedin.com/in/maartencasteels/"
+  github: "https://github.com/denmette"
+  bluesky: "https://bsky.app/profile/casteels.dev"

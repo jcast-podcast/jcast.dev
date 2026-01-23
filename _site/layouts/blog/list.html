@@ -1,0 +1,48 @@
+{{ define "main" }}
+<section class="episode-list-page">
+    <h1 class="list-page-title">Blog</h1>
+    <p class="blog-intro">Hier vind je artikelen over Java, software development, clean code, architectuur en het leven als developer.</p>
+
+    {{ $allPosts := .Pages.ByDate.Reverse }}
+
+    <div class="episode-list blog-list">
+        {{ range $allPosts }}
+        <article class="episode-card">
+            <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
+            <div class="episode-card-header">
+                <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-number">{{ partial "nl-date.html" .Date }}</time>
+                <div class="spacer"></div>
+            </div>
+            <h3 class="episode-title-list">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h3>
+
+            <div class="episode-card-body">
+                {{ if .Params.image }}
+                <a class="episode-thumb-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
+                    {{ partial "blog-thumb.html" (dict "page" . "class" "episode-thumb") }}
+                </a>
+                {{ end }}
+                <div class="episode-meta">
+                    <div class="episode-summary">
+                        {{ with .Params.summary }}
+                            {{ . | plainify | htmlUnescape }}
+                        {{ else }}
+                            {{ .Summary | plainify | htmlUnescape | truncate 250 "..." }}
+                        {{ end }}
+                    </div>
+                    <div class="blog-meta-footer">
+                        {{- $wordCount := .WordCount -}}
+                        {{- $readingTime := div (add $wordCount 199) 200 -}}
+                        <span class="reading-time" aria-label="Leestijd">
+                            {{ partial "ui/icon.html" (dict "name" "clock" "decorative" true) }}
+                            {{ $readingTime }} min lezen
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

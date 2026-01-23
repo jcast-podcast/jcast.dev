@@ -1,0 +1,5 @@
+{{- $file := .Get 0 -}}
+{{- $path := printf "shownotes/%s.md" $file -}}
+{{- $content := readFile (printf "content/%s" $path) -}}
+{{- $content | $.Page.RenderString -}}
+

@@ -1,0 +1,14 @@
+name: "JCast"
+description: "De podcast over IT, dev life, soft skills en gezonde meningsverschillen."
+url: "https://jcast.dev"
+inLanguage: "nl-BE"
+image: "/images/logo-without-bg.png"
+webFeed: "https://jcast.dev/index.xml"
+sameAs:
+  - "https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W"
+seasons:
+  - number: 1
+    hosts:
+      - "oumaima_zerouali"
+      - "viktor_van_steenweghen"
+      - "maarten_casteels"

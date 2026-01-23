@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hoe we jcast.dev bouwden met Hugo, Terraform en AWS | JCast</title>
+
+    <meta name="description" content="De podcast over IT, dev life, soft skills en gezonde meningsverschillen.">
+    <meta name="author" content="Oumaima Zerouali, Viktor Van Steenweghen &amp; Maarten Casteels">
+    <meta name="keywords" content="Nederlandstalige podcast, Belgische podcast, tech podcast, Java podcast, software development podcast, IT podcast België, developer podcast, programmeren, clean code, agile">
+
+    <link rel="canonical" href="https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/">
+
+    
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Hoe we jcast.dev bouwden met Hugo, Terraform en AWS">
+    <meta property="og:description" content="De podcast over IT, dev life, soft skills en gezonde meningsverschillen.">
+    <meta property="og:url" content="https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/">
+    <meta property="og:site_name" content="JCast">
+    
+    <meta property="og:image" content="https://jcast.dev/images/logo-without-bg.png">
+    
+    
+    <meta property="article:published_time" content="2026-01-09T00:00:00Z">
+    <meta property="article:modified_time" content="2026-01-09T00:00:00Z">
+    <meta property="article:author" content="Oumaima Zerouali, Viktor Van Steenweghen &amp; Maarten Casteels">
+    
+
+    
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <meta name="twitter:title" content="Hoe we jcast.dev bouwden met Hugo, Terraform en AWS">
+    <meta name="twitter:description" content="De podcast over IT, dev life, soft skills en gezonde meningsverschillen.">
+    
+    <meta name="twitter:image" content="https://jcast.dev/images/logo-without-bg.png">
+    
+
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="manifest" href="/images/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/web-app-manifest-512x512.png">
+
+    
+<link rel="stylesheet" href="/css/styles.min.3f55b608eafa6619aa116a3b52db9876f723a636f7ad564cc347e92acfb87c57.css" integrity="sha256-P1W2COr6ZhmqEWo7UtuYdvcjpjb3rVZMw0fpKs&#43;4fFc=">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      
+    
+  
+
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+      
+    
+  
+
+
+
+  
+  
+    
+    
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+    
+    
+      
+    
+  
+
+  
+  
+    
+    
+    
+    
+      
+    
+  
+
+
+
+
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+
+
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+  
+  
+    
+    
+  
+
+
+  
+    
+    
+  
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+    
+  
+
+  
+  
+    
+    
+      
+    
+    
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+    
+  
+    
+    
+      
+    
+    
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+    
+  
+
+  
+  
+    
+  
+  
+    
+    
+    
+    
+      
+    
+  
+  
+  
+
+
+
+
+
+
+  
+
+
+
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@id":"https://jcast.dev/#org","@type":"Organization","description":"De podcast over IT, dev life, soft skills en gezonde meningsverschillen.","logo":"https://jcast.dev/images/logo-without-bg.png","name":"JCast","sameAs":["https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W"],"url":"https://jcast.dev/"},{"@id":"https://jcast.dev/#website","@type":"WebSite","description":"De podcast over IT, dev life, soft skills en gezonde meningsverschillen.","name":"JCast","publisher":{"@id":"https://jcast.dev/#org"},"url":"https://jcast.dev/"},{"@id":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/#article","@type":"BlogPosting","author":[{"@id":"https://jcast.dev/#person-oumaima_zerouali","@type":"Person","image":"https://jcast.dev/images/avatars/oumaima-avatar.png","name":"Oumaima Zerouali","sameAs":["https://github.com/OumaimaZerouali","https://www.instagram.com/_oumietje_/","https://www.linkedin.com/in/oumaima-zerouali-16b189223/"],"url":"https://www.ozerouali.com"},{"@id":"https://casteels.dev/#maarten-casteels","@type":"Person","image":"https://jcast.dev/images/avatars/maarten-avatar.png","name":"Maarten Casteels","sameAs":["https://github.com/denmette","https://www.linkedin.com/in/maartencasteels","https://bsky.app/profile/casteels.dev","https://x.com/denmette"],"url":"https://casteels.dev"}],"datePublished":"2026-01-09","headline":"Hoe we jcast.dev bouwden met Hugo, Terraform en AWS","image":"https://jcast.dev/images/blog/20260109-jcast-tech-stack.webp","isPartOf":{"@id":"https://jcast.dev/blog/#blog"},"mainEntityOfPage":{"@id":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/#webpage"},"publisher":{"@id":"https://jcast.dev/#org"},"url":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/"},{"@id":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/#webpage","@type":"WebPage","isPartOf":{"@id":"https://jcast.dev/#website"},"mainEntity":{"@id":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/#article"},"name":"Hoe we jcast.dev bouwden met Hugo, Terraform en AWS","url":"https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/"}]}</script>
+
+
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">Direct naar de inhoud</a>
+
+<header role="banner">
+    <div class="container">
+        <a href="/" class="logo-link">
+            <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" />
+        </a>
+        <nav class="nav" role="navigation" aria-label="Hoofdmenu">
+            <a href="/episodes/">Afleveringen</a>
+            <a href="/blog/">Blog</a>
+            <a href="/about/">Over ons</a>
+        </nav>
+    </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+    
+<article class="episode-single">
+    <h1 class="episode-title">Hoe we jcast.dev bouwden met Hugo, Terraform en AWS</h1>
+    <time datetime="2026-01-09" class="episode-date">
+        9 januari 2026
+    </time>
+
+    
+    <div class="episode-thumbnail-container">
+        <picture>
+    <source
+            type="image/webp"
+            srcset="
+          /images/blog/20260109-jcast-tech-stack_hu_9bc19d9e2caec5e5.webp 320w,
+          /images/blog/20260109-jcast-tech-stack_hu_ad850b11cef2d2c.webp 640w,
+          /images/blog/20260109-jcast-tech-stack_hu_20f05c2dd5d03e90.webp 1024w
+        "
+    >
+    <img
+            src="/images/blog/20260109-jcast-tech-stack_hu_20de8bc2b1596453.jpg"
+            srcset="
+          /images/blog/20260109-jcast-tech-stack_hu_7c8b37b797139ef3.jpg 320w,
+          /images/blog/20260109-jcast-tech-stack_hu_20de8bc2b1596453.jpg 640w,
+          /images/blog/20260109-jcast-tech-stack_hu_e834eecc25178da3.jpg 1024w
+        "
+            sizes="(max-width: 768px) 100vw, 640px"
+            alt="Afbeelding bij blogpost Hoe we jcast.dev bouwden met Hugo, Terraform en AWS"
+            class="episode-thumbnail"
+            loading="lazy"
+    >
+</picture>
+    </div>
+    
+    <div class="guest-info">
+        <div class="guest-info-desktop">
+            
+            
+            <img src="/images/avatars/oumaima-avatar.png" alt="Foto van Oumaima Zerouali" class="guest-thumbnail" loading="lazy">
+            
+            <div class="guest-details">
+                <strong>Auteur: Oumaima Zerouali</strong>
+                
+                <p class="guest-description">Co-host van JCast, software developer met passie voor clean code en user experience.</p>
+                
+                
+                <div class="guest-socials">
+                    
+                    <a href="https://github.com/OumaimaZerouali"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Oumaima Zerouali op github">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+    <path d="M9 18c-4.51 2-5-2-7-2"/>
+</svg>
+
+
+
+                        <span class="sr-only">github</span>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/_oumietje_/"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Oumaima Zerouali op instagram">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+</svg>
+
+
+                        <span class="sr-only">instagram</span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/oumaima-zerouali-16b189223/"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Oumaima Zerouali op linkedin">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+</svg>
+
+
+
+                        <span class="sr-only">linkedin</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <details class="guest-info-mobile">
+            <summary>Auteur: Oumaima Zerouali</summary>
+            <div class="guest-content">
+                
+                
+                <img src="/images/avatars/oumaima-avatar.png" alt="Foto van Oumaima Zerouali" class="guest-thumbnail" loading="lazy">
+                
+                <div class="guest-details">
+                    
+                    <p class="guest-description">Co-host van JCast, software developer met passie voor clean code en user experience.</p>
+                    
+                </div>
+            </div>
+            
+            <div class="guest-socials">
+                
+                <a href="https://github.com/OumaimaZerouali"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Oumaima Zerouali op github">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+    <path d="M9 18c-4.51 2-5-2-7-2"/>
+</svg>
+
+
+
+                    <span class="sr-only">github</span>
+                </a>
+                
+                <a href="https://www.instagram.com/_oumietje_/"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Oumaima Zerouali op instagram">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+</svg>
+
+
+                    <span class="sr-only">instagram</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/oumaima-zerouali-16b189223/"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Oumaima Zerouali op linkedin">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+</svg>
+
+
+
+                    <span class="sr-only">linkedin</span>
+                </a>
+                
+            </div>
+            
+        </details>
+    </div>
+    
+    <div class="guest-info">
+        <div class="guest-info-desktop">
+            
+            
+            <img src="/images/avatars/maarten-avatar.png" alt="Foto van Maarten Casteels" class="guest-thumbnail" loading="lazy">
+            
+            <div class="guest-details">
+                <strong>Auteur: Maarten Casteels</strong>
+                
+                <p class="guest-description">Co-host van JCast, software architect en Java enthusiast.</p>
+                
+                
+                <div class="guest-socials">
+                    
+                    <a href="https://bsky.app/profile/casteels.dev"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Maarten Casteels op bluesky">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856"/>
+</svg>
+
+
+
+                        <span class="sr-only">bluesky</span>
+                    </a>
+                    
+                    <a href="https://github.com/denmette"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Maarten Casteels op github">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+    <path d="M9 18c-4.51 2-5-2-7-2"/>
+</svg>
+
+
+
+                        <span class="sr-only">github</span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/maartencasteels/"
+                       class="guest-social-link"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="Bezoek Maarten Casteels op linkedin">
+                        
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+</svg>
+
+
+
+                        <span class="sr-only">linkedin</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+        <details class="guest-info-mobile">
+            <summary>Auteur: Maarten Casteels</summary>
+            <div class="guest-content">
+                
+                
+                <img src="/images/avatars/maarten-avatar.png" alt="Foto van Maarten Casteels" class="guest-thumbnail" loading="lazy">
+                
+                <div class="guest-details">
+                    
+                    <p class="guest-description">Co-host van JCast, software architect en Java enthusiast.</p>
+                    
+                </div>
+            </div>
+            
+            <div class="guest-socials">
+                
+                <a href="https://bsky.app/profile/casteels.dev"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Maarten Casteels op bluesky">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M6.335 5.144c-1.654 -1.199 -4.335 -2.127 -4.335 .826c0 .59 .35 4.953 .556 5.661c.713 2.463 3.13 2.75 5.444 2.369c-4.045 .665 -4.889 3.208 -2.667 5.41c1.03 1.018 1.913 1.59 2.667 1.59c2 0 3.134 -2.769 3.5 -3.5c.333 -.667 .5 -1.167 .5 -1.5c0 .333 .167 .833 .5 1.5c.366 .731 1.5 3.5 3.5 3.5c.754 0 1.637 -.571 2.667 -1.59c2.222 -2.203 1.378 -4.746 -2.667 -5.41c2.314 .38 4.73 .094 5.444 -2.369c.206 -.708 .556 -5.072 .556 -5.661c0 -2.953 -2.68 -2.025 -4.335 -.826c-2.293 1.662 -4.76 5.048 -5.665 6.856c-.905 -1.808 -3.372 -5.194 -5.665 -6.856"/>
+</svg>
+
+
+
+                    <span class="sr-only">bluesky</span>
+                </a>
+                
+                <a href="https://github.com/denmette"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Maarten Casteels op github">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+    <path d="M9 18c-4.51 2-5-2-7-2"/>
+</svg>
+
+
+
+                    <span class="sr-only">github</span>
+                </a>
+                
+                <a href="https://www.linkedin.com/in/maartencasteels/"
+                   class="guest-social-link"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Bezoek Maarten Casteels op linkedin">
+                    
+
+
+<svg class="social-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
+</svg>
+
+
+
+                    <span class="sr-only">linkedin</span>
+                </a>
+                
+            </div>
+            
+        </details>
+    </div>
+    
+
+    <div class="episode-body">
+        <p>Een podcast maken stopt niet bij opnemen en publiceren. Als je het goed wil doen, wil je ook een plek waar alles samenkomt. Afleveringen, shownotes en binnenkort ook blogposts. Spotify en Apple Podcasts zijn prima distributiekanalen, maar ze bepalen ook hoe jouw podcast wordt gepresenteerd. En daar wilden we bij JCast zelf meer controle over.</p>
+<p>Zo ontstond <strong><a href="https://jcast.dev/">jcast.dev</a></strong>. Onze eigen digitale thuisbasis.</p>
+<p>Omdat we developers zijn, werd dat geen klassiek CMS met een hoop plugins. We wilden iets snels, onderhoudbaars en technisch transparant. Een setup die we begrijpen, kunnen uitleggen en zonder schrik kunnen aanpassen. De stack die daaruit groeide ziet er zo uit:</p>
+<ul>
+<li><strong>Hugo</strong> als static site generator</li>
+<li><strong>Pure HTML en CSS</strong>, zonder themes of frameworks</li>
+<li><strong>Terraform</strong> voor infrastructuur als code</li>
+<li><strong>AWS S3 en CloudFront</strong> voor hosting en wereldwijde distributie</li>
+</ul>
+<p>In deze post nemen we je mee achter de schermen en tonen we hoe die keuzes samenkomen.</p>
+<h2 id="waarom-hugo">Waarom Hugo?</h2>
+<p>De keuze voor Hugo kwam oorspronkelijk van Maarten en bleek al snel de juiste. Hugo is extreem snel. Een volledige build van de site duurt milliseconden, wat het werken aan content en layout bijzonder aangenaam maakt.</p>
+<p>Daarnaast is Hugo gewoon één binary. Geen Node ecosystem, geen dependency hell, geen verrassingen na een update. Downloaden, draaien en klaar.</p>
+<p>En misschien nog belangrijker: Hugo is Markdown-first. Content leeft in git, niet in een database of CMS. Dat voelt licht, voorspelbaar en heel natuurlijk voor developers.</p>
+<h3 id="geen-theme-bewust">Geen theme, bewust</h3>
+<p>We gebruiken geen bestaand Hugo theme. Alles is van nul opgebouwd met eigen HTML en CSS.</p>
+<p>Dat vraagt meer werk in het begin, maar geeft volledige controle. We weten exact welke HTML wordt gegenereerd, welke CSS geladen wordt en waarom. Geen ongebruikte styles, geen verborgen JavaScript en geen theme-updates die plots dingen breken.</p>
+<h2 id="contentstructuur-met-seizoenen-en-afleveringen">Contentstructuur met seizoenen en afleveringen</h2>
+<p>Elke aflevering is een Markdown bestand in <code>content/episodes/</code>. Naast de standaardvelden hebben we expliciet <strong>seizoenen en afleveringen</strong> toegevoegd in de frontmatter:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Wat is een professionele ontwikkelaar?&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">date</span><span class="p">:</span><span class="w"> </span><span class="ld">2025-04-30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">season</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">episode</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;We praten over wat het betekent om professioneel met software om te gaan.&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">player</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://share.transistor.fm/e/jcast/latest&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spotify</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://open.spotify.com/episode/...&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">guest</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;uncle_bob&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span></code></pre></div><p>Die <code>season</code> en <code>episode</code> velden gebruiken we om afleveringen te groeperen en te sorteren. Op de site zie je dus netjes “S01E01” in plaats van een lange ongestructureerde lijst. Dat maakt navigeren eenvoudiger en voelt meteen herkenbaar.</p>
+<h3 id="gastinformatie-zonder-duplicatie">Gastinformatie zonder duplicatie</h3>
+<p>We wilden vermijden dat we bij elke aflevering opnieuw dezelfde gastinformatie moesten schrijven. Daarom houden we gasten bij in aparte YAML-bestanden onder <code>data/guest/</code>.</p>
+<p>Voor Uncle Bob ziet dat er bijvoorbeeld zo uit:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Uncle Bob&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;Software craftsman en auteur van Clean Code&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">thumbnail</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/images/avatars/uncle-bob.png&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>In onze templates halen we deze data automatisch op. Heeft een aflevering een gast, dan tonen we die sectie. Is er geen gast, dan wordt ze gewoon niet gerenderd. Zo blijft de content proper en herbruikbaar.</p>
+<h2 id="van-overzicht-tot-detailpagina">Van overzicht tot detailpagina</h2>
+<p>Hugo’s templating systeem gaf ons veel vrijheid om de site logisch op te bouwen.</p>
+<p>De basis zit in <code>baseof.html</code>. Daarin staat het volledige HTML-skelet met semantische markup, accessibility aandachtspunten zoals een skip-to-content link, dynamische paginatitels en Open Graph tags voor social previews.</p>
+<p>De afleveringenpagina groepeert episodes per seizoen. Elke aflevering wordt weergegeven als een card met thumbnail, korte beschrijving en links naar de verschillende platformen. Afbeeldingen worden lazy geladen om performance te optimaliseren.</p>
+<p>Op de detailpagina komt alles samen. Je ziet meteen welk seizoen en welke aflevering het is, krijgt extra context over de gast, kan de volledige shownotes lezen en meteen luisteren via de embedded player. Onderaan voorzien we links naar Spotify en andere platformen, en is er ruimte voor reacties.</p>
+<h2 id="styling-met-pure-css">Styling met pure CSS</h2>
+<p>We gebruiken geen Bootstrap, Tailwind of ander CSS framework. Alles zit in onze eigen stylesheet.</p>
+<p>We werken met CSS custom properties als basis voor kleuren en styling:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">--jcast-primary</span><span class="p">:</span> <span class="mh">#FF6B35</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">--jcast-dark</span><span class="p">:</span> <span class="mh">#1A1A1A</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">--jcast-light</span><span class="p">:</span> <span class="mh">#F4F4F4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">--jcast-accent</span><span class="p">:</span> <span class="mh">#4ECDC4</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">--jcast-radius</span><span class="p">:</span> <span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Alle componenten bouwen hierop verder. Flexbox en Grid doen het layoutwerk, media queries zorgen voor een goede ervaring op mobiel en desktop. Het resultaat is overzichtelijke CSS zonder bloat, waarin elke class een duidelijk doel heeft.</p>
+<h2 id="seo-met-structured-data">SEO met structured data</h2>
+<p>In plaats van per aflevering losse structured data te injecteren, hebben we gekozen voor één centrale JSON-LD graph die tijdens de build wordt samengesteld en bovenaan in de <code>&lt;head&gt;</code> van de pagina terechtkomt.</p>
+<p>Tijdens het bouwen verzamelt Hugo alle relevante context en combineert die in één <code>@graph</code>. Daarin zitten onder andere:</p>
+<ul>
+<li>de podcast als organisatie en website</li>
+<li>het seizoen waartoe een aflevering behoort</li>
+<li>de aflevering zelf</li>
+<li>de hosts, met hun profielen en rollen</li>
+</ul>
+<p>Zo ontstaat één coherent geheel dat zoekmachines in één keer kunnen verwerken, zonder versnipperde of overlappende metadata. Het resultaat is een duidelijke semantische beschrijving van wat JCast is, hoe seizoenen en afleveringen samenhangen en wie er achter de podcast zit.</p>
+<p>Deze aanpak houdt de HTML proper, vermijdt duplicatie en sluit mooi aan bij het idee van een statische site die tijdens build time volledig wordt verrijkt.</p>
+<p>Wie hier dieper op wil ingaan en wil begrijpen waarom JSON-LD geen magische SEO-truc is maar vooral een manier om structuur en context te geven, kan terecht bij dit artikel:<br>
+<a href="https://casteels.dev/posts/202601-jsonld-is-geen-seo-truc/" title="JSON-LD is geen SEO-truc">JSON-LD is geen SEO-truc</a>.</p>
+<h2 id="reacties-via-giscus">Reacties via Giscus</h2>
+<p>We wilden reacties, maar geen eigen backend bouwen. Giscus bleek hier ideaal.</p>
+<p>Reacties worden opgeslagen als GitHub Discussions in onze repository. Authenticatie verloopt via GitHub en moderatie doen we gewoon daar. Geen extra database, geen eigen auth systeem en toch volledige controle.</p>
+<p>Voor een developer publiek voelt dit heel natuurlijk aan.</p>
+<h2 id="cookie-consent-zonder-dark-patterns">Cookie consent zonder dark patterns</h2>
+<p>Tracking laden we pas na expliciete toestemming. Tot die tijd gebeurt er niets.</p>
+<p>Onze cookie banner checkt of een bezoeker al een keuze heeft gemaakt. Zo niet, tonen we de banner. Bij accepteren laden we analytics, bij weigeren blijft alles uit. De keuze wordt onthouden, zonder trucjes of vooringevulde opties.</p>
+<h2 id="hosting-op-aws-met-terraform">Hosting op AWS met Terraform</h2>
+<p>Hugo genereert statische bestanden die we hosten in een private S3 bucket. CloudFront fungeert als CDN en zorgt voor snelle laadtijden wereldwijd.</p>
+<p>Alles staat beschreven in Terraform, zodat de infrastructuur reproduceerbaar blijft.</p>
+<h3 id="de-beruchte-404">De beruchte 404</h3>
+<p>Lokaal werkte onze <code>404.html</code> perfect. In productie kregen bezoekers een “Access Denied” fout.</p>
+<p>De oorzaak bleek CloudFront. Als een object niet bestaat, stuurt S3 standaard een 403 terug. CloudFront toont die fout letterlijk.</p>
+<p>De oplossing was het mappen van zowel 403 als 404 errors naar onze eigen foutpagina:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-hcl" data-lang="hcl"><span class="line"><span class="cl"><span class="k">custom_error_response</span> {
+</span></span><span class="line"><span class="cl"><span class="n">  error_code</span>         <span class="o">=</span> <span class="m">403</span>
+</span></span><span class="line"><span class="cl"><span class="n">  response_code</span>      <span class="o">=</span> <span class="m">404</span>
+</span></span><span class="line"><span class="cl"><span class="n">  response_page_path</span> <span class="o">=</span> <span class="s2">&#34;/404.html&#34;</span>
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></div><p>Sindsdien krijgen bezoekers netjes onze eigen 404 te zien.</p>
+<h2 id="automatisch-deployen">Automatisch deployen</h2>
+<p>Deployen gebeurt via GitHub Actions. Bij elke commit:</p>
+<ol>
+<li>Bouwen we de site met Hugo</li>
+<li>Synchroniseren we de output naar S3</li>
+<li>Invalideren we de CloudFront cache</li>
+</ol>
+<p>Een vereenvoudigd fragment uit de workflow:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build site</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">hugo --minify</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Sync to S3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">aws s3 sync public/ s3://jcast.dev --delete</span><span class="w">
+</span></span></span></code></pre></div><p>Nieuwe afleveringen of blogposts staan meestal binnen twee minuten live.</p>
+<h2 id="wat-we-geleerd-hebben">Wat we geleerd hebben</h2>
+<p>Alles zelf bouwen kost meer tijd, maar levert enorm veel inzicht op. Je weet exact hoe je site werkt en waarom bepaalde keuzes gemaakt zijn.</p>
+<p>CloudFront is krachtig, maar heeft een leercurve. Dingen zoals error responses en caching leer je pas echt door ze fout te doen.</p>
+<p>Giscus werkt bijzonder goed voor een technisch publiek.</p>
+<p>En misschien wel het belangrijkste: pure CSS is leuker en krachtiger dan je denkt, zolang je de basis echt beheerst.</p>
+<h2 id="de-stack-in-één-oogopslag">De stack in één oogopslag</h2>
+<p>Voor wie liever snel een overzicht heeft, hier de technische stack samengevat:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Onderdeel</th>
+          <th>Technologie</th>
+          <th>Waarom</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Static site generator</td>
+          <td>Hugo</td>
+          <td>Supersnel en Markdown-first</td>
+      </tr>
+      <tr>
+          <td>Styling</td>
+          <td>Custom CSS</td>
+          <td>Volledige controle zonder bloat</td>
+      </tr>
+      <tr>
+          <td>Hosting</td>
+          <td>AWS S3</td>
+          <td>Goedkoop en schaalbaar</td>
+      </tr>
+      <tr>
+          <td>CDN</td>
+          <td>CloudFront</td>
+          <td>Snelle wereldwijde distributie</td>
+      </tr>
+      <tr>
+          <td>Infrastructure</td>
+          <td>Terraform</td>
+          <td>Reproduceerbare setup</td>
+      </tr>
+      <tr>
+          <td>Comments</td>
+          <td>Giscus</td>
+          <td>Geen eigen backend nodig</td>
+      </tr>
+      <tr>
+          <td>CI/CD</td>
+          <td>GitHub Actions</td>
+          <td>Automatische deploys</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="tot-slot">Tot slot</h2>
+<p>Ja, we hadden het eenvoudiger kunnen maken. Een CMS kiezen en klaar.</p>
+<p>Maar door jcast.dev zelf te bouwen hebben we volledige controle, een snelle site, een leerervaring en een codebase die we met plezier delen met de community.</p>
+<p>Geen black box, geen vendor lock-in. Gewoon iets bouwen en begrijpen.</p>
+<p>Dat past perfect bij hoe wij naar software development kijken.</p>
+<hr>
+<p><strong>Benieuwd naar de content achter deze tech?</strong> Luister naar onze <a href="https://jcast.dev/episodes/">laatste aflevering</a>.</p>
+<p><strong>Feedback of vragen?</strong> Bereik ons via:</p>
+<ul>
+<li><strong>Instagram:</strong> <a href="https://www.instagram.com/jcast_crew/">@jcast_crew</a></li>
+<li><strong>Email:</strong> <a href="mailto:hello.jcast@gmail.com">hello.jcast@gmail.com</a></li>
+</ul>
+
+    </div>
+</article>
+
+</main>
+
+<footer role="contentinfo">
+    <div class="site-footer">
+        <span class="footer-copyright">© 2026 JCast</span>
+        <span class="footer-separator">&middot;</span>
+        <a class="footer-instagram" href="https://www.instagram.com/jcast_crew/" target="_blank" rel="noopener noreferrer"
+           aria-label="Volg JCast op Instagram">
+            <!--
+tags: [logo, app, application, images, photos, videos, post, stories, online, community]
+category: Brand
+version: "1.9"
+unicode: "ec20"
+-->
+<svg aria-hidden="true" focusable="false"
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 8a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4l0 -8" />
+  <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
+  <path d="M16.5 7.5v.01" />
+</svg>
+
+            <span>Volg ons! @jcast_crew</span>
+        </a>
+    </div>
+</footer>
+
+<dialog id="cookie-consent-banner" class="cookie-banner hidden" aria-live="polite" aria-label="Cookie toestemming">
+    <form method="dialog">
+        <p>
+            🍪 Deze website gebruikt cookies voor analytics (anoniem). Wil je dat we je bezoek meten?
+        </p>
+        <div class="cookie-buttons">
+            <button id="accept-cookies">Ja, is goed</button>
+            <button id="decline-cookies">Nee, liever niet</button>
+        </div>
+    </form>
+</dialog>
+
+<script src="/js/cookie-consent.js" defer></script>
+</body>
+</html>

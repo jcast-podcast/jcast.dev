@@ -36,8 +36,5 @@ filename = "sitemap.xml"
     lineNos = false
     lineNumbersInTable = false
     tabWidth = 2
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
 
 [taxonomies]

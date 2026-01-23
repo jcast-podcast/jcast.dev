@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Afleveringen on JCast</title>
+    <link>https://jcast.dev/episodes/</link>
+    <description>Recent content in Afleveringen on JCast</description>
+    <generator>Hugo</generator>
+    <language>nl-be</language>
+    <lastBuildDate>Mon, 05 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://jcast.dev/episodes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>New year, new dev: goede voornemens, slechte gewoontes &amp; code-reflecties</title>
+      <link>https://jcast.dev/episodes/s01e09-new-year-new-dev/</link>
+      <pubDate>Mon, 05 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e09-new-year-new-dev/</guid>
+      <description>&lt;p&gt;In deze nieuwjaarsaflevering van JCast blikken Oumaima, Maarten en Viktor terug op 2025 en kijken ze vooruit naar wat 2026 mag brengen. Opgenomen in de laatste dagen van het jaar, maar bedoeld als frisse start voor januari, voelt deze aflevering als een warme babbel met reflectie, ambities en de nodige zijsporen.&lt;/p&gt;&#xA;&lt;p&gt;Het voorbije jaar bleek er eentje vol lessen. Niet alleen technisch, maar vooral menselijk. De drie hosts praten openlijk over vallen en opstaan, zowel letterlijk als figuurlijk. Over projecten die groeiden, plannen die soms ontspoorden, en het besef dat developer zijn vandaag veel meer is dan alleen code schrijven. Communicatie, verwachtingen, samenwerken en soms politieke spelletjes blijken evenzeer deel van het vak.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AI, Java &amp; de menselijke kant van ontwikkeling</title>
+      <link>https://jcast.dev/episodes/s01e08-ai-with-jan/</link>
+      <pubDate>Mon, 01 Dec 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e08-ai-with-jan/</guid>
+      <description>&lt;p&gt;In deze aflevering verwelkomen we Jan Van Wassenhove, een ervaren developer, consultant en conferentiespreker op onder meer Devoxx en Techorama. We duiken mee in zijn weg van PHP en C# naar Java, hoe zijn passie voor spreken ontstond, en waarom kennis delen voor hem zo’n belangrijk onderdeel van het vak is.&lt;/p&gt;&#xA;&lt;p&gt;Samen met Oumaima, Maarten en Viktor verkent Jan hoe AI de dagelijkse praktijk van developers verandert. Hij vertelt hoe hij zijn zoon hielp een Pokémon-spel te bouwen met een AI-agent en hoe zulke tools taken versnellen zonder de mens overbodig te maken. We hebben het over de toekomst van testen, de rol van data en bias, en waarom menselijke controle cruciaal blijft, zelfs in een wereld vol slimme assistenten.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Meetings, stand-ups &amp; agile drama</title>
+      <link>https://jcast.dev/episodes/s01e07-scrum-and-agile/</link>
+      <pubDate>Mon, 03 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e07-scrum-and-agile/</guid>
+      <description>&lt;p&gt;In deze aflevering beginnen we bij iets wat elke developer herkent: meetings.&lt;br&gt;&#xA;Van stand-ups tot retros, van “waarom ben ik hier?” tot “had dit een e-mail kunnen zijn?”, we duiken in de wereld van agile werken, teamrituelen en alles wat daar soms fout (of goed) loopt.&lt;/p&gt;&#xA;&lt;p&gt;We praten over hoe agile ooit bedoeld was voor developers, maar vandaag soms meer op theater lijkt dan samenwerking.&#xA;Wanneer werkt Scrum écht, en wanneer voelt het vooral als administratie met post-its?&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Java, Soft Skills &amp; Mensenkennis</title>
+      <link>https://jcast.dev/episodes/s01e06-softskills-with-bjorn/</link>
+      <pubDate>Sat, 06 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e06-softskills-with-bjorn/</guid>
+      <description>&lt;p&gt;In deze aflevering starten we vanuit Java als onze vertrouwde basis, maar ontdekken we dat soft skills minstens zo bepalend zijn voor succes.&lt;br&gt;&#xA;We hebben het over de eerste keer dat Java je écht pakt, de sprong van solo-code naar teamwork, en de momenten waarop communicatie belangrijker wordt dan techniek.&lt;/p&gt;&#xA;&lt;p&gt;Te gast: &lt;strong&gt;Björn De Craemer&lt;/strong&gt;, Java-fanaat en iemand die als geen ander weet dat software niet alleen over code gaat, maar ook over mensen.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>(Audio)Books vs Podcasts</title>
+      <link>https://jcast.dev/episodes/s01e05-podcast-vs-audiobooks/</link>
+      <pubDate>Mon, 01 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e05-podcast-vs-audiobooks/</guid>
+      <description>&lt;p&gt;📚🎧 Boeken of podcasts? Lezen of luisteren?&lt;br&gt;&#xA;In deze aflevering duiken &lt;strong&gt;Oumaima, Viktor en Maarten&lt;/strong&gt; in hun eigen luister- en leesgewoontes. Riskeer je liever een &lt;em&gt;paper cut&lt;/em&gt; met een papieren boek, of dompel je je liever onder in een warme stem via een podcast?&lt;/p&gt;&#xA;&lt;p&gt;Wanneer grijpen we naar welke vorm? Wat blijft beter hangen? En hoe groot is de berg onafgewerkte afleveringen eigenlijk écht?&lt;/p&gt;&#xA;&lt;p&gt;Met onder andere:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Quick Fire ronde: van papieren boek vs luisterboek tot guilty pleasure podcasts&lt;/li&gt;&#xA;&lt;li&gt;Wanneer podcasts te vluchtig zijn en boeken juist te zwaar&lt;/li&gt;&#xA;&lt;li&gt;De “druk” om bij te blijven in je feed&lt;/li&gt;&#xA;&lt;li&gt;Hidden gems die iedereen zou moeten luisteren of lezen&lt;/li&gt;&#xA;&lt;li&gt;En de vraag: kunnen podcasts ooit boeken vervangen?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Of je nu een boekenwurm bent, podcast-binger of allebei, deze aflevering zit boordevol verhalen, voorkeuren en aanraders.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Pixel Perfect? Een blik op UX/UI met Risa Somers</title>
+      <link>https://jcast.dev/episodes/s01e04-pixel-perfect-with-risa/</link>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e04-pixel-perfect-with-risa/</guid>
+      <description>&lt;p&gt;Vandaag duiken we in de wereld van design: van scherpe hoeken tot smooth animaties, en van wireframes tot real-life frustraties tussen developers en designers.&lt;/p&gt;&#xA;&lt;p&gt;Te gast: &lt;strong&gt;Risa&lt;/strong&gt;, UI/UX designer met een uitgesproken mening, bakken ervaring, en een passie voor gebruiksvriendelijke digitale producten. Ze neemt ons mee in haar wereld, vertelt wat &amp;ldquo;goed design&amp;rdquo; echt betekent en deelt tips voor een betere samenwerking tussen frontend, backend én design.&lt;/p&gt;&#xA;&lt;p&gt;🎤 Oumaima en Viktor waren er bij, &lt;strong&gt;Maarten helaas niet&lt;/strong&gt;, maar hij baalt dat hij dit gesprek gemist heeft (en terecht!).&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Life as a Dev: Openhartig gesprek tussen ons drie</title>
+      <link>https://jcast.dev/episodes/s01e03-live-as-a-dev/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e03-live-as-a-dev/</guid>
+      <description>&lt;p&gt;In deze aflevering van JCast kruipen we met z&amp;rsquo;n drieën, Viktor, Oumaima en Maarten, achter de microfoon voor een openhartig gesprek over het leven als developer. Geen gast deze keer, maar wél veel herkenbaarheid, meningen en een gezonde portie zelfspot.&lt;/p&gt;&#xA;&lt;p&gt;We trappen af met een &lt;strong&gt;Quick Fire-ronde&lt;/strong&gt;: dark mode of light mode? Deployen op vrijdag, doen of net niet? Pair programming forever of liever solo? Daarna duiken we dieper in onze eigen ervaringen:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Clean Architecture met Jeroen Bastijns – Over code, context en het groeipad van een gepassioneerde ontwikkelaar</title>
+      <link>https://jcast.dev/episodes/s01e02-clean-architecture-with-jeroen/</link>
+      <pubDate>Mon, 02 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e02-clean-architecture-with-jeroen/</guid>
+      <description>&lt;p&gt;In deze aflevering schuift Jeroen Bastijns aan bij Oumaima, Viktor en Maarten voor een diepgaand gesprek over Clean Architecture.&#xA;Jeroen vertelt hoe hij in contact kwam met dit concept, waarom het hem raakte en hoe zijn manier van denken en bouwen doorheen de jaren is geëvolueerd.&#xA;Verwacht een boeiend parcours met verwijzingen naar projecten uit het verleden, inzichten uit de praktijk en een passie voor structuur, duidelijkheid en goed doordachte code.&#xA;Een aflevering voor wie verder wil kijken dan alleen technische keuzes, en op zoek is naar duurzame softwareontwerp principes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer</title>
+      <link>https://jcast.dev/episodes/s01e01-professional-developer-what/</link>
+      <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/episodes/s01e01-professional-developer-what/</guid>
+      <description>&lt;p&gt;In deze allereerste episode gaan Oumaima, Viktor en Maarten in gesprek over wat het betekent om een professionele ontwikkelaar te zijn.&#xA;Geïnspireerd door Uncle Bob (Robert C. Martin) duiken we in topics als Clean Code, TDD en professionele standaarden in softwareontwikkeling.&#xA;Hoe verhouden wij ons tot die principes? Wat doen we al, waar twijfelen we aan, en waarin willen we nog groeien?&#xA;Een eerlijke babbel over gewoontes, verantwoordelijkheden en hoe we beter willen worden in ons vak.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

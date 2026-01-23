@@ -1,0 +1,21 @@
+{{- $date := . -}}
+{{- $day := $date.Day -}}
+{{- $month := $date.Month -}}
+{{- $year := $date.Year -}}
+
+{{- $monthName := "" -}}
+{{- if eq $month 1 }}{{ $monthName = "januari" }}{{ end -}}
+{{- if eq $month 2 }}{{ $monthName = "februari" }}{{ end -}}
+{{- if eq $month 3 }}{{ $monthName = "maart" }}{{ end -}}
+{{- if eq $month 4 }}{{ $monthName = "april" }}{{ end -}}
+{{- if eq $month 5 }}{{ $monthName = "mei" }}{{ end -}}
+{{- if eq $month 6 }}{{ $monthName = "juni" }}{{ end -}}
+{{- if eq $month 7 }}{{ $monthName = "juli" }}{{ end -}}
+{{- if eq $month 8 }}{{ $monthName = "augustus" }}{{ end -}}
+{{- if eq $month 9 }}{{ $monthName = "september" }}{{ end -}}
+{{- if eq $month 10 }}{{ $monthName = "oktober" }}{{ end -}}
+{{- if eq $month 11 }}{{ $monthName = "november" }}{{ end -}}
+{{- if eq $month 12 }}{{ $monthName = "december" }}{{ end -}}
+
+{{- printf "%d %s %d" $day $monthName $year -}}
+

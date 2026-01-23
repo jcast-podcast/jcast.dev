@@ -1,0 +1,244 @@
+<p>Een podcast maken stopt niet bij opnemen en publiceren. Als je het goed wil doen, wil je ook een plek waar alles samenkomt. Afleveringen, shownotes en binnenkort ook blogposts. Spotify en Apple Podcasts zijn prima distributiekanalen, maar ze bepalen ook hoe jouw podcast wordt gepresenteerd. En daar wilden we bij JCast zelf meer controle over.</p>
+
+<p>Zo ontstond <strong><a href="https://jcast.dev/">jcast.dev</a></strong>. Onze eigen digitale thuisbasis.</p>
+
+<p>Omdat we developers zijn, werd dat geen klassiek CMS met een hoop plugins. We wilden iets snels, onderhoudbaars en technisch transparant. Een setup die we begrijpen, kunnen uitleggen en zonder schrik kunnen aanpassen. De stack die daaruit groeide ziet er zo uit:</p>
+
+<ul>
+  <li><strong>Hugo</strong> als static site generator</li>
+  <li><strong>Pure HTML en CSS</strong>, zonder themes of frameworks</li>
+  <li><strong>Terraform</strong> voor infrastructuur als code</li>
+  <li><strong>AWS S3 en CloudFront</strong> voor hosting en wereldwijde distributie</li>
+</ul>
+
+<p>In deze post nemen we je mee achter de schermen en tonen we hoe die keuzes samenkomen.</p>
+
+<h2 id="waarom-hugo">Waarom Hugo?</h2>
+
+<p>De keuze voor Hugo kwam oorspronkelijk van Maarten en bleek al snel de juiste. Hugo is extreem snel. Een volledige build van de site duurt milliseconden, wat het werken aan content en layout bijzonder aangenaam maakt.</p>
+
+<p>Daarnaast is Hugo gewoon één binary. Geen Node ecosystem, geen dependency hell, geen verrassingen na een update. Downloaden, draaien en klaar.</p>
+
+<p>En misschien nog belangrijker: Hugo is Markdown-first. Content leeft in git, niet in een database of CMS. Dat voelt licht, voorspelbaar en heel natuurlijk voor developers.</p>
+
+<h3 id="geen-theme-bewust">Geen theme, bewust</h3>
+
+<p>We gebruiken geen bestaand Hugo theme. Alles is van nul opgebouwd met eigen HTML en CSS.</p>
+
+<p>Dat vraagt meer werk in het begin, maar geeft volledige controle. We weten exact welke HTML wordt gegenereerd, welke CSS geladen wordt en waarom. Geen ongebruikte styles, geen verborgen JavaScript en geen theme-updates die plots dingen breken.</p>
+
+<h2 id="contentstructuur-met-seizoenen-en-afleveringen">Contentstructuur met seizoenen en afleveringen</h2>
+
+<p>Elke aflevering is een Markdown bestand in <code class="language-plaintext highlighter-rouge">content/episodes/</code>. Naast de standaardvelden hebben we expliciet <strong>seizoenen en afleveringen</strong> toegevoegd in de frontmatter:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nn">---</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Wat</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">een</span><span class="nv"> </span><span class="s">professionele</span><span class="nv"> </span><span class="s">ontwikkelaar?"</span>
+<span class="na">date</span><span class="pi">:</span> <span class="s">2025-04-30</span>
+<span class="na">season</span><span class="pi">:</span> <span class="m">1</span>
+<span class="na">episode</span><span class="pi">:</span> <span class="m">1</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">We</span><span class="nv"> </span><span class="s">praten</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">wat</span><span class="nv"> </span><span class="s">het</span><span class="nv"> </span><span class="s">betekent</span><span class="nv"> </span><span class="s">om</span><span class="nv"> </span><span class="s">professioneel</span><span class="nv"> </span><span class="s">met</span><span class="nv"> </span><span class="s">software</span><span class="nv"> </span><span class="s">om</span><span class="nv"> </span><span class="s">te</span><span class="nv"> </span><span class="s">gaan."</span>
+<span class="na">player</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://share.transistor.fm/e/jcast/latest"</span>
+<span class="na">spotify</span><span class="pi">:</span> <span class="s2">"</span><span class="s">https://open.spotify.com/episode/..."</span>
+<span class="na">guest</span><span class="pi">:</span> <span class="s2">"</span><span class="s">uncle_bob"</span>
+<span class="nn">---</span>
+</code></pre></div></div>
+
+<p>Die <code class="language-plaintext highlighter-rouge">season</code> en <code class="language-plaintext highlighter-rouge">episode</code> velden gebruiken we om afleveringen te groeperen en te sorteren. Op de site zie je dus netjes “S01E01” in plaats van een lange ongestructureerde lijst. Dat maakt navigeren eenvoudiger en voelt meteen herkenbaar.</p>
+
+<h3 id="gastinformatie-zonder-duplicatie">Gastinformatie zonder duplicatie</h3>
+
+<p>We wilden vermijden dat we bij elke aflevering opnieuw dezelfde gastinformatie moesten schrijven. Daarom houden we gasten bij in aparte YAML-bestanden onder <code class="language-plaintext highlighter-rouge">data/guest/</code>.</p>
+
+<p>Voor Uncle Bob ziet dat er bijvoorbeeld zo uit:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Uncle</span><span class="nv"> </span><span class="s">Bob"</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Software</span><span class="nv"> </span><span class="s">craftsman</span><span class="nv"> </span><span class="s">en</span><span class="nv"> </span><span class="s">auteur</span><span class="nv"> </span><span class="s">van</span><span class="nv"> </span><span class="s">Clean</span><span class="nv"> </span><span class="s">Code"</span>
+<span class="na">thumbnail</span><span class="pi">:</span> <span class="s2">"</span><span class="s">/images/avatars/uncle-bob.png"</span>
+</code></pre></div></div>
+
+<p>In onze templates halen we deze data automatisch op. Heeft een aflevering een gast, dan tonen we die sectie. Is er geen gast, dan wordt ze gewoon niet gerenderd. Zo blijft de content proper en herbruikbaar.</p>
+
+<h2 id="van-overzicht-tot-detailpagina">Van overzicht tot detailpagina</h2>
+
+<p>Hugo’s templating systeem gaf ons veel vrijheid om de site logisch op te bouwen.</p>
+
+<p>De basis zit in <code class="language-plaintext highlighter-rouge">baseof.html</code>. Daarin staat het volledige HTML-skelet met semantische markup, accessibility aandachtspunten zoals een skip-to-content link, dynamische paginatitels en Open Graph tags voor social previews.</p>
+
+<p>De afleveringenpagina groepeert episodes per seizoen. Elke aflevering wordt weergegeven als een card met thumbnail, korte beschrijving en links naar de verschillende platformen. Afbeeldingen worden lazy geladen om performance te optimaliseren.</p>
+
+<p>Op de detailpagina komt alles samen. Je ziet meteen welk seizoen en welke aflevering het is, krijgt extra context over de gast, kan de volledige shownotes lezen en meteen luisteren via de embedded player. Onderaan voorzien we links naar Spotify en andere platformen, en is er ruimte voor reacties.</p>
+
+<h2 id="styling-met-pure-css">Styling met pure CSS</h2>
+
+<p>We gebruiken geen Bootstrap, Tailwind of ander CSS framework. Alles zit in onze eigen stylesheet.</p>
+
+<p>We werken met CSS custom properties als basis voor kleuren en styling:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">:root</span> <span class="p">{</span>
+  <span class="py">--jcast-primary</span><span class="p">:</span> <span class="m">#FF6B35</span><span class="p">;</span>
+  <span class="py">--jcast-dark</span><span class="p">:</span> <span class="m">#1A1A1A</span><span class="p">;</span>
+  <span class="py">--jcast-light</span><span class="p">:</span> <span class="m">#F4F4F4</span><span class="p">;</span>
+  <span class="py">--jcast-accent</span><span class="p">:</span> <span class="m">#4ECDC4</span><span class="p">;</span>
+  <span class="py">--jcast-radius</span><span class="p">:</span> <span class="m">6px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Alle componenten bouwen hierop verder. Flexbox en Grid doen het layoutwerk, media queries zorgen voor een goede ervaring op mobiel en desktop. Het resultaat is overzichtelijke CSS zonder bloat, waarin elke class een duidelijk doel heeft.</p>
+
+<h2 id="seo-met-structured-data">SEO met structured data</h2>
+
+<p>In plaats van per aflevering losse structured data te injecteren, hebben we gekozen voor één centrale JSON-LD graph die tijdens de build wordt samengesteld en bovenaan in de <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> van de pagina terechtkomt.</p>
+
+<p>Tijdens het bouwen verzamelt Hugo alle relevante context en combineert die in één <code class="language-plaintext highlighter-rouge">@graph</code>. Daarin zitten onder andere:</p>
+<ul>
+  <li>de podcast als organisatie en website</li>
+  <li>het seizoen waartoe een aflevering behoort</li>
+  <li>de aflevering zelf</li>
+  <li>de hosts, met hun profielen en rollen</li>
+</ul>
+
+<p>Zo ontstaat één coherent geheel dat zoekmachines in één keer kunnen verwerken, zonder versnipperde of overlappende metadata. Het resultaat is een duidelijke semantische beschrijving van wat JCast is, hoe seizoenen en afleveringen samenhangen en wie er achter de podcast zit.</p>
+
+<p>Deze aanpak houdt de HTML proper, vermijdt duplicatie en sluit mooi aan bij het idee van een statische site die tijdens build time volledig wordt verrijkt.</p>
+
+<p>Wie hier dieper op wil ingaan en wil begrijpen waarom JSON-LD geen magische SEO-truc is maar vooral een manier om structuur en context te geven, kan terecht bij dit artikel:<br />
+<a href="https://casteels.dev/posts/202601-jsonld-is-geen-seo-truc/" title="JSON-LD is geen SEO-truc">JSON-LD is geen SEO-truc</a>.</p>
+
+<h2 id="reacties-via-giscus">Reacties via Giscus</h2>
+
+<p>We wilden reacties, maar geen eigen backend bouwen. Giscus bleek hier ideaal.</p>
+
+<p>Reacties worden opgeslagen als GitHub Discussions in onze repository. Authenticatie verloopt via GitHub en moderatie doen we gewoon daar. Geen extra database, geen eigen auth systeem en toch volledige controle.</p>
+
+<p>Voor een developer publiek voelt dit heel natuurlijk aan.</p>
+
+<h2 id="cookie-consent-zonder-dark-patterns">Cookie consent zonder dark patterns</h2>
+
+<p>Tracking laden we pas na expliciete toestemming. Tot die tijd gebeurt er niets.</p>
+
+<p>Onze cookie banner checkt of een bezoeker al een keuze heeft gemaakt. Zo niet, tonen we de banner. Bij accepteren laden we analytics, bij weigeren blijft alles uit. De keuze wordt onthouden, zonder trucjes of vooringevulde opties.</p>
+
+<h2 id="hosting-op-aws-met-terraform">Hosting op AWS met Terraform</h2>
+
+<p>Hugo genereert statische bestanden die we hosten in een private S3 bucket. CloudFront fungeert als CDN en zorgt voor snelle laadtijden wereldwijd.</p>
+
+<p>Alles staat beschreven in Terraform, zodat de infrastructuur reproduceerbaar blijft.</p>
+
+<h3 id="de-beruchte-404">De beruchte 404</h3>
+
+<p>Lokaal werkte onze <code class="language-plaintext highlighter-rouge">404.html</code> perfect. In productie kregen bezoekers een “Access Denied” fout.</p>
+
+<p>De oorzaak bleek CloudFront. Als een object niet bestaat, stuurt S3 standaard een 403 terug. CloudFront toont die fout letterlijk.</p>
+
+<p>De oplossing was het mappen van zowel 403 als 404 errors naar onze eigen foutpagina:</p>
+
+<div class="language-hcl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">custom_error_response</span> <span class="p">{</span>
+  <span class="nx">error_code</span>         <span class="o">=</span> <span class="mi">403</span>
+  <span class="nx">response_code</span>      <span class="o">=</span> <span class="mi">404</span>
+  <span class="nx">response_page_path</span> <span class="o">=</span> <span class="s2">"/404.html"</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Sindsdien krijgen bezoekers netjes onze eigen 404 te zien.</p>
+
+<h2 id="automatisch-deployen">Automatisch deployen</h2>
+
+<p>Deployen gebeurt via GitHub Actions. Bij elke commit:</p>
+
+<ol>
+  <li>Bouwen we de site met Hugo</li>
+  <li>Synchroniseren we de output naar S3</li>
+  <li>Invalideren we de CloudFront cache</li>
+</ol>
+
+<p>Een vereenvoudigd fragment uit de workflow:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build site</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">hugo --minify</span>
+
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Sync to S3</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="s">aws s3 sync public/ s3://jcast.dev --delete</span>
+</code></pre></div></div>
+
+<p>Nieuwe afleveringen of blogposts staan meestal binnen twee minuten live.</p>
+
+<h2 id="wat-we-geleerd-hebben">Wat we geleerd hebben</h2>
+
+<p>Alles zelf bouwen kost meer tijd, maar levert enorm veel inzicht op. Je weet exact hoe je site werkt en waarom bepaalde keuzes gemaakt zijn.</p>
+
+<p>CloudFront is krachtig, maar heeft een leercurve. Dingen zoals error responses en caching leer je pas echt door ze fout te doen.</p>
+
+<p>Giscus werkt bijzonder goed voor een technisch publiek.</p>
+
+<p>En misschien wel het belangrijkste: pure CSS is leuker en krachtiger dan je denkt, zolang je de basis echt beheerst.</p>
+
+<h2 id="de-stack-in-één-oogopslag">De stack in één oogopslag</h2>
+
+<p>Voor wie liever snel een overzicht heeft, hier de technische stack samengevat:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Onderdeel</th>
+      <th>Technologie</th>
+      <th>Waarom</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Static site generator</td>
+      <td>Hugo</td>
+      <td>Supersnel en Markdown-first</td>
+    </tr>
+    <tr>
+      <td>Styling</td>
+      <td>Custom CSS</td>
+      <td>Volledige controle zonder bloat</td>
+    </tr>
+    <tr>
+      <td>Hosting</td>
+      <td>AWS S3</td>
+      <td>Goedkoop en schaalbaar</td>
+    </tr>
+    <tr>
+      <td>CDN</td>
+      <td>CloudFront</td>
+      <td>Snelle wereldwijde distributie</td>
+    </tr>
+    <tr>
+      <td>Infrastructure</td>
+      <td>Terraform</td>
+      <td>Reproduceerbare setup</td>
+    </tr>
+    <tr>
+      <td>Comments</td>
+      <td>Giscus</td>
+      <td>Geen eigen backend nodig</td>
+    </tr>
+    <tr>
+      <td>CI/CD</td>
+      <td>GitHub Actions</td>
+      <td>Automatische deploys</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="tot-slot">Tot slot</h2>
+
+<p>Ja, we hadden het eenvoudiger kunnen maken. Een CMS kiezen en klaar.</p>
+
+<p>Maar door jcast.dev zelf te bouwen hebben we volledige controle, een snelle site, een leerervaring en een codebase die we met plezier delen met de community.</p>
+
+<p>Geen black box, geen vendor lock-in. Gewoon iets bouwen en begrijpen.</p>
+
+<p>Dat past perfect bij hoe wij naar software development kijken.</p>
+
+<hr />
+
+<p><strong>Benieuwd naar de content achter deze tech?</strong> Luister naar onze <a href="https://jcast.dev/episodes/">laatste aflevering</a>.</p>
+
+<p><strong>Feedback of vragen?</strong> Bereik ons via:</p>
+<ul>
+  <li><strong>Instagram:</strong> <a href="https://www.instagram.com/jcast_crew/">@jcast_crew</a></li>
+  <li><strong>Email:</strong> hello.jcast@gmail.com</li>
+</ul>

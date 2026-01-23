@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on JCast</title>
+    <link>https://jcast.dev/blog/</link>
+    <description>Recent content in Blog on JCast</description>
+    <generator>Hugo</generator>
+    <language>nl-be</language>
+    <lastBuildDate>Fri, 09 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://jcast.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hoe we jcast.dev bouwden met Hugo, Terraform en AWS</title>
+      <link>https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/</link>
+      <pubDate>Fri, 09 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://jcast.dev/blog/2026-01-09-onstaan-van-jcast-dev/</guid>
+      <description>Een kijkje achter de schermen: hoe we onze podcast website bouwden met Hugo, pure CSS, en AWS. Van custom layouts tot CloudFront CDN, van cookie consent tot Giscus comments.</description>
+    </item>
+  </channel>
+</rss>

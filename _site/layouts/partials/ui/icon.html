@@ -1,0 +1,23 @@
+{{- $name := .name -}}
+{{- $class := .class -}}
+{{- $decorative := default true .decorative -}}
+{{- $title := .title -}}
+
+{{- $path := printf "static/icons/tabler/%s.svg" $name -}}
+{{- $svg := readFile $path -}}
+
+{{- $classAttr := "" -}}
+{{- if $class -}}
+{{- $classAttr = printf " class=\"%s\"" $class -}}
+{{- end -}}
+
+{{- if $decorative -}}
+{{- $svg = replace $svg "<svg" (printf "<svg aria-hidden=\"true\" focusable=\"false\"%s" $classAttr) -}}
+{{- else -}}
+{{- $svg = replace $svg "<svg" (printf "<svg role=\"img\"%s" $classAttr) -}}
+{{- if $title -}}
+{{- $svg = replaceRE `(?s)(<svg[^>]*>)` (printf `$1<title>%s</title>` $title) $svg -}}
+{{- end -}}
+{{- end -}}
+
+{{- $svg | safeHTML -}}
