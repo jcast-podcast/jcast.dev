@@ -260,4 +260,8 @@ $RECYCLE.BIN/
 # Copilot instructions
 /.github/instructions
 
+# AI agent files
+AGENTS.md
+/.claude/
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,windows,intellij+all,webstorm+all,hugo,terraform

@@ -5,12 +5,15 @@ Welkom bij de codebase van **JCast.dev** — een statische website gebouwd met [
 ## Inhoud
 
 - Homepagina met logo en korte beschrijving
-- Overzicht van alle afleveringen
-- Detailpagina per aflevering met Spotify-link
+- Overzicht van alle afleveringen met season/episode structuur
+- Detailpagina per aflevering met embedded audio player
 - **Blog sectie** met artikelen over development, Java, en tech
 - "Over ons"-pagina met crew-bios en avatars
-- Custom styling in JCast-kleuren
+- Custom styling in JCast-kleuren (pure CSS, geen frameworks)
 - Nederlandse datums door de hele site
+- Responsive images met WebP ondersteuning
+- Giscus comments op afleveringen
+- Cookie consent implementatie
 
 ---
 
@@ -22,54 +25,87 @@ Welkom bij de codebase van **JCast.dev** — een statische website gebouwd met [
 │   ├── _index.md
 │   ├── about.md
 │   ├── episodes/
+│   │   ├── _index.md
 │   │   ├── s01e01-professional-developer-what.md
 │   │   └── ...
-│   └── blog/
-│       ├── _index.md
-│       ├── exceptions-emergency-brake.md
+│   ├── blog/
+│   │   ├── _index.md
+│   │   ├── 2026-01-11-ontstaan-van-jcast-dev.md
+│   │   └── ...
+│   └── shownotes/
+│       ├── s01e08-ai-with-jan.md
 │       └── ...
 ├── data/
-│   ├── guest/
-│   │   └── name_lastname.yml
-│   ├── hosts.yml
-│   └── podcast.yml
+│   ├── podcast.yml
+│   └── people/
+│       ├── oumaima_zerouali.yml
+│       ├── viktor_van_steenweghen.yml
+│       ├── maarten_casteels.yml
+│       └── ...
 ├── layouts/
 │   ├── _default/
 │   │   ├── baseof.html
-│   │   └── single.html
+│   │   └── about.html
 │   ├── episodes/
 │   │   ├── list.html
 │   │   └── single.html
 │   ├── blog/
 │   │   ├── list.html
 │   │   └── single.html
-│   └── partials/
-│       ├── head.html
-│       ├── nl-date.html
-│       └── episode-thumb.html
+│   ├── partials/
+│   │   ├── head.html
+│   │   ├── nl-date.html
+│   │   ├── episode-thumb.html
+│   │   ├── blog-thumb.html
+│   │   ├── seo/
+│   │   │   ├── jsonld.html
+│   │   │   └── person.jsonld.html
+│   │   ├── icons/
+│   │   └── ui/
+│   └── shortcodes/
+│       └── shownotes.html
 ├── static/
-│   └── images/
-│       ├── avatars/
-│       ├── thumbnails/
-│       └── blog/
+│   ├── images/
+│   │   ├── avatars/
+│   │   └── thumbnails/
+│   └── js/
+│       └── cookie-consent.js
 ├── assets/
-│   └── css/
-│       └── styles.css
+│   ├── css/
+│   │   └── styles.css
+│   └── images/
+│       ├── blog/
+│       └── thumbnails/
+├── terraform/
+│   ├── main.tf
+│   ├── s3.tf
+│   ├── cloudfront.tf
+│   └── ...
 ├── archetypes/
-│   ├── default.md
-│   └── blog.md
+│   └── default.md
 ├── hugo.toml
 └── README.md
-````
+```
 
 ## Development
+
+### Vereisten
+
+- **Hugo extended** (voor asset processing zoals WebP conversie)
+- Git
+
 ### Install Hugo
 
 ```bash
 brew install hugo
-````
+```
 
-> Make sure you’re using **Hugo extended** (for SCSS and theming support)
+Verifieer dat je de extended versie hebt:
+
+```bash
+hugo version
+# Moet 'extended' bevatten
+```
 
 ---
 
@@ -81,48 +117,75 @@ hugo server -D
 
 Open [http://localhost:1313](http://localhost:1313)
 
+De `-D` flag toont ook draft content.
+
 
 ## Deploying
 
 This site is deployed to AWS using:
 
-* **S3** for static hosting
-* **CloudFront** for CDN
-* **Terraform** for infrastructure
+* **S3** - Static file hosting (private bucket)
+* **CloudFront** - CDN for global distribution
+* **Terraform** - Infrastructure as Code
+
+### Build voor productie:
+
+```bash
+hugo --minify
+```
+
+Dit genereert de site in de `public/` folder.
 
 ### Deploy manually:
 
 ```bash
-hugo
-aws s3 sync public/ s3://your-jcast-bucket-name --delete
+# Build eerst
+hugo --minify
+
+# Sync naar S3
+aws s3 sync public/ s3://jcast.dev --delete
+
+# Invalideer CloudFront cache (optioneel)
+aws cloudfront create-invalidation --distribution-id YOUR_DIST_ID --paths "/*"
 ```
+
+**Note**: In productie gebeurt dit via CI/CD (bijv. GitHub Actions).
 
 
 ## Aflevering toevoegen
 
-1. Voeg een nieuw `.md` bestand toe in `content/episodes/`
-2. Gebruik deze structuur:
+1. Maak een nieuwe aflevering aan:
+
+```bash
+hugo new episodes/s01e13-titel-van-aflevering.md
+```
+
+2. Gebruik deze front matter structuur:
 
 ```yaml
 ---
-title: "Afl 1: Wat is een professionele ontwikkelaar? – Over Uncle Bob, zelfreflectie en groei als developer"
-date: 2025-04-30
-thumbnail: "/images/thumbnails/afl-1.png"
+season: 1
+episode: 13
+title: "Titel van de aflevering"
+date: 2025-05-15
+description: "Korte beschrijving voor SEO en social media"
+thumbnail: "/images/thumbnails/afl-13.png"
 player: "https://share.transistor.fm/e/jcast/latest"
 section: episodes
-spotify: "https://open.spotify.com/episode/2m7BvwooZHogWkn3sX3UaT"
-apple: "https://podcasts.apple.com/podcast/jcast/id1814550001"
-amazon: "https://music.amazon.com/podcasts/bcbbf086-31fc-4cc5-b497-cbd9600ae48f"
-itunes: "https://pca.st/itunes/1814550001"
-podcastaddict: "https://podcastaddict.com/podcast/jcast/5881797"
-deezer: "https://www.deezer.com/show/1001888441"
-playerfm: "https://player.fm/series/series-3665934"
-guest: "spongebob_squarepants"
+guests:  # Optioneel
+  - id: "guest_slug"
 ---
-Volledige show notes of beschrijving.
+
+Beschrijving van de aflevering.
+
+## Show notes
+
+{{< shownotes "s01e13-titel-van-aflevering" >}}
 ```
 
-3. Voeg een bijhorende thumbnail toe in `static/images/thumbnails/`
+3. Als je shownotes wil toevoegen, maak een bestand aan in `content/shownotes/s01e13-titel-van-aflevering.md`
+
+4. Voeg een thumbnail toe in `assets/images/thumbnails/` (voor automatische WebP conversie) of in `static/images/thumbnails/`
 
 ---
 
@@ -131,7 +194,7 @@ Volledige show notes of beschrijving.
 1. Maak een nieuw blog artikel aan:
 
 ```bash
-hugo new blog/mijn-artikel-titel.md
+hugo new blog/2026-04-08-mijn-artikel-titel.md
 ```
 
 2. Gebruik deze front matter structuur:
@@ -164,61 +227,85 @@ public class Example {
 ```
 ```
 
-3. **Authors** worden gedefinieerd in `data/author/` (net als gasten):
+3. **Authors** worden gedefinieerd in `data/people/` (net als gasten en hosts):
    - `oumaima_zerouali.yml`
    - `maarten_casteels.yml`
    - `viktor_van_steenweghen.yml`
 
 4. **Leestijd** wordt automatisch berekend op basis van woordenaantal (~200 woorden/minuut)
 
-5. Voeg een hero afbeelding toe in `static/images/blog/` (optioneel)
+5. Voeg een hero afbeelding toe in `assets/images/blog/` (voor automatische WebP conversie) of `static/images/blog/`
 
 6. Set `draft: false` wanneer je klaar bent om te publiceren
 
 ---
 
-## Gast toevoegen
+## Gast of auteur toevoegen
 
-Wanneer een aflevering een gast bevat:
+Alle mensen (hosts, gasten, blog auteurs) worden gedefinieerd in `data/people/`.
 
-1. Voeg een `.yml` bestand toe in `data/guest/` met als bestandsnaam de slug die je in het `guests`-veld gebruikt (bijv. `spongebob_squarepants.yml`)
+1. Voeg een `.yml` bestand toe in `data/people/` met een slug als bestandsnaam (bijv. `jeroen_bastijns.yml`)
 
 2. Voorbeeld van zo'n YML-bestand:
 
 ```yaml
-name: "Spongebob Squarepants"
-bio: "Krusty Krab chef en enthousiast over eten. Houdt van schaalbaarheid en teamflow."
-avatar: "/images/avatars/spongebob-avatar.png"
+name: "Jeroen Bastijns"
+id: "https://jcast.dev/#person-jeroen_bastijns"
+url: "https://jeroenbastijns.com"
+sameAs:
+  - "https://github.com/jeroen"
+  - "https://www.linkedin.com/in/jeroenbastijns/"
+bio: "Software architect en clean code evangelist"
+image: "/images/avatars/jeroen-avatar.png"
+socials:
+  linkedin: "https://www.linkedin.com/in/jeroenbastijns/"
+  github: "https://github.com/jeroen"
 ```
 
-3. Gebruik in episode front matter bij voorkeur `guests` met een of meerdere ids:
+3. Gebruik in episode front matter:
 
 ```yaml
 guests:
-  - id: "spongebob_squarepants"
+  - id: "jeroen_bastijns"
 ```
 
-4. Legacy `guest: "<id>"` blijft werken, maar is verouderd.
+4. Of in blog front matter:
+
+```yaml
+authors:
+  - id: "jeroen_bastijns"
+```
+
+**Note**: De oude `guest: "slug"` syntax (single string) werkt nog maar is deprecated. Gebruik de `guests` array.
 
 ## Over de crew
 
-Je vindt bios en sociale links van Oumaima, Viktor en Maarten op de **/about** pagina. Avatar afbeeldingen staan in:
+Je vindt bios en sociale links van Oumaima, Viktor en Maarten op de **/about** pagina. 
 
-```
-static/images/avatars/
-```
+De drie vaste co-hosts zijn gedefinieerd in:
+- `data/people/oumaima_zerouali.yml`
+- `data/people/viktor_van_steenweghen.yml`
+- `data/people/maarten_casteels.yml`
+
+En gerefereerd in `data/podcast.yml` onder `seasons[].hosts`.
+
+Avatar afbeeldingen staan in `static/images/avatars/`.
 
 ## Features in gebruik
 
-* Hugo (static site generator)
-* **Blog sectie** met Markdown support
-* **Nederlandse datum formatting** door de hele site
-* Font Awesome (social icons)
-* Responsive layout (handgemaakt)
-* Collapsible episode cards (initial design)
-* Markdown for content management
-* Clean CSS in `/assets/css/styles.css`
-* Code syntax highlighting voor blog posts
+* **Hugo** (extended) - Static site generator
+* **Blog sectie** met Markdown support en code syntax highlighting
+* **Nederlandse datum formatting** door de hele site (`partials/nl-date.html`)
+* **Responsive images** - Automatische WebP conversie en meerdere groottes
+* **Shownotes** - Aparte markdown bestanden via shortcode
+* **Giscus comments** - GitHub Discussions integratie op afleveringen
+* **Cookie consent** - Custom vanilla JS implementatie
+* **SEO** - Centralized JSON-LD structured data
+* **Icons** - Tabler Icons via partial
+* Responsive layout (handgemaakt, pure CSS)
+* Season/Episode structuur voor afleveringen
+* Multi-author support voor blog posts
+* Centrale people data voor hosts, gasten en auteurs
 
 ## URLs
 
