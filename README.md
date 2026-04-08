@@ -217,14 +217,12 @@ Schrijf hier je artikel in Markdown...
 
 Content met **bold**, *italic*, en [links](https://example.com).
 
-```java
 // Code blocks worden ondersteund
 public class Example {
     public static void main(String[] args) {
         System.out.println("Hello, JCast!");
     }
 }
-```
 ```
 
 3. **Authors** worden gedefinieerd in `data/people/` (net als gasten en hosts):
