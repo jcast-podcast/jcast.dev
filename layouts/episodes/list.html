@@ -1,32 +1,21 @@
 {{ define "main" }}
 <section class="episode-list-page">
     <h1 class="list-page-title">Alle Afleveringen</h1>
+    <p class="blog-intro">Hier vind je alle afleveringen van JCast, over development, soft skills en het leven als developer.</p>
 
-    {{ $allPages := .Pages.ByDate.Reverse }}
+    {{ $paginator := .Paginate (.Pages.ByDate.Reverse) 3 }}
 
-    {{ $seasons := slice }}
-    {{ range $allPages }}
-    {{ $season := .Params.season }}
-    {{ if not (in $seasons $season) }}
-    {{ $seasons = $seasons | append $season }}
-    {{ end }}
-    {{ end }}
-
-    {{ range $season := $seasons }}
-    <section aria-labelledby="season-{{ $season }}-title">
-        <h2 class="season-title" id="season-{{ $season }}-title">Seizoen {{ printf "%2d" $season }}</h2>
-        <div class="episode-list">
-            {{ range $allPages }}
-            {{ if eq .Params.season $season }}
-            <article class="episode-card">
-                <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
-                <div class="episode-card-header">
-                    <div class="episode-number">Aflevering {{ .Params.episode }}</div>
-                    <div class="spacer"></div>
-                </div>
-                <h3 class="episode-title-list">
-                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                </h3>
+    <div class="episode-list">
+        {{ range $paginator.Pages }}
+        <article class="episode-card">
+            <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
+            <div class="episode-card-header">
+                <div class="episode-number">Aflevering {{ .Params.episode }}</div>
+                <div class="spacer"></div>
+            </div>
+            <h3 class="episode-title-list">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </h3>
 
             <div class="episode-card-body">
                 <a class="episode-thumb-link" href="{{ .RelPermalink }}" tabindex="-1" aria-hidden="true">
@@ -80,11 +69,23 @@
             </div>
         </article>
         {{ end }}
+    </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Paginering">
+        {{ if $paginator.HasPrev }}
+        <a class="pagination-btn" href="{{ $paginator.Prev.URL }}" aria-label="Vorige pagina">← Vorige</a>
+        {{ else }}
+        <span class="pagination-btn pagination-btn--disabled">← Vorige</span>
         {{ end }}
-        </div>
-    </section>
+        <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+        {{ if $paginator.HasNext }}
+        <a class="pagination-btn" href="{{ $paginator.Next.URL }}" aria-label="Volgende pagina">Volgende →</a>
+        {{ else }}
+        <span class="pagination-btn pagination-btn--disabled">Volgende →</span>
+        {{ end }}
+    </nav>
     {{ end }}
 
 </section>
-
 {{ end }}

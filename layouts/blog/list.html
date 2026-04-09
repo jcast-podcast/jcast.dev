@@ -3,10 +3,10 @@
     <h1 class="list-page-title">Blog</h1>
     <p class="blog-intro">Hier vind je artikelen over Java, software development, clean code, architectuur en het leven als developer.</p>
 
-    {{ $allPosts := .Pages.ByDate.Reverse }}
+    {{ $paginator := .Paginate (.Pages.ByDate.Reverse) 3 }}
 
     <div class="episode-list blog-list">
-        {{ range $allPosts }}
+        {{ range $paginator.Pages }}
         <article class="episode-card">
             <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
             <div class="episode-card-header">
@@ -44,5 +44,22 @@
         </article>
         {{ end }}
     </div>
+
+    {{ if gt $paginator.TotalPages 1 }}
+    <nav class="pagination" aria-label="Paginering">
+        {{ if $paginator.HasPrev }}
+        <a class="pagination-btn" href="{{ $paginator.Prev.URL }}" aria-label="Vorige pagina">← Vorige</a>
+        {{ else }}
+        <span class="pagination-btn pagination-btn--disabled">← Vorige</span>
+        {{ end }}
+        <span class="pagination-info">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+        {{ if $paginator.HasNext }}
+        <a class="pagination-btn" href="{{ $paginator.Next.URL }}" aria-label="Volgende pagina">Volgende →</a>
+        {{ else }}
+        <span class="pagination-btn pagination-btn--disabled">Volgende →</span>
+        {{ end }}
+    </nav>
+    {{ end }}
+
 </section>
 {{ end }}

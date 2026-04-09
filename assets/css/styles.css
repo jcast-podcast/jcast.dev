@@ -1813,3 +1813,295 @@ dialog.cookie-banner {
         align-items: flex-start;
     }
 }
+
+/* === LOCKED VIEWPORT: All pages === */
+
+html:has(.home-page),
+html:has(.about-page),
+html:has(.episode-list-page) {
+    height: 100%;
+    overflow: hidden;
+}
+
+body:has(.home-page),
+body:has(.about-page),
+body:has(.episode-list-page) {
+    height: 100%;
+}
+
+html:has(.home-page) main,
+html:has(.about-page) main,
+html:has(.episode-list-page) main {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html:has(.home-page) main::-webkit-scrollbar,
+html:has(.about-page) main::-webkit-scrollbar,
+html:has(.episode-list-page) main::-webkit-scrollbar {
+    display: none;
+}
+
+/* === COMPACT LAYOUT: Uniform smaller sizing across all pages === */
+
+header {
+    padding: 0.65rem 0;
+}
+
+.logo {
+    height: 50px;
+}
+
+main {
+    padding: 1.25rem;
+}
+
+.episode-card {
+    padding: 1.1rem;
+    margin-bottom: 0.5rem;
+    gap: 0.7rem;
+    --episode-thumb-size: 100px;
+    min-height: 185px;
+}
+
+.episode-card-body {
+    gap: 1.1rem;
+}
+
+.episode-meta {
+    gap: 0.5rem;
+}
+
+.episode-title-list {
+    font-size: 1.2rem;
+}
+
+.episode-summary {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* === LANDING PAGE: Align recent episodes to iframe width === */
+
+.home-episode-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 0;
+}
+
+.home-episode-card {
+    max-width: none;
+    flex: unset;
+}
+
+.home-page {
+    padding-bottom: 1.25rem;
+}
+
+/* === LIST PAGE HEADINGS: Compact base sizes === */
+
+.list-page-title {
+    font-size: 1.6rem;
+    margin: 0.6rem 0 0.3rem;
+}
+
+.blog-intro {
+    margin-bottom: 0.6rem;
+    font-size: 1rem;
+}
+
+/* === PAGINATION === */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.4rem;
+    padding-top: 0.3rem;
+}
+
+.pagination-btn {
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.pagination-btn:hover {
+    text-decoration: underline;
+}
+
+.pagination-btn--disabled {
+    color: #bbb;
+    cursor: default;
+}
+
+.pagination-info {
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+/* === ABOUT PAGE: 3-column layout vertically centered as one block === */
+
+html:has(.about-page) main {
+    display: flex;
+    align-items: stretch;
+}
+
+.about-page {
+    flex: 1;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.75rem;
+}
+
+.about-page h1 {
+    text-align: left;
+}
+
+.about-intro {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.crew-list {
+    flex: 1;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.crew-member {
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 1rem 1.25rem;
+    gap: 1.25rem;
+}
+
+.crew-photo-container {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.crew-photo {
+    width: 100px;
+    height: 100px;
+}
+
+.crew-info h2 {
+    font-size: 1.05rem;
+    margin: 0 0 0.25rem;
+}
+
+.crew-info p {
+    font-size: 0.88rem;
+    margin: 0 0 0.4rem;
+    line-height: 1.5;
+}
+
+.crew-socials {
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-top: 0.2rem;
+}
+
+.about-intro {
+    text-align: left;
+    font-size: 1rem;
+    margin: 0 0 0;
+}
+
+.jcast-contact {
+    padding: 1rem 1.5rem;
+}
+
+.jcast-contact h2 {
+    font-size: 1.3rem;
+    margin: 0 0 0.25rem;
+}
+
+.jcast-contact p {
+    font-size: 0.9rem;
+    margin: 0 0 0.75rem;
+}
+
+/* === RESPONSIVE FIXES: Revert locked-viewport and compact-layout additions for mobile/tablet === */
+
+/*
+ * On screens ≤768px the locked-viewport (height:100%/overflow:hidden on html)
+ * and the main { display:flex } for the about page make content inaccessible
+ * or cause layout thrash. Revert to normal document flow on those breakpoints.
+ */
+@media (max-width: 768px) {
+    /* Unlock the viewport — let the page scroll normally on mobile/tablet */
+    html:has(.home-page),
+    html:has(.about-page),
+    html:has(.episode-list-page) {
+        height: auto;
+        overflow: visible;
+    }
+
+    body:has(.home-page),
+    body:has(.about-page),
+    body:has(.episode-list-page) {
+        height: auto;
+    }
+
+    /* Revert the overflow-y:auto that the locked design put on main */
+    html:has(.home-page) main,
+    html:has(.about-page) main,
+    html:has(.episode-list-page) main {
+        overflow-y: visible;
+    }
+
+    /* Revert the flex-display override on main that belongs to the about page
+       compact desktop layout — on mobile the standard block layout is fine */
+    html:has(.about-page) main {
+        display: block;
+        align-items: initial;
+    }
+
+    /* About page: restore normal flow widths */
+    .about-page {
+        flex: none;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Crew members: column layout (already handled by existing rule at ≤768px,
+       but the new compact block set flex:1 on .crew-member so explicitly reset) */
+    .crew-member {
+        flex: none;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.25rem;
+        gap: 1rem;
+    }
+
+    .crew-socials {
+        justify-content: center;
+    }
+}
+
+/*
+ * On screens ≤600px the new grid declaration on .home-episode-list
+ * (repeat(3,1fr)) overwrites the existing flex-column rule and forces
+ * three columns on small phones. Collapse to a single column.
+ */
+@media (max-width: 600px) {
+    .home-episode-list {
+        grid-template-columns: 1fr;
+    }
+}
