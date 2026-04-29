@@ -5,6 +5,7 @@
     --beige: #C8C9B5;
     --header-link-color: var(--text);
     --spotify-green: #1DB954;
+    --footer-reserved-space: 4.75rem;
 }
 
 *, *::before, *::after {
@@ -17,7 +18,7 @@ body {
     color: var(--text);
     font-family: sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 0 0 var(--footer-reserved-space);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -1451,7 +1452,11 @@ footer {
     color: var(--header-link-color);
     padding: 1rem 2rem;
     text-align: center;
-    margin-top: auto;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .site-footer {
@@ -1486,6 +1491,10 @@ footer {
 }
 
 @media (max-width: 600px) {
+    :root {
+        --footer-reserved-space: 3.75rem;
+    }
+
     .site-footer {
         flex-direction: column;
         gap: 0.75rem;
@@ -1814,35 +1823,6 @@ dialog.cookie-banner {
     }
 }
 
-/* === LOCKED VIEWPORT: All pages === */
-
-html:has(.home-page),
-html:has(.about-page),
-html:has(.episode-list-page) {
-    height: 100%;
-    overflow: hidden;
-}
-
-body:has(.home-page),
-body:has(.about-page),
-body:has(.episode-list-page) {
-    height: 100%;
-}
-
-html:has(.home-page) main,
-html:has(.about-page) main,
-html:has(.episode-list-page) main {
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-html:has(.home-page) main::-webkit-scrollbar,
-html:has(.about-page) main::-webkit-scrollbar,
-html:has(.episode-list-page) main::-webkit-scrollbar {
-    display: none;
-}
-
 /* === COMPACT LAYOUT: Uniform smaller sizing across all pages === */
 
 header {
@@ -2036,35 +2016,13 @@ html:has(.about-page) main {
     margin: 0 0 0.75rem;
 }
 
-/* === RESPONSIVE FIXES: Revert locked-viewport and compact-layout additions for mobile/tablet === */
+/* === RESPONSIVE FIXES: Revert compact-layout additions for mobile/tablet === */
 
 /*
- * On screens ≤768px the locked-viewport (height:100%/overflow:hidden on html)
- * and the main { display:flex } for the about page make content inaccessible
- * or cause layout thrash. Revert to normal document flow on those breakpoints.
+ * On screens ≤768px the main { display:flex } for the about page can make
+ * content inaccessible or cause layout thrash. Revert to normal document flow.
  */
 @media (max-width: 768px) {
-    /* Unlock the viewport — let the page scroll normally on mobile/tablet */
-    html:has(.home-page),
-    html:has(.about-page),
-    html:has(.episode-list-page) {
-        height: auto;
-        overflow: visible;
-    }
-
-    body:has(.home-page),
-    body:has(.about-page),
-    body:has(.episode-list-page) {
-        height: auto;
-    }
-
-    /* Revert the overflow-y:auto that the locked design put on main */
-    html:has(.home-page) main,
-    html:has(.about-page) main,
-    html:has(.episode-list-page) main {
-        overflow-y: visible;
-    }
-
     /* Revert the flex-display override on main that belongs to the about page
        compact desktop layout — on mobile the standard block layout is fine */
     html:has(.about-page) main {

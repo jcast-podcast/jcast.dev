@@ -1,12 +1,11 @@
 ---
-_build:
+build:
   render: false
   list: never
 cascade:
-  _build:
+  build:
     render: false
     list: never
   sitemap:
     disable: true
 ---
-
