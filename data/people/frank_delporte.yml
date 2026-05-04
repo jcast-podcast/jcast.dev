@@ -1,0 +1,16 @@
+name: "Frank Delporte"
+id: "https://jcast.dev/#person-frank-delporte"
+image: "/images/avatars/frank-delporte-avatar.webp"
+url: "https://webtechie.be/"
+socials:
+  linkedin: "https://www.linkedin.com/in/frankdelporte/"
+  bluesky: "https://bsky.app/profile/frankdelporte.be"
+  youtube: "https://www.youtube.com/@FrankDelporte"
+  mastodon: "https://foojay.social/@frankdelporte"
+description: "Frank Delporte is een Java Champion, technisch schrijver bij Azul en actieve open-source bijdrager. Hij staat bekend om zijn werk rond Java-documentatie, het Raspberry Pi-project Pi4J en zijn sterke focus op het begrijpelijk maken van technologie. Met een atypisch parcours van filmschool naar softwareontwikkeling combineert hij technische kennis met een talent voor heldere communicatie. Daarnaast zet hij zich al jaren in als coach bij CoderDojo, waar hij jongeren helpt om hun eerste stappen in programmeren te zetten."
+sameAs:
+  - "https://www.linkedin.com/in/frankdelporte/"
+  - "https://www.youtube.com/@FrankDelporte"
+  - "https://foojay.social/@frankdelporte"
+  - "https://bsky.app/profile/frankdelporte.be"
+  - "https://www.youtube.com/@FrankDelporte"

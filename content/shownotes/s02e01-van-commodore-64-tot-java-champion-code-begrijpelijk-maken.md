@@ -1,0 +1,18 @@
+### Show notes
+
+- [Foojay](https://foojay.io/)
+- [Foojay Podcast](https://foojay.io/today/category/podcast/)
+- [Foojay - Frank Delporte](https://foojay.io/today/author/frankdelporte/)
+- [Foojay - Submit article](https://foojay.io/today/how-to-submit-your-next-article-on-foojay-io/)
+- [Azul Docs](https://docs.azul.com/)
+- [Azul Blog - Frank Delporte](https://www.azul.com/blog/author/fdelporte/)
+- [Pi4J](https://www.pi4j.com/)
+- [Lottie4J](https://lottie4j.com/)
+- [Getting Started with Java on the Raspberry Pi](https://webtechie.be/books/)
+- [Raspberry Pi Controlled Food Smoker (YouTube)](https://www.youtube.com/watch?v=fN1N8r1xy6I&t=3138s)
+- [Smoker GitHub Project](https://github.com/mstahv/j-smoker/)
+- [Java Champions](https://javachampions.org/members.html)
+- [Foojay - Java Champion](https://foojay.io/pedia/java-champion/)
+- [How to Become a Java Champion](https://vladmihalcea.com/how-to-become-a-java-champion/)
+- [CoderDojo Belgium](https://coderdojobelgium.be/nl/)
+- [Scratch](https://scratch.mit.edu/)

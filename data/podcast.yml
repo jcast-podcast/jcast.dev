@@ -12,3 +12,8 @@ seasons:
       - "oumaima_zerouali"
       - "viktor_van_steenweghen"
       - "maarten_casteels"
+  - number: 2
+    hosts:
+      - "oumaima_zerouali"
+      - "viktor_van_steenweghen"
+      - "maarten_casteels"
