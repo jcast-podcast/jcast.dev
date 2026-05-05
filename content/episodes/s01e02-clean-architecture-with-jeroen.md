@@ -10,7 +10,13 @@ section: episodes
 guests:
   - id: "jeroen_bastijns"
 ---
-In deze aflevering schuift Jeroen Bastijns aan bij Oumaima, Viktor en Maarten voor een diepgaand gesprek over Clean Architecture. 
-Jeroen vertelt hoe hij in contact kwam met dit concept, waarom het hem raakte en hoe zijn manier van denken en bouwen doorheen de jaren is geëvolueerd. 
-Verwacht een boeiend parcours met verwijzingen naar projecten uit het verleden, inzichten uit de praktijk en een passie voor structuur, duidelijkheid en goed doordachte code. 
-Een aflevering voor wie verder wil kijken dan alleen technische keuzes, en op zoek is naar duurzame softwareontwerp principes.
+
+Deze aflevering krijgen we gezelschap van Jeroen Bastijns, software-architect bij Sopra Steria met maar liefst 14 jaar ervaring in de sector. Jeroen werkt voornamelijk voor klanten in de gezondheidssector en houdt zich bezig met het technische ontwerp van softwaresystemen. Hij legt al snel uit dat zijn rol niet alleen gaat over code schrijven, maar over structuur aanbrengen, technologiekeuzes maken en teams begeleiden in de richting die het product op moet.
+
+Het gesprek start met een vraag die elk junior-developer zich wel eens stelt: wat doet een software-architect nu eigenlijk? Jeroen legt het uit met de nodige eerlijkheid en humor. Hij vergelijkt het met het ontwerpen van een huis: je tekent het pad uit waar de software naartoe moet, je vertaalt wat business wil naar iets wat technisch haalbaar en houdbaar is, en je zorgt dat je team die richting ook begrijpt en volgt. Dat is makkelijker gezegd dan gedaan, maar Jeroen geeft toe dat goede communicatie daar minstens even belangrijk is als technische kennis.
+
+Het grootste deel van de aflevering gaat over Clean Architecture, het boek en principe dat Jeroen sterk heeft beïnvloed. Hij legt uit hoe hij er via een bijzonder project mee in aanraking kwam, waarbij Java-code zowel in een Oracle-databank als in een microservice moest draaien. De oplossing was een pure Java-kern, volledig losstaand van elk framework, met twee aparte modules errond. Later herkende hij die aanpak in het boek van Clean Architecture en paste hij het bewust toe op volgende projecten. De kern van het principe: je domein en je use cases bevatten geen frameworkcode, alles wat technologiespecifiek is zit in de buitenste laag. Zo wordt je code portabel, herbruikbaar en toekomstbestendig.
+
+Jeroen deelt ook zijn nuchtere kijk op de rol van AI in dit verhaal. Als AI straks in staat is om volledige codebases te migreren naar nieuwe frameworks, dan is de kwaliteit van die code de bepalende factor. En Clean Architecture zorgt net voor die hogere datakwaliteit omdat domeinen duidelijk afgelijnd zijn, benamingen kloppen en de structuur helder is. Tegelijk is hij eerlijk: niet elk project vraagt om een puristische aanpak. Pragmatisme is minstens even belangrijk als theorie, en de klant wil ook gewoon resultaten zien.
+
+Tot slot praat Jeroen openhartig over frustratie. Over die ene klant waar innovatie verwacht werd maar niet echt verwelkomd. Over voorstellen die niet landen, muren die je tegenkomt en de moeilijkheid om verder te gaan als je ideeën worden teruggefloten zonder echte uitleg. Maar ook over wat er wél gelukt is, want zelfs in die situatie zijn er meters gemaakt voor de eindgebruikers. Een eerlijk verhaal dat elke developer, junior of senior, zal herkennen. Luister zeker mee, je pikt er gegarandeerd iets uit op.
