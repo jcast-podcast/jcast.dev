@@ -1,0 +1,21 @@
+{{- $src := .Destination | safeURL -}}
+{{- $alt := .PlainText | default .Text -}}
+{{- $title := .Title -}}
+{{- $image := partial "images/resolve.html" (dict "path" $src) | transform.Unmarshal (dict "format" "json") -}}
+
+{{- if $title -}}
+<figure>
+    {{ partial "images/render.html" (dict
+        "image" $image
+        "alt" $alt
+        "class" ""
+    ) }}
+    <figcaption>{{ $title }}</figcaption>
+</figure>
+{{- else -}}
+{{ partial "images/render.html" (dict
+    "image" $image
+    "alt" $alt
+    "class" ""
+) }}
+{{- end -}}

@@ -48,6 +48,8 @@
         "defaultURL" $defaultURL
         "webpSet" (delimit $webpSet ", ")
         "jpgSet" (delimit $jpgSet ", ")
+        "width" (index $widths $defaultIndex)
+        "height" (int (math.Round (div (mul (float $resource.Height) (float (index $widths $defaultIndex))) (float $resource.Width))))
       ) | jsonify -}}
     {{- end -}}
   {{- end -}}

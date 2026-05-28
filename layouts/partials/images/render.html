@@ -8,6 +8,8 @@
 {{- $sizes := or .sizes "(max-width: 768px) 100vw, 640px" -}}
 {{- $loading := or .loading "lazy" -}}
 {{- $style := .style -}}
+{{- $width := .width | default $image.width -}}
+{{- $height := .height | default $image.height -}}
 
 {{- if $image.processable -}}
 <picture>
@@ -22,6 +24,9 @@
             alt="{{ $alt }}"
             class="{{ $class }}"
             loading="{{ $loading }}"
+            decoding="async"
+            {{- with $width }} width="{{ . }}"{{ end }}
+            {{- with $height }} height="{{ . }}"{{ end }}
             {{- with $style }} style="{{ . }}"{{ end }}
     >
 </picture>
@@ -31,6 +36,9 @@
         alt="{{ $alt }}"
         class="{{ $class }}"
         loading="{{ $loading }}"
+        decoding="async"
+        {{- with $width }} width="{{ . }}"{{ end }}
+        {{- with $height }} height="{{ . }}"{{ end }}
         {{- with $style }} style="{{ . }}"{{ end }}
 >
 {{- end -}}
