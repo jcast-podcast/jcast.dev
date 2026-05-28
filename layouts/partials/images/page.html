@@ -1,0 +1,20 @@
+{{- $page := .page -}}
+{{- $keys := .keys | default (slice "thumbnail" "image") -}}
+{{- $scratch := newScratch -}}
+
+{{- range $key := $keys -}}
+  {{- if not ($scratch.Get "image") -}}
+    {{- with index $page.Params $key -}}
+      {{- $resolved := partial "images/resolve.html" (dict "path" .) | transform.Unmarshal (dict "format" "json") -}}
+      {{- if $resolved.found -}}
+        {{- $scratch.Set "image" (merge $resolved (dict "paramKey" $key)) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with ($scratch.Get "image") -}}
+  {{- . | jsonify -}}
+{{- else -}}
+  {{- dict "found" false | jsonify -}}
+{{- end -}}

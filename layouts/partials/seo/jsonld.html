@@ -329,8 +329,9 @@
   {{ with .Params.episode }}
     {{ $episode = merge $episode (dict "episodeNumber" .) }}
   {{ end }}
-  {{ with .Params.thumbnail }}
-    {{ $episode = merge $episode (dict "image" (. | absURL)) }}
+  {{ $episodeImage := partial "images/page.html" (dict "page" . "keys" (slice "thumbnail")) | transform.Unmarshal (dict "format" "json") }}
+  {{ if $episodeImage.found }}
+    {{ $episode = merge $episode (dict "image" $episodeImage.socialURL) }}
   {{ end }}
   {{ if $seasonNumber }}
     {{ $episode = merge $episode (dict "partOfSeason" (dict "@id" (printf "%s#season-%v" $seriesBase $seasonNumber))) }}
@@ -388,15 +389,9 @@
   {{ if gt (len $articleAuthors) 0 }}
     {{ $article = merge $article (dict "author" $articleAuthors) }}
   {{ end }}
-  {{ with .Params.image }}
-    {{ $imageParam := . }}
-    {{ $imagePath := strings.TrimPrefix "/" $imageParam }}
-    {{ $imageRes := resources.Get $imagePath }}
-    {{ if $imageRes }}
-      {{ $article = merge $article (dict "image" ($imageRes.RelPermalink | absURL)) }}
-    {{ else }}
-      {{ $article = merge $article (dict "image" ($imageParam | absURL)) }}
-    {{ end }}
+  {{ $articleImage := partial "images/page.html" (dict "page" . "keys" (slice "image")) | transform.Unmarshal (dict "format" "json") }}
+  {{ if $articleImage.found }}
+    {{ $article = merge $article (dict "image" $articleImage.socialURL) }}
   {{ end }}
   {{ $graph = $graph | append $article }}
   {{ $pageMainEntityId = $articleId }}

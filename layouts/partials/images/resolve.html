@@ -1,0 +1,46 @@
+{{- $pathParam := .path -}}
+{{- if not $pathParam -}}
+  {{- dict "found" false | jsonify -}}
+{{- else -}}
+  {{- $resourcePath := strings.TrimPrefix "/" $pathParam -}}
+  {{- $resource := resources.Get $resourcePath -}}
+
+  {{- if not $resource -}}
+    {{- dict
+      "path" $pathParam
+      "url" $pathParam
+      "socialURL" ($pathParam | absURL)
+      "processable" false
+      "found" true
+      | jsonify -}}
+  {{- else -}}
+    {{- $published := resources.Copy $resourcePath $resource -}}
+    {{- $extension := lower (path.Ext $resourcePath) -}}
+    {{- $processable := in (slice ".jpg" ".jpeg" ".png" ".webp" ".tif" ".tiff" ".bmp") $extension -}}
+    {{- $resolved := dict
+      "path" $pathParam
+      "url" $published.RelPermalink
+      "socialURL" ($published.RelPermalink | absURL)
+      "processable" $processable
+      "found" true
+    -}}
+
+    {{- if not $processable -}}
+      {{- $resolved | jsonify -}}
+    {{- else -}}
+      {{- $smallWebp := $resource.Resize "320x webp q85" -}}
+      {{- $mediumWebp := $resource.Resize "640x webp q85" -}}
+      {{- $largeWebp := $resource.Resize "1024x webp q85" -}}
+
+      {{- $smallJpg := $resource.Resize "320x jpg q85" -}}
+      {{- $mediumJpg := $resource.Resize "640x jpg q85" -}}
+      {{- $largeJpg := $resource.Resize "1024x jpg q85" -}}
+
+      {{- merge $resolved (dict
+        "defaultURL" $mediumJpg.RelPermalink
+        "webpSet" (printf "%s 320w, %s 640w, %s 1024w" $smallWebp.RelPermalink $mediumWebp.RelPermalink $largeWebp.RelPermalink)
+        "jpgSet" (printf "%s 320w, %s 640w, %s 1024w" $smallJpg.RelPermalink $mediumJpg.RelPermalink $largeJpg.RelPermalink)
+      ) | jsonify -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

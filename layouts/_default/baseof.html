@@ -18,8 +18,9 @@
     <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:site_name" content="{{ .Site.Title }}">
-    {{ with .Params.thumbnail }}
-    <meta property="og:image" content="{{ . | absURL }}">
+    {{ $pageImage := partial "images/page.html" (dict "page" . "keys" (slice "thumbnail" "image")) | transform.Unmarshal (dict "format" "json") }}
+    {{ if $pageImage.found }}
+    <meta property="og:image" content="{{ $pageImage.socialURL }}">
     {{ else }}
     <meta property="og:image" content="{{ .Site.Params.ogImage | absURL }}">
     {{ end }}
@@ -37,8 +38,8 @@
     {{ end }}
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}">
     <meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
-    {{ with .Params.thumbnail }}
-    <meta name="twitter:image" content="{{ . | absURL }}">
+    {{ if $pageImage.found }}
+    <meta name="twitter:image" content="{{ $pageImage.socialURL }}">
     {{ else }}
     <meta name="twitter:image" content="{{ .Site.Params.ogImage | absURL }}">
     {{ end }}

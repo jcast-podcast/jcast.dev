@@ -1,0 +1,36 @@
+{{- $image := .image -}}
+{{- if or (not $image) (not $image.found) -}}
+  {{- return -}}
+{{- end -}}
+
+{{- $class := or .class "episode-thumb" -}}
+{{- $alt := or .alt "" -}}
+{{- $sizes := or .sizes "(max-width: 768px) 100vw, 640px" -}}
+{{- $loading := or .loading "lazy" -}}
+{{- $style := .style -}}
+
+{{- if $image.processable -}}
+<picture>
+    <source
+            type="image/webp"
+            srcset="{{ $image.webpSet }}"
+    >
+    <img
+            src="{{ $image.defaultURL }}"
+            srcset="{{ $image.jpgSet }}"
+            sizes="{{ $sizes }}"
+            alt="{{ $alt }}"
+            class="{{ $class }}"
+            loading="{{ $loading }}"
+            {{- with $style }} style="{{ . }}"{{ end }}
+    >
+</picture>
+{{- else -}}
+<img
+        src="{{ $image.url }}"
+        alt="{{ $alt }}"
+        class="{{ $class }}"
+        loading="{{ $loading }}"
+        {{- with $style }} style="{{ . }}"{{ end }}
+>
+{{- end -}}

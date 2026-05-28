@@ -1,54 +1,12 @@
 {{- $page := .page -}}
 {{- $class := or .class "episode-thumb" -}}
+{{- $image := partial "images/page.html" (dict "page" $page "keys" (slice "thumbnail")) | transform.Unmarshal (dict "format" "json") -}}
 
-{{- with $page.Params.thumbnail }}
-{{- $thumbParam := . -}}
-
-{{- /* Eerst proberen: thumbnail als Page Resource (bv. "thumbnail.png") */ -}}
-{{- $res := resources.Get $thumbParam -}}
-
-{{- if $res }}
-{{- /* Responsive WebP + JPG varianten */ -}}
-{{- $smallWebp  := $res.Resize "320x webp"  -}}
-{{- $mediumWebp := $res.Resize "640x webp"  -}}
-{{- $largeWebp  := $res.Resize "1024x webp" -}}
-
-{{- $smallJpg   := $res.Resize "320x jpg"   -}}
-{{- $mediumJpg  := $res.Resize "640x jpg"   -}}
-{{- $largeJpg   := $res.Resize "1024x jpg"  -}}
-
-{{- $alt := or $page.Params.thumbnail_alt (printf "Thumbnail van aflevering %s" $page.Title) -}}
-<picture>
-    <source
-            type="image/webp"
-            srcset="
-          {{ $smallWebp.RelPermalink }} 320w,
-          {{ $mediumWebp.RelPermalink }} 640w,
-          {{ $largeWebp.RelPermalink }} 1024w
-        "
-    >
-    <img
-            src="{{ $mediumJpg.RelPermalink }}"
-            srcset="
-          {{ $smallJpg.RelPermalink }} 320w,
-          {{ $mediumJpg.RelPermalink }} 640w,
-          {{ $largeJpg.RelPermalink }} 1024w
-        "
-            sizes="(max-width: 768px) 100vw, 640px"
-            alt="{{ $alt }}"
-            class="{{ $class }}"
-            loading="lazy"
-    >
-</picture>
-
-{{- else }}
-{{- /* Fallback: huidige situatie – gewoon het pad uit front matter gebruiken */ -}}
-<img
-        src="{{ $thumbParam }}"
-        alt="Thumbnail van aflevering {{ $page.Title }}"
-        class="{{ $class }}"
-        loading="lazy"
->
-{{- end }}
-
-{{- end }}
+{{- if $image.found -}}
+  {{- $alt := or $page.Params.thumbnail_alt (printf "Thumbnail van aflevering %s" $page.Title) -}}
+  {{- partial "images/render.html" (dict
+    "image" $image
+    "class" $class
+    "alt" $alt
+  ) -}}
+{{- end -}}
