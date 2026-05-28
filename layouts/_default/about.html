@@ -6,96 +6,46 @@
     </p>
 
     <div class="crew-list">
+        {{- range .Params.hosts }}
+        {{- $host := index hugo.Data.people .id }}
+        {{- if $host }}
         <article class="crew-member">
             <div class="crew-photo-container">
                 {{ partial "person-image.html" (dict
-                    "path" "/images/avatars/viktor-avatar.webp"
-                    "alt" "Portret van Viktor Van Steenweghen"
+                    "path" $host.image
+                    "alt" (printf "Portret van %s" $host.name)
                     "class" "crew-photo"
                     "sizes" "(max-width: 768px) 160px, 240px"
                     "widths" (slice 160 240 360)
                 ) }}
             </div>
             <div class="crew-info">
-                <h2>Viktor Van Steenweghen</h2>
-                <p>
-                    Viktor is een software engineer die leeft voor clean code en automatisatie. Dol op AI-tools,
-                    nerdy discussies en altijd nieuwsgierig naar nieuwe shortcuts.
-                </p>
+                <h2>{{ $host.name }}</h2>
+                <p>{{ $host.about_blurb | default $host.bio | default $host.description }}</p>
                 <div class="crew-socials">
-                    <a href="https://viktorvansteenweghen.com/" target="_blank" rel="noopener noreferrer"
-                       aria-label="Website van Viktor Van Steenweghen">
+                    {{ with $host.url }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer"
+                       aria-label="Website van {{ $host.name }}">
                         {{ partial "ui/icon.html" (dict "name" "world" "decorative" true) }}
                     </a>
-                    <a href="https://www.linkedin.com/in/viktorvansteenweghen/" target="_blank" rel="noopener noreferrer"
-                       aria-label="LinkedIn-profiel van Viktor Van Steenweghen">
+                    {{ end }}
+                    {{ with $host.socials.linkedin }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer"
+                       aria-label="LinkedIn-profiel van {{ $host.name }}">
                         {{ partial "ui/icon.html" (dict "name" "brand-linkedin" "decorative" true) }}
                     </a>
-                </div>
-            </div>
-        </article>
-
-        <article class="crew-member">
-            <div class="crew-photo-container">
-                {{ partial "person-image.html" (dict
-                    "path" "/images/avatars/oumaima-avatar.webp"
-                    "alt" "Portret van Oumaima"
-                    "class" "crew-photo"
-                    "sizes" "(max-width: 768px) 160px, 240px"
-                    "widths" (slice 160 240 360)
-                ) }}
-            </div>
-            <div class="crew-info">
-                <h2>Oumaima Zerouali</h2>
-                <p>
-                    Oumaima is een developer die houdt van duidelijkheid, uitdaging en het ‘waarom’ achter systemen
-                    en mensen. Backend, frontend of cloud, ze wil het kennen, kunnen en beter maken.
-                </p>
-                <div class="crew-socials">
-                    <a href="https://www.ozerouali.com" target="_blank" rel="noopener noreferrer"
-                       aria-label="Website van Oumaima Zerouali">
-                        {{ partial "ui/icon.html" (dict "name" "world" "decorative" true) }}
-                    </a>
-                    <a href="https://www.linkedin.com/in/oumaima-zerouali-16b189223/" target="_blank" rel="noopener noreferrer"
-                       aria-label="LinkedIn-profiel van Oumaima Zerouali">
-                        {{ partial "ui/icon.html" (dict "name" "brand-linkedin" "decorative" true) }}
-                    </a>
-                    <a href="https://www.instagram.com/_oumietje_/" target="_blank" rel="noopener noreferrer"
-                       aria-label="Instagram-profiel van Oumaima Zerouali">
+                    {{ end }}
+                    {{ with $host.socials.instagram }}
+                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer"
+                       aria-label="Instagram-profiel van {{ $host.name }}">
                         {{ partial "ui/icon.html" (dict "name" "brand-instagram" "decorative" true) }}
                     </a>
+                    {{ end }}
                 </div>
             </div>
         </article>
-
-        <article class="crew-member">
-            <div class="crew-photo-container">
-                {{ partial "person-image.html" (dict
-                    "path" "/images/avatars/maarten-avatar.webp"
-                    "alt" "Portret van Maarten"
-                    "class" "crew-photo"
-                    "sizes" "(max-width: 768px) 160px, 240px"
-                    "widths" (slice 160 240 360)
-                ) }}
-            </div>
-            <div class="crew-info">
-                <h2>Maarten Casteels</h2>
-                <p>
-                    Maarten is een pragmatische tech-lead met een scherp oog voor detail en een zwak voor goed teamwerk.
-                    Houdt van clean code, duidelijke communicatie en een beetje chaos op z’n tijd.
-                </p>
-                <div class="crew-socials">
-                    <a href="https://casteels.dev" target="_blank" rel="noopener noreferrer"
-                       aria-label="Website van Maarten Casteels">
-                        {{ partial "ui/icon.html" (dict "name" "world" "decorative" true) }}
-                    </a>
-                    <a href="https://www.linkedin.com/in/maartencasteels/" target="_blank" rel="noopener noreferrer"
-                       aria-label="LinkedIn-profiel van Maarten Casteels">
-                        {{ partial "ui/icon.html" (dict "name" "brand-linkedin" "decorative" true) }}
-                    </a>
-                </div>
-            </div>
-        </article>
+        {{- end }}
+        {{- end }}
     </div>
 
     <div class="jcast-contact">

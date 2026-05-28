@@ -2,5 +2,9 @@ name: "Viktor Van Steenweghen"
 id: "https://viktorvansteenweghen.com/#viktor_van_steenweghen"
 image: "/images/avatars/viktor-avatar.webp"
 url: "https://viktorvansteenweghen.com/"
+bio: "Co-host van JCast, software engineer met liefde voor clean code en automatisatie."
+about_blurb: "Viktor is een software engineer die leeft voor clean code en automatisatie. Dol op AI-tools, nerdy discussies en altijd nieuwsgierig naar nieuwe shortcuts."
 sameAs:
   - "https://www.linkedin.com/in/viktorvansteenweghen/"
+socials:
+  linkedin: "https://www.linkedin.com/in/viktorvansteenweghen/"
