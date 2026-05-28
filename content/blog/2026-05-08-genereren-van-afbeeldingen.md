@@ -7,7 +7,7 @@ image: "/images/blog/logo.png"
 draft: false
 ---
 
-Na 12 aflevering van JCast, dan begin je toch eend te denken hoe we zaken anders kunnen doen.
+Na 12 aflevering van JCast, dan begin je toch eens te denken hoe we zaken anders kunnen doen.
 We zijn niet voor niets informatici, en de wereld van AI gaat ons toch ook niet voorbij, dus waarom zouden we niet eens proberen om onze eigen avatars en thumbnaisl te ontwerpen met behulp van AI?
 
 En zo gezegd zo gedaan, de eerste afbeeldingen waren gemaakt door Oumaima en dat al met behulp van AI, maar met een prompt die meer zei dat een afbeelding.
