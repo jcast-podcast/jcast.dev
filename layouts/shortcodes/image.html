@@ -1,0 +1,16 @@
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $class := .Get "class" | default "" -}}
+{{- $sizes := .Get "sizes" | default "(max-width: 768px) 100vw, 640px" -}}
+{{- $style := .Get "style" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $image := partial "images/resolve.html" (dict "path" $src) | transform.Unmarshal (dict "format" "json") -}}
+
+{{- partial "images/render.html" (dict
+  "image" $image
+  "alt" $alt
+  "class" $class
+  "sizes" $sizes
+  "style" $style
+  "loading" $loading
+) -}}

@@ -68,15 +68,15 @@ Ik vond het geweldig.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 2fr)); gap: 2rem; margin: 2rem 0; padding: 2rem; background: #eae6df; border-radius: 8px;">
   <div>
-    <img src="/images/blog/merch_draft_1.png" alt="Eerste T-shirt ontwerp variant" style="max-width: 100%; height: auto; border-radius: 8px;">
+    {{< image src="/images/blog/merch_draft_1.png" alt="Eerste T-shirt ontwerp variant" style="max-width: 100%; height: auto; border-radius: 8px;" >}}
     <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Variant 1: Minimalistisch logo design</p>
   </div>
   <div>
-    <img src="/images/blog/full_color.png" alt="De uiteindelijke gedrukte T-shirt met JCast logo" style="max-width: 100%; height: auto; border-radius: 8px;">
+    {{< image src="/images/blog/full_color.png" alt="De uiteindelijke gedrukte T-shirt met JCast logo" style="max-width: 100%; height: auto; border-radius: 8px;" >}}
     <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Variant 2: Kleurencombo's testen</p>
   </div>
   <div>
-    <img src="/images/blog/merch_draft_2.png" alt="Tweede T-shirt ontwerp variant" style="max-width: 100%; height: auto; border-radius: 8px;">
+    {{< image src="/images/blog/merch_draft_2.png" alt="Tweede T-shirt ontwerp variant" style="max-width: 100%; height: auto; border-radius: 8px;" >}}
     <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 0.5rem;">Variant 3: Typography focus</p>
   </div>
 
@@ -101,10 +101,10 @@ Uiteindelijk had ik iets waar ik echt blij mee was.
 
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0; padding: 2rem; background: #eae6df; border-radius: 8px;">
   <div style="text-align: center;">
-    <img src="/images/blog/first_variant.svg" alt="Eerste definitieve T-shirt print design" style="max-width: 100%; height: auto;">
+    {{< image src="/images/blog/first_variant.svg" alt="Eerste definitieve T-shirt print design" style="max-width: 100%; height: auto;" >}}
   </div>
   <div style="text-align: center;">
-    <img src="/images/blog/second_variant.svg" alt="Tweede definitieve T-shirt print design" style="max-width: 100%; height: auto;">
+    {{< image src="/images/blog/second_variant.svg" alt="Tweede definitieve T-shirt print design" style="max-width: 100%; height: auto;" >}}
   </div>
 </div>
 
@@ -151,7 +151,7 @@ Onderweg werd het een kleine community.
 En blijkbaar… ook een kledingmerk.
 
 <figure style="margin: 3rem 0; text-align: center;">
-  <img src="/images/blog/overview_figma_file.png" alt="Screenshot van mijn Figma werkbestand met verschillende T-shirt ontwerp varianten" style="max-width: 100%; height: auto; border-radius: 8px;">
+  {{< image src="/images/blog/overview_figma_file.png" alt="Screenshot van mijn Figma werkbestand met verschillende T-shirt ontwerp varianten" style="max-width: 100%; height: auto; border-radius: 8px;" >}}
   <figcaption style="margin-top: 0.75rem; font-size: 0.9rem; color: #666;">
     Een screenshot van mijn Figma-bord aan het einde van het proces, vol ideeën, varianten en half afgemaakte pogingen.
   </figcaption>
