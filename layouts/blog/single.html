@@ -40,7 +40,12 @@
         <div class="guest-info-desktop">
             {{ $authorImage := $authorData.image | default $authorData.thumbnail }}
             {{ with $authorImage }}
-            <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
+            {{ partial "person-image.html" (dict
+                "path" .
+                "alt" (printf "Foto van %s" $authorData.name)
+                "class" "guest-thumbnail"
+                "sizes" "(max-width: 768px) 96px, 144px"
+            ) }}
             {{ end }}
             <div class="guest-details">
                 <strong>Auteur: {{ $authorData.name }}</strong>
@@ -69,7 +74,12 @@
             <div class="guest-content">
                 {{ $authorImage := $authorData.image | default $authorData.thumbnail }}
                 {{ with $authorImage }}
-                <img src="{{ . }}" alt="Foto van {{ $authorData.name }}" class="guest-thumbnail" loading="lazy">
+                {{ partial "person-image.html" (dict
+                    "path" .
+                    "alt" (printf "Foto van %s" $authorData.name)
+                    "class" "guest-thumbnail"
+                    "sizes" "96px"
+                ) }}
                 {{ end }}
                 <div class="guest-details">
                     {{ with $authorData.bio }}

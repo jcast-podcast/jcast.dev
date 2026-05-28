@@ -1,0 +1,15 @@
+{{- $path := .path -}}
+{{- $alt := .alt | default "" -}}
+{{- $class := .class | default "guest-thumbnail" -}}
+{{- $sizes := .sizes | default "(max-width: 768px) 96px, 160px" -}}
+{{- $loading := .loading | default "lazy" -}}
+{{- $widths := .widths | default (slice 96 192 320) -}}
+{{- $image := partial "images/resolve.html" (dict "path" $path "widths" $widths) | transform.Unmarshal (dict "format" "json") -}}
+
+{{- partial "images/render.html" (dict
+  "image" $image
+  "alt" $alt
+  "class" $class
+  "sizes" $sizes
+  "loading" $loading
+) -}}

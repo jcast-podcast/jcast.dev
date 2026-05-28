@@ -8,7 +8,13 @@
     <div class="crew-list">
         <article class="crew-member">
             <div class="crew-photo-container">
-                <img src="/images/avatars/viktor-avatar.webp" alt="Portret van Viktor Van Steenweghen" class="crew-photo" loading="lazy">
+                {{ partial "person-image.html" (dict
+                    "path" "/images/avatars/viktor-avatar.webp"
+                    "alt" "Portret van Viktor Van Steenweghen"
+                    "class" "crew-photo"
+                    "sizes" "(max-width: 768px) 160px, 240px"
+                    "widths" (slice 160 240 360)
+                ) }}
             </div>
             <div class="crew-info">
                 <h2>Viktor Van Steenweghen</h2>
@@ -31,7 +37,13 @@
 
         <article class="crew-member">
             <div class="crew-photo-container">
-                <img src="/images/avatars/oumaima-avatar.webp" alt="Portret van Oumaima" class="crew-photo">
+                {{ partial "person-image.html" (dict
+                    "path" "/images/avatars/oumaima-avatar.webp"
+                    "alt" "Portret van Oumaima"
+                    "class" "crew-photo"
+                    "sizes" "(max-width: 768px) 160px, 240px"
+                    "widths" (slice 160 240 360)
+                ) }}
             </div>
             <div class="crew-info">
                 <h2>Oumaima Zerouali</h2>
@@ -58,7 +70,13 @@
 
         <article class="crew-member">
             <div class="crew-photo-container">
-                <img src="/images/avatars/maarten-avatar.webp" alt="Portret van Maarten" class="crew-photo">
+                {{ partial "person-image.html" (dict
+                    "path" "/images/avatars/maarten-avatar.webp"
+                    "alt" "Portret van Maarten"
+                    "class" "crew-photo"
+                    "sizes" "(max-width: 768px) 160px, 240px"
+                    "widths" (slice 160 240 360)
+                ) }}
             </div>
             <div class="crew-info">
                 <h2>Maarten Casteels</h2>

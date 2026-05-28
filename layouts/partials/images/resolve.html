@@ -1,4 +1,5 @@
 {{- $pathParam := .path -}}
+{{- $widths := .widths | default (slice 320 640 1024) -}}
 {{- if not $pathParam -}}
   {{- dict "found" false | jsonify -}}
 {{- else -}}
@@ -28,18 +29,25 @@
     {{- if not $processable -}}
       {{- $resolved | jsonify -}}
     {{- else -}}
-      {{- $smallWebp := $resource.Resize "320x webp q85" -}}
-      {{- $mediumWebp := $resource.Resize "640x webp q85" -}}
-      {{- $largeWebp := $resource.Resize "1024x webp q85" -}}
+      {{- $webpSet := slice -}}
+      {{- $jpgSet := slice -}}
+      {{- $defaultURL := "" -}}
+      {{- $defaultIndex := div (len $widths) 2 -}}
 
-      {{- $smallJpg := $resource.Resize "320x jpg q85" -}}
-      {{- $mediumJpg := $resource.Resize "640x jpg q85" -}}
-      {{- $largeJpg := $resource.Resize "1024x jpg q85" -}}
+      {{- range $index, $width := $widths -}}
+        {{- $webp := $resource.Resize (printf "%dx webp q85" $width) -}}
+        {{- $jpg := $resource.Resize (printf "%dx jpg q85" $width) -}}
+        {{- $webpSet = $webpSet | append (printf "%s %dw" $webp.RelPermalink $width) -}}
+        {{- $jpgSet = $jpgSet | append (printf "%s %dw" $jpg.RelPermalink $width) -}}
+        {{- if eq $index $defaultIndex -}}
+          {{- $defaultURL = $jpg.RelPermalink -}}
+        {{- end -}}
+      {{- end -}}
 
       {{- merge $resolved (dict
-        "defaultURL" $mediumJpg.RelPermalink
-        "webpSet" (printf "%s 320w, %s 640w, %s 1024w" $smallWebp.RelPermalink $mediumWebp.RelPermalink $largeWebp.RelPermalink)
-        "jpgSet" (printf "%s 320w, %s 640w, %s 1024w" $smallJpg.RelPermalink $mediumJpg.RelPermalink $largeJpg.RelPermalink)
+        "defaultURL" $defaultURL
+        "webpSet" (delimit $webpSet ", ")
+        "jpgSet" (delimit $jpgSet ", ")
       ) | jsonify -}}
     {{- end -}}
   {{- end -}}

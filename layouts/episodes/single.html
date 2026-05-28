@@ -20,7 +20,12 @@
         <div class="guest-info-desktop">
             {{ $guestImage := $guestData.image | default $guestData.thumbnail }}
             {{ with $guestImage }}
-            <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
+            {{ partial "person-image.html" (dict
+                "path" .
+                "alt" (printf "Portretfoto van %s" $guestData.name)
+                "class" "guest-thumbnail"
+                "sizes" "(max-width: 768px) 96px, 144px"
+            ) }}
             {{ end }}
             <div class="guest-details">
                 <strong>Gast: {{ $guestData.name }}</strong>
@@ -49,7 +54,12 @@
             <div class="guest-content">
                 {{ $guestImage := $guestData.image | default $guestData.thumbnail }}
                 {{ with $guestImage }}
-                <img src="{{ . }}" alt="Portretfoto van {{ $guestData.name }}" class="guest-thumbnail" loading="lazy">
+                {{ partial "person-image.html" (dict
+                    "path" .
+                    "alt" (printf "Portretfoto van %s" $guestData.name)
+                    "class" "guest-thumbnail"
+                    "sizes" "96px"
+                ) }}
                 {{ end }}
                 <div class="guest-details">
                     {{ with $guestData.description }}
