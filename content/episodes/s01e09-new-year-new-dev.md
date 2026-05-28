@@ -4,7 +4,7 @@ episode: 9
 title: "New year, new dev: goede voornemens, slechte gewoontes & code-reflecties"
 date: 2026-01-05
 description: "In deze nieuwjaarsaflevering van JCast kijken Oumaima, Maarten en Viktor terug op hun professionele en persoonlijke groei in 2025, bespreken ze lessen en uitdagingen als developers en podcasthosts, de invloed van AI, en delen ze hun ambities en goede voornemens voor 2026 met een optimistische blik vooruit."
-thumbnail: "/images/thumbnails/s01e09-reflecteer-groei-ontwikkel.webp"
+thumbnail: "/images/thumbnails/s01e09.webp"
 player: "https://share.transistor.fm/e/ff88cae3"
 section: episodes
 ---

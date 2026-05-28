@@ -4,7 +4,7 @@ episode: 8
 title: "AI, Java & de menselijke kant van ontwikkeling"
 date: 2025-12-01
 description: "Jan Van Wassenhove (Devoxx, Techorama spreker) bespreekt met Oumaima, Maarten en Viktor hoe AI de dagelijkse praktijk van developers verandert, de toekomst van testen, en waarom menselijke controle cruciaal blijft."
-thumbnail: "/images/thumbnails/s01e08-java-with-ai.png"
+thumbnail: "/images/thumbnails/s01e08.webp"
 player: "https://share.transistor.fm/e/798ef0f6"
 section: episodes
 guests:

@@ -4,7 +4,7 @@ episode: 7
 title: "Meetings, stand-ups & agile drama"
 date: 2025-11-03
 description: "Oumaima, Viktor en Maarten duiken in de wereld van agile werken en meetings. Wanneer werkt Scrum écht, en wanneer voelt het vooral als administratie met post-its?"
-thumbnail: "/images/thumbnails/s01e07-scrum-and-agile.png"
+thumbnail: "/images/thumbnails/s01e07.webp"
 player: "https://share.transistor.fm/e/2bdcb265"
 section: episodes
 ---

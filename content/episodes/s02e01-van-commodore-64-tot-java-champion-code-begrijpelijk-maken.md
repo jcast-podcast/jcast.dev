@@ -4,7 +4,7 @@ episode: 01
 title: "Van Commodore 64 tot Java Champion: code begrijpelijk maken"
 date: 2026-05-04
 description: "In deze aflevering schuift Frank Delporte aan tafel bij Oumaima, Viktor en Maarten voor een gesprek over Java, documentatie en het menselijke aspect van technologie. We duiken in zijn opmerkelijke carrièreswitch van filmschool naar Java-champion, zijn passie voor de Raspberry Pi en zijn vrijwilligerswerk bij CoderDojo. Een boeiende babbel over hoe je technologie niet alleen bouwt, maar ook begrijpelijk maakt."
-thumbnail: "/images/thumbnails/s02e01-van-commodore-64-tot-java-champion-code-begrijpelijk-maken.webp"
+thumbnail: "/images/thumbnails/s02e01.webp"
 player: "https://share.transistor.fm/e/1c195e1a"
 section: episodes
 guests:
