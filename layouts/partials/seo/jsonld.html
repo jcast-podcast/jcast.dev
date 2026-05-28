@@ -1,5 +1,5 @@
-{{ $podcast := site.Data.podcast }}
-{{ $peopleData := site.Data.people }}
+{{ $podcast := hugo.Data.podcast }}
+{{ $peopleData := hugo.Data.people }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $siteRoot := strings.TrimSuffix "/" $baseURL }}
 {{ $seriesBase := or $podcast.url $baseURL }}
@@ -168,7 +168,7 @@
       {{ end }}
       {{ $base := dict }}
       {{ if $guestId }}
-        {{ $data := index site.Data.people $guestId }}
+        {{ $data := index hugo.Data.people $guestId }}
         {{ with $data }}
           {{ with .name }}
             {{ $base = merge $base (dict "name" .) }}
@@ -235,7 +235,7 @@
   {{ else }}
     {{ with .Params.guest }}
       {{ $guestId := . }}
-      {{ $data := index site.Data.people $guestId }}
+      {{ $data := index hugo.Data.people $guestId }}
       {{ if $data }}
         {{ $guest := dict "id" $guestId }}
         {{ with $data.name }}
@@ -358,7 +358,7 @@
   {{ range $author := $authors }}
     {{ $authorData := dict }}
     {{ if $author.id }}
-      {{ $authorData = index site.Data.people $author.id }}
+      {{ $authorData = index hugo.Data.people $author.id }}
     {{ else if $author.name }}
       {{ $authorData = $author }}
     {{ end }}

@@ -29,7 +29,7 @@
     {{- $authorData := dict -}}
     {{- if .id -}}
         {{- /* New way: author ID that references data file */ -}}
-        {{- $authorData = index $.Site.Data.people .id -}}
+        {{- $authorData = index hugo.Data.people .id -}}
     {{- else if .name -}}
         {{- /* Legacy: just a name string */ -}}
         {{- $authorData = . -}}
