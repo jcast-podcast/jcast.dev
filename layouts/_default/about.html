@@ -7,7 +7,7 @@
 
     <div class="crew-list">
         {{- range .Params.hosts }}
-        {{- $host := index hugo.Data.people .id }}
+        {{- $host := index $.Site.Data.people .id }}
         {{- if $host }}
         <article class="crew-member">
             <div class="crew-photo-container">

@@ -14,7 +14,7 @@
 
     {{ with .Params.guests }}
     {{ range . }}
-    {{ $guestKey := .id }} {{ $guestData := index hugo.Data.people $guestKey }}
+    {{ $guestKey := .id }} {{ $guestData := index $.Site.Data.people $guestKey }}
     {{ if $guestData }}
     <div class="guest-info">
         <div class="guest-info-desktop">
