@@ -5,7 +5,7 @@
 {{- range $key := $keys -}}
   {{- if not ($scratch.Get "image") -}}
     {{- with index $page.Params $key -}}
-      {{- $resolved := partial "images/resolve.html" (dict "path" .) | transform.Unmarshal (dict "format" "json") -}}
+      {{- $resolved := partial "images/resolve.html" (dict "path" . "page" $page) | transform.Unmarshal (dict "format" "json") -}}
       {{- if $resolved.found -}}
         {{- $scratch.Set "image" (merge $resolved (dict "paramKey" $key)) -}}
       {{- end -}}

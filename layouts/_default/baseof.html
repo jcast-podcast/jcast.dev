@@ -18,7 +18,7 @@
     <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:site_name" content="{{ .Site.Title }}">
-    {{ $pageImage := partial "images/page.html" (dict "page" . "keys" (slice "thumbnail" "image")) | transform.Unmarshal (dict "format" "json") }}
+    {{ $pageImage := partial "images/page.html" (dict "page" . "keys" (slice "social_image" "thumbnail" "image")) | transform.Unmarshal (dict "format" "json") }}
     {{ if $pageImage.found }}
     <meta property="og:image" content="{{ $pageImage.socialURL }}">
     {{ else }}

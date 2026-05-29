@@ -1,10 +1,37 @@
 {{- $pathParam := .path -}}
+{{- $page := .page -}}
 {{- $widths := .widths | default (slice 320 640 1024) -}}
 {{- if not $pathParam -}}
   {{- dict "found" false | jsonify -}}
 {{- else -}}
   {{- $resourcePath := strings.TrimPrefix "/" $pathParam -}}
+  {{- $publishPath := "" -}}
+  {{- if hasPrefix $pathParam "/" -}}
+    {{- $publishPath = $resourcePath -}}
+  {{- end -}}
   {{- $resource := resources.Get $resourcePath -}}
+
+  {{- if $page -}}
+    {{- $pageResource := $page.Resources.GetMatch $pathParam -}}
+    {{- if not $pageResource -}}
+      {{- $pageResource = $page.Resources.GetMatch $resourcePath -}}
+    {{- end -}}
+    {{- if not $pageResource -}}
+      {{- $pageResource = $page.Resources.GetMatch (path.Base $resourcePath) -}}
+    {{- end -}}
+    {{- if $pageResource -}}
+      {{- $resource = $pageResource -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if and (not $publishPath) $page (not (hasPrefix $pathParam "/")) -}}
+    {{- $filename := path.Base $resourcePath -}}
+    {{- if eq $page.Section "episodes" -}}
+      {{- $publishPath = printf "images/thumbnails/%s" $filename -}}
+    {{- else if eq $page.Section "blog" -}}
+      {{- $publishPath = printf "images/blog/%s" $filename -}}
+    {{- end -}}
+  {{- end -}}
 
   {{- if not $resource -}}
     {{- dict
@@ -15,7 +42,10 @@
       "found" true
       | jsonify -}}
   {{- else -}}
-    {{- $published := resources.Copy $resourcePath $resource -}}
+    {{- $published := $resource -}}
+    {{- if $publishPath -}}
+      {{- $published = resources.Copy $publishPath $resource -}}
+    {{- end -}}
     {{- $extension := lower (path.Ext $resourcePath) -}}
     {{- $processable := in (slice ".jpg" ".jpeg" ".png" ".webp" ".tif" ".tiff" ".bmp") $extension -}}
     {{- $resolved := dict

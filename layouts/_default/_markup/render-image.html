@@ -1,7 +1,7 @@
 {{- $src := .Destination | safeURL -}}
 {{- $alt := .PlainText | default .Text -}}
 {{- $title := .Title -}}
-{{- $image := partial "images/resolve.html" (dict "path" $src) | transform.Unmarshal (dict "format" "json") -}}
+{{- $image := partial "images/resolve.html" (dict "path" $src "page" .Page) | transform.Unmarshal (dict "format" "json") -}}
 
 {{- if $title -}}
 <figure>
