@@ -6,7 +6,16 @@
     {{ $paginator := .Paginate (.Pages.ByDate.Reverse) 3 }}
 
     <div class="episode-list">
+        {{ $currentSeason := 0 }}
         {{ range $paginator.Pages }}
+        {{ $season := .Params.season | default 1 }}
+        {{ if ne $season $currentSeason }}
+        <div class="season-divider">
+            <span class="season-divider-label">Seizoen {{ $season }}</span>
+            <span class="season-divider-line"></span>
+        </div>
+        {{ $currentSeason = $season }}
+        {{ end }}
         <article class="episode-card">
             <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
             <div class="episode-card-header">

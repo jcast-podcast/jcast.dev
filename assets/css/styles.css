@@ -974,6 +974,36 @@ header .container {
 }
 
 /* EPISODES - LIST */
+.season-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0 1.25rem;
+}
+
+.season-divider:first-child {
+    margin-top: 0;
+}
+
+.season-divider-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    background-color: var(--beige);
+    border: 1px solid rgba(0,0,0,0.08);
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.season-divider-line {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(0,0,0,0.1);
+}
+
 .episode-card {
     background: white;
     border-radius: 10px;
