@@ -60,8 +60,15 @@
 
 <header role="banner">
     <div class="container">
+        {{ $siteLogo := partial "images/resolve.html" (dict "path" "/images/logo-without-bg.png" "widths" (slice 80 120 180)) | transform.Unmarshal (dict "format" "json") }}
         <a href="/" class="logo-link">
-            <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" />
+            {{ partial "images/render.html" (dict
+                "image" $siteLogo
+                "alt" "JCast logo"
+                "class" "logo"
+                "sizes" "(max-width: 600px) 80px, 120px"
+                "loading" "eager"
+            ) }}
         </a>
         <nav class="nav" role="navigation" aria-label="Hoofdmenu">
             <a href="/episodes/">Afleveringen</a>
