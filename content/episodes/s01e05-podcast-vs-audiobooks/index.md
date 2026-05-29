@@ -4,7 +4,7 @@ episode: 5
 title: "(Audio)Books vs Podcasts"
 date: 2025-09-01
 description: "Boeken of podcasts? Lezen of luisteren? Oumaima, Viktor en Maarten bespreken hun luister- en leesgewoontes, wat beter blijft hangen en delen hidden gems die je moet kennen."
-thumbnail: "/images/thumbnails/s01e05.webp"
+thumbnail: "s01e05.webp"
 player: "https://share.transistor.fm/e/b0afff90"
 section: episodes
 ---

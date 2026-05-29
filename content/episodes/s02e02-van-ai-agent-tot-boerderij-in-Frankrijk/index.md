@@ -4,7 +4,7 @@ episode: 2
 title: "Van AI-agent tot boerderij in Frankrijk"
 date: 2026-06-01
 description: "In deze aflevering gaan Oumaima, Viktor en Maarten voluit over de eeuwige stroom aan nieuwe tools, AI-hypes en de vraag wat er nu echt blijft hangen. We babbelen over FOMO, het automatiseren van onze eigen podcastworkflow, agents die cryptowallet leegmaken en waarom je soms gewoon beter een script schrijft. Een eerlijk, grappig en herkenbaar gesprek voor elke developer die z'n bookmarklijst niet meer bijhoudt."
-thumbnail: "/images/thumbnails/s02e02.webp"
+thumbnail: "s02e02.webp"
 player: "https://share.transistor.fm/e/3db7a207"
 section: episodes
 ---

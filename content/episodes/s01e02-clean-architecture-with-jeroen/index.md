@@ -4,7 +4,7 @@ episode: 2
 title: "Clean Architecture met Jeroen Bastijns – Over code, context en het groeipad van een gepassioneerde ontwikkelaar"
 date: 2025-06-02
 description: "Jeroen Bastijns bespreekt Clean Architecture met Oumaima, Viktor en Maarten. Een diepgaand gesprek over duurzame softwareontwerp principes, structuur en goed doordachte code."
-thumbnail: "/images/thumbnails/s01e02.webp"
+thumbnail: "s01e02.webp"
 player: "https://share.transistor.fm/e/39accfc1"
 section: episodes
 guests:

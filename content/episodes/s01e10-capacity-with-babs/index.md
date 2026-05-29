@@ -4,7 +4,7 @@ episode: 10
 title: "Meer dan planning: mensen, grenzen en verantwoordelijkheid"
 date: 2026-02-02
 description: "Capacity management klinkt abstract, maar raakt alles. In deze aflevering praten we met Barbara over mensen, grenzen en verantwoordelijkheid achter de schermen van consultancy. Over signalen zien vóór het misloopt, moeilijke keuzes maken en waarom developers geen resources zijn."
-thumbnail: "/images/thumbnails/s01e10.webp"
+thumbnail: "s01e10.webp"
 player: "https://share.transistor.fm/e/776fea02"
 section: episodes
 guests:
