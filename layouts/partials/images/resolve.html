@@ -19,6 +19,12 @@
     {{- if not $pageResource -}}
       {{- $pageResource = $page.Resources.GetMatch (path.Base $resourcePath) -}}
     {{- end -}}
+    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (eq $page.Section "episodes") (eq $page.Section "blog")) -}}
+      {{- $pageResource = $page.Resources.GetMatch "thumbnail.*" -}}
+    {{- end -}}
+    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (eq $page.Section "episodes") (eq $page.Section "blog")) -}}
+      {{- $pageResource = $page.Resources.GetMatch "thumbnails.*" -}}
+    {{- end -}}
     {{- if $pageResource -}}
       {{- $resource = $pageResource -}}
     {{- end -}}
