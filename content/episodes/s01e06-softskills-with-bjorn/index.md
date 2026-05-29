@@ -4,7 +4,8 @@ episode: 6
 title: "Java, Soft Skills & Mensenkennis"
 date: 2025-09-06
 description: "Björn De Craemer bespreekt met JCast hoe soft skills minstens zo bepalend zijn als technische kennis. Van teamwork tot communicatie: waarom mensen skills cruciaal zijn voor developers."
-thumbnail: "s01e06.webp"
+thumbnail: "/images/thumbnails/s01e06.webp"
+social_image: "social.png"
 player: "https://share.transistor.fm/e/ffa35c7d"
 section: episodes
 guests:

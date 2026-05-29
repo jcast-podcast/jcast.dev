@@ -4,7 +4,8 @@ episode: 12
 title: "Seizoensfinale: Terugblikken, zijsporen en wat er komt"
 date: 2026-03-28
 description: "In deze seizoensfinale van JCast blikken Oumaima, Viktor en Maarten terug op hun eerste seizoen. Wat begon als een experiment groeide uit tot een reeks eerlijke gesprekken over development, technologie en alles daarrond. Verwacht een losse babbel vol inzichten, zijsporen en plannen voor wat nog komt."
-thumbnail: "s01e12.webp"
+thumbnail: "/images/thumbnails/s01e12.webp"
+social_image: "social.png"
 player: "https://share.transistor.fm/e/3627d54a"
 section: episodes
 ---

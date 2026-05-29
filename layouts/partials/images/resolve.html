@@ -1,10 +1,12 @@
 {{- $pathParam := .path -}}
 {{- $page := .page -}}
 {{- $widths := .widths | default (slice 320 640 1024) -}}
+{{- $legacyBasenames := slice "thumbnail" "thumbnails" -}}
 {{- if not $pathParam -}}
   {{- dict "found" false | jsonify -}}
 {{- else -}}
   {{- $resourcePath := strings.TrimPrefix "/" $pathParam -}}
+  {{- $resourceBase := path.BaseName $resourcePath -}}
   {{- $publishPath := "" -}}
   {{- if hasPrefix $pathParam "/" -}}
     {{- $publishPath = $resourcePath -}}
@@ -19,10 +21,10 @@
     {{- if not $pageResource -}}
       {{- $pageResource = $page.Resources.GetMatch (path.Base $resourcePath) -}}
     {{- end -}}
-    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (eq $page.Section "episodes") (eq $page.Section "blog")) -}}
+    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (in $legacyBasenames $resourceBase)) -}}
       {{- $pageResource = $page.Resources.GetMatch "thumbnail.*" -}}
     {{- end -}}
-    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (eq $page.Section "episodes") (eq $page.Section "blog")) -}}
+    {{- if and (not $pageResource) (or (hasPrefix $pathParam "/images/") (in $legacyBasenames $resourceBase)) -}}
       {{- $pageResource = $page.Resources.GetMatch "thumbnails.*" -}}
     {{- end -}}
     {{- if $pageResource -}}
@@ -30,7 +32,7 @@
     {{- end -}}
   {{- end -}}
 
-  {{- if and (not $publishPath) $page (not (hasPrefix $pathParam "/")) -}}
+  {{- if and (not $publishPath) $page (not (hasPrefix $pathParam "/")) (in $legacyBasenames $resourceBase) -}}
     {{- $filename := path.Base $resourcePath -}}
     {{- if eq $page.Section "episodes" -}}
       {{- $publishPath = printf "images/thumbnails/%s" $filename -}}

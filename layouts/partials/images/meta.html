@@ -1,0 +1,40 @@
+{{- $page := .page -}}
+{{- $fallbackKeys := .fallbackKeys | default (slice "thumbnail" "image") -}}
+
+{{- with $page.Params.social_image -}}
+  {{- $socialPath := . -}}
+  {{- if hasPrefix $socialPath "/" -}}
+    {{- partial "images/resolve.html" (dict "path" $socialPath "page" $page) -}}
+  {{- else -}}
+    {{- $resource := $page.Resources.GetMatch $socialPath -}}
+    {{- if not $resource -}}
+      {{- $resource = $page.Resources.GetMatch (path.Base $socialPath) -}}
+    {{- end -}}
+    {{- if $resource -}}
+      {{- dict
+        "found" true
+        "paramKey" "social_image"
+        "path" $socialPath
+        "url" $resource.RelPermalink
+        "socialURL" ($resource.RelPermalink | absURL)
+      | jsonify -}}
+    {{- else -}}
+      {{- partial "images/page.html" (dict "page" $page "keys" $fallbackKeys) -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $scratch := newScratch -}}
+  {{- range $key := $fallbackKeys -}}
+    {{- if not ($scratch.Get "image") -}}
+      {{- $resolved := partial "images/canonical.html" (dict "page" $page "key" $key) | transform.Unmarshal (dict "format" "json") -}}
+      {{- if $resolved.found -}}
+        {{- $scratch.Set "image" $resolved -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with ($scratch.Get "image") -}}
+    {{- . | jsonify -}}
+  {{- else -}}
+    {{- dict "found" false | jsonify -}}
+  {{- end -}}
+{{- end -}}

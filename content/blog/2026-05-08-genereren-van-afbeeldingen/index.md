@@ -3,7 +3,7 @@ title: "Avatars en Thumbnails genereren met AI"
 date: 2026-01-23
 authors:
     - id: "maarten_casteels"
-image: "logo.png"
+image: "/images/blog/logo.png"
 draft: false
 ---
 

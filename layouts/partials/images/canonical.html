@@ -1,0 +1,31 @@
+{{- $page := .page -}}
+{{- $key := .key -}}
+{{- with index $page.Params $key -}}
+  {{- $pathParam := . -}}
+  {{- if and $page (hasPrefix $pathParam "/") -}}
+    {{- $legacyPath := strings.TrimPrefix "/" $pathParam -}}
+    {{- $pageResource := $page.Resources.GetMatch (path.Base $legacyPath) -}}
+    {{- if not $pageResource -}}
+      {{- $pageResource = $page.Resources.GetMatch "thumbnail.*" -}}
+    {{- end -}}
+    {{- if not $pageResource -}}
+      {{- $pageResource = $page.Resources.GetMatch "thumbnails.*" -}}
+    {{- end -}}
+    {{- if $pageResource -}}
+      {{- $published := resources.Copy $legacyPath $pageResource -}}
+      {{- dict
+        "found" true
+        "paramKey" $key
+        "path" $pathParam
+        "url" $published.RelPermalink
+        "socialURL" ($published.RelPermalink | absURL)
+      | jsonify -}}
+    {{- else -}}
+      {{- partial "images/resolve.html" (dict "path" $pathParam "page" $page) -}}
+    {{- end -}}
+  {{- else -}}
+    {{- partial "images/resolve.html" (dict "path" $pathParam "page" $page) -}}
+  {{- end -}}
+{{- else -}}
+  {{- dict "found" false | jsonify -}}
+{{- end -}}

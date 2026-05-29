@@ -26,6 +26,9 @@ jobs:
       - name: Build site with Hugo
         run: hugo --minify
 
+      - name: Export legacy image paths
+        run: sh scripts/export-legacy-images.sh
+
       - name: Verify image output
         run: sh scripts/verify-image-output.sh
 
