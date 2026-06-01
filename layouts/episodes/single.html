@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $data := partial "data/store.html" . }}
+{{ $peopleData := $data.people }}
 <article class="episode-single">
     <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
     <h1 class="episode-title">{{ .Title }}</h1>
@@ -14,7 +16,7 @@
 
     {{ with .Params.guests }}
     {{ range . }}
-    {{ $guestKey := .id }} {{ $guestData := index hugo.Data.people $guestKey }}
+    {{ $guestKey := .id }} {{ $guestData := index $peopleData $guestKey }}
     {{ if $guestData }}
     <div class="guest-info">
         <div class="guest-info-desktop">

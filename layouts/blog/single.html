@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $data := partial "data/store.html" . }}
+{{ $peopleData := $data.people }}
 <article class="episode-single">
     <h1 class="episode-title">{{ .Title }}</h1>
     <time datetime="{{ .Date.Format "2006-01-02" }}" class="episode-date">
@@ -29,7 +31,7 @@
     {{- $authorData := dict -}}
     {{- if .id -}}
         {{- /* New way: author ID that references data file */ -}}
-        {{- $authorData = index hugo.Data.people .id -}}
+        {{- $authorData = index $peopleData .id -}}
     {{- else if .name -}}
         {{- /* Legacy: just a name string */ -}}
         {{- $authorData = . -}}

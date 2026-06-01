@@ -1,5 +1,6 @@
-{{ $podcast := hugo.Data.podcast }}
-{{ $peopleData := hugo.Data.people }}
+{{ $data := partial "data/store.html" . }}
+{{ $podcast := $data.podcast }}
+{{ $peopleData := $data.people }}
 {{ $baseURL := .Site.BaseURL }}
 {{ $siteRoot := strings.TrimSuffix "/" $baseURL }}
 {{ $seriesBase := or $podcast.url $baseURL }}
