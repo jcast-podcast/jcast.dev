@@ -10,9 +10,25 @@
 {{- $style := .style -}}
 {{- $width := .width | default $image.width -}}
 {{- $height := .height | default $image.height -}}
+{{- $mobileImage := .mobileImage -}}
 
 {{- if $image.processable -}}
 <picture>
+    {{- with $mobileImage -}}
+      {{- if .processable -}}
+    <source
+            media="(max-width: 768px)"
+            type="image/webp"
+            srcset="{{ .webpSet }}"
+            sizes="100vw"
+    >
+      {{- else -}}
+    <source
+            media="(max-width: 768px)"
+            srcset="{{ .url }}"
+    >
+      {{- end -}}
+    {{- end }}
     <source
             type="image/webp"
             srcset="{{ $image.webpSet }}"

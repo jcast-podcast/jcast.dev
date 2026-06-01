@@ -1,11 +1,16 @@
 {{- $page := .page -}}
 {{- $class := or .class "episode-thumb" -}}
 {{- $image := partial "images/page.html" (dict "page" $page "keys" (slice "thumbnail")) | transform.Unmarshal (dict "format" "json") -}}
+{{- $mobileImage := dict -}}
+{{- if .mobileSocial -}}
+  {{- $mobileImage = partial "images/meta.html" (dict "page" $page "fallbackKeys" (slice "thumbnail")) | transform.Unmarshal (dict "format" "json") -}}
+{{- end -}}
 
 {{- if $image.found -}}
   {{- $alt := or $page.Params.thumbnail_alt (printf "Thumbnail van aflevering %s" $page.Title) -}}
   {{- partial "images/render.html" (dict
     "image" $image
+    "mobileImage" $mobileImage
     "class" $class
     "alt" $alt
   ) -}}
