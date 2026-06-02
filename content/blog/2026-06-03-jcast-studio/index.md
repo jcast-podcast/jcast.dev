@@ -60,9 +60,7 @@ Uiteraard kan alles ook afzonderlijk via scripts, maar meestal wil ik gewoon zo 
 
 ## Verrassend veel iteraties voor iets "simpels"
 
-De thumbnails leken in het begin het gemakkelijkste onderdeel.
-
-Dat waren ze absoluut niet.
+De thumbnails leken in het begin het gemakkelijkste onderdeel. Dat waren ze absoluut niet.
 
 We hebben eigenlijk nooit zelf thumbnails ontworpen. AI genereert ze volledig zelf. Het enige vaste vertrekpunt is ons JCast-logo. Daarbovenop geven we telkens een korte prompt mee om richting te geven aan de stijl of sfeer.
 
