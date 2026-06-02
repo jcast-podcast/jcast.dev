@@ -4,23 +4,17 @@ date: 2026-06-03
 authors:
   - id: "maarten_casteels"
 image: "jcast-studio-logo.webp"
-summary: "Bij JCast nemen we niet alleen een podcast op. We bouwen ook voortdurend verder aan alles errond. In deze blogpost delen we hoe we onze volledige podcast-pipeline hebben geautomatiseerd met Bash-scripts, van transcripties tot social posts."
+summary: "Wat begon als een paar losse scripts groeide uit tot JCast Studio: een tool die een ruwe opname omzet in een volledige podcastaflevering, inclusief artwork, avatars en social posts."
 draft: false
 ---
 
-Met JCast nemen we niet alleen een podcast op. We bouwen ook voortdurend verder aan alles errond.
+Wat begon als een paar losse scripts voor transcripties en show notes, groeide uit tot JCast Studio: een verzameling tools die een ruwe opname omzet in een gepubliceerde aflevering, inclusief artwork, avatars en social posts.
 
-We zijn met drie developers: Oumaima, Viktor en ikzelf. En zoals dat vaak gaat bij developers begon het met: “Dat kunnen we toch automatiseren?”
+We zijn met drie developers: Oumaima, Viktor en ikzelf. En zoals dat vaak gaat bij developers begonnen we ons af te vragen hoeveel van het werk rond een podcast we konden automatiseren.
 
-Want eerlijk? Een aflevering opnemen is het leuke deel. Alles daarna niet altijd.
+In deze blogpost neem ik je mee door de onderdelen waar we uiteindelijk het meeste tijd aan gespendeerd hebben. Niet altijd de onderdelen die we vooraf verwacht hadden.
 
-Transcripties genereren. Show notes schrijven. Uploaden naar Transistor.fm. Social posts voorbereiden. Thumbnails genereren. Avatars maken.
-
-Voor je het weet ben je meer bezig met randzaken dan met de podcast zelf.
-
-Dus besloten we om onze eigen pipeline te bouwen.
-
-## De eerste versie was… Java
+## Van Java-tooling naar Bash-pipeline
 
 Ja, echt.
 
@@ -30,7 +24,7 @@ Dus hebben we alles weggegooid.
 
 Vandaag draait bijna alles in Bash. Gewoon scripts, `curl`, `jq`, ImageMagick en APIs. Geen frameworks. Geen build tools. Geen overkill.
 
-En eerlijk? Dat werkt verrassend goed.
+Dat werkt verrassend goed.
 
 ## Eén opname, volledige pipeline
 
@@ -50,7 +44,9 @@ episode.wav
   -> announce.sh      ->  posts voor Bluesky en LinkedIn
 ```
 
-En eerlijk: ik ben rampzalig in command-line parameters onthouden.
+Het grootste voordeel is eigenlijk niet de tijdswinst. Het is dat we minder moeten nadenken. We nemen een aflevering op, starten de workflow en volgen de stappen. Minder context switching, minder dingen vergeten en vooral meer consistentie tussen afleveringen.
+
+Ik ben trouwens rampzalig in command-line parameters onthouden.
 
 Daarom gebruik ik meestal gewoon:
 
@@ -58,11 +54,11 @@ Daarom gebruik ik meestal gewoon:
 make studio
 ```
 
-Dat opent een interactief menu waarmee ik eigenlijk gewoon de volledige workflow volg van A tot Z. Transcriptie, show notes, thumbnails, uploaden, socials… alles zit daarin verwerkt.
+Dat opent een interactief menu waarmee ik de volledige workflow volg van A tot Z. Transcriptie, show notes, thumbnails, uploaden, socials… alles zit daarin verwerkt.
 
 Uiteraard kan alles ook afzonderlijk via scripts, maar meestal wil ik gewoon zo snel mogelijk van ruwe opname naar gepubliceerde aflevering gaan zonder eerst opnieuw syntax te moeten opzoeken.
 
-## Verrassend veel iteraties voor iets “simpels”
+## Verrassend veel iteraties voor iets "simpels"
 
 De thumbnails leken in het begin het gemakkelijkste onderdeel.
 
@@ -82,7 +78,7 @@ Lange titels. Gastnamen. Elementen die plots overlappen wanneer een titel nét i
 
 Dus ja, uiteindelijk zaten we in Bash dynamisch hoogtes te berekenen via ImageMagick om alles automatisch correct te positioneren.
 
-En als dat allemaal klaar is, genereert hetzelfde script ook automatisch een 1200×630 Open Graph-afbeelding voor sociale media. Zelfde achtergrond, ander formaat, andere layout — zodat de preview er op Bluesky of LinkedIn ook netjes uitziet zonder dat we daar apart iets voor moeten doen.
+En als dat allemaal klaar is, genereert hetzelfde script ook automatisch een 1200×630 Open Graph-afbeelding voor sociale media. Zelfde achtergrond, ander formaat, andere layout, zodat de preview er op Bluesky of LinkedIn ook netjes uitziet zonder dat we daar apart iets voor moeten doen.
 
 ## Avatar generatie: AI blijft koppig
 
@@ -102,7 +98,7 @@ We hebben letterlijk expliciete instructies toegevoegd zoals:
 
 En toch… af en toe beslist het model nog steeds dat iemand eruit moet zien alsof ze in een reclame voor tandpasta spelen.
 
-Sommige dingen blijven blijkbaar moeilijk voor generative AI.
+Sommige dingen blijven blijkbaar moeilijk voor generatieve AI.
 
 We merkten ook snel dat kledingkleuren vaak veel te dicht bij haarkleuren lagen. Mensen met warme bruine haren kregen standaard een bruine of oranje trui waardoor alles visueel samenklonterde.
 
@@ -112,7 +108,7 @@ We samplen nu automatisch de haarkleur uit de referentiefoto en filteren vervolg
 
 Dat soort dingen begint als “even snel een scriptje schrijven” en eindigt plots in echte logica.
 
-## Op een bepaald moment begonnen we het serieus te nemen
+## Van scripts naar software
 
 Wat gestart was als wat losse scripts begon meer en meer op echte software te lijken.
 
@@ -135,10 +131,13 @@ Daardoor kunnen we volledige scripts testen zonder één echte API-call te doen.
 
 JCast Studio is nog altijd geen product. Het is gewoon een interne toolkit die blijft groeien telkens wanneer we ergens tegenaan lopen.
 
-Nieuwe irritatie? Meestal een nieuw script.
-Voor je het weet zit je opnieuw ImageMagick-commando’s te debuggen om middernacht.
+Nieuwe irritatie? Grote kans dat er een nieuw script bijkomt.
 
-En eerlijk: soms is het bouwen van de tooling bijna even leuk als de podcast zelf.
+We begonnen met het automatiseren van vervelende taken rond de podcast.
+
+Ondertussen merken we dat JCast Studio meer geworden is dan dat. Nieuwe ideeën voor de podcast leiden vaak tot nieuwe tooling, en nieuwe tooling beïnvloedt op zijn beurt hoe we afleveringen maken.
+
+Wat begon als een paar losse scripts is ondertussen een vast onderdeel van JCast geworden.
 
 ---
 
