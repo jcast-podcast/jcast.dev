@@ -3,7 +3,7 @@ title: "JCast Studio: hoe wij onze podcast-pipeline automatiseerden"
 date: 2026-06-03
 authors:
   - id: "maarten_casteels"
-image: "jcast-studio-logo.webp"
+image: "thumbnail.webp"
 summary: "Wat begon als een paar losse scripts groeide uit tot JCast Studio: een tool die een ruwe opname omzet in een volledige podcastaflevering, inclusief artwork, avatars en social posts."
 draft: false
 ---
