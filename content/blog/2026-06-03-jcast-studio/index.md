@@ -4,6 +4,7 @@ date: 2026-06-03
 authors:
   - id: "maarten_casteels"
 image: "thumbnail.webp"
+social_image: "social.png"
 summary: "Wat begon als een paar losse scripts groeide uit tot JCast Studio: een tool die een ruwe opname omzet in een volledige podcastaflevering, inclusief artwork, avatars en social posts."
 draft: false
 ---
