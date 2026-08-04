@@ -233,10 +233,6 @@ header .container {
     text-transform: uppercase;
 }
 
-.episode-tag--special {
-    border: 2px solid var(--accent);
-}
-
 @media (max-width: 600px) {
     body:has(.home-page) main {
         padding: 0;
@@ -1002,10 +998,6 @@ header .container {
     white-space: nowrap;
 }
 
-.season-divider--special .season-divider-label {
-    border: 2px solid var(--accent);
-}
-
 .season-divider-line {
     flex: 1;
     height: 1px;
@@ -1120,10 +1112,6 @@ header .container {
     white-space: nowrap;
     box-shadow: 0 1px 0 rgba(0,0,0,0.05);
     pointer-events: none;
-}
-
-.episode-number--special {
-    border: 2px solid var(--accent);
 }
 
 .platform-icons {
