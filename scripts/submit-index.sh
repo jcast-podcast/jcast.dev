@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-KEY="5XCcpMrZOiXUuEhYxTt27cLe4xnGbU4h"
+KEY="e84f00293ef64def8fe98ebc539f3ae7"
 HOST="jcast.dev"
 SITEMAP_URL="https://${HOST}/sitemap.xml"
 
