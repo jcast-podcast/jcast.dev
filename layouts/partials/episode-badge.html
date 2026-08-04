@@ -1,0 +1,23 @@
+{{- /*
+Renders the small label used to identify an episode: either the
+season/episode combo ("S02E05") or, for special episodes that don't
+belong to a season, a "Special" label.
+
+Params:
+  page   - the episode page (required)
+  format - "full" (default, e.g. "S02E05" / "Special") or
+           "short" (e.g. "Aflevering 5" / "Special"), used on list cards.
+*/ -}}
+{{- $page := .page -}}
+{{- $format := .format | default "full" -}}
+{{- $season := $page.Params.season -}}
+{{- $episode := $page.Params.episode -}}
+{{- if and $season $episode -}}
+  {{- if eq $format "short" -}}
+    {{- printf "Aflevering %v" $episode -}}
+  {{- else -}}
+    {{- printf "S%02dE%02d" (int $season) (int $episode) -}}
+  {{- end -}}
+{{- else if $page.Params.special -}}
+  {{- $page.Params.special_label | default "Special" -}}
+{{- end -}}
