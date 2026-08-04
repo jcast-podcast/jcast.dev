@@ -6,20 +6,30 @@
     {{ $paginator := .Paginate (.Pages.ByDate.Reverse) 3 }}
 
     <div class="episode-list">
-        {{ $currentSeason := 0 }}
+        {{ $currentSeasonKey := "" }}
         {{ range $paginator.Pages }}
+        {{ $isSpecial := .Params.special }}
+        {{ $seasonKey := "" }}
+        {{ $seasonLabel := "" }}
+        {{ if $isSpecial }}
+        {{ $seasonKey = "special" }}
+        {{ $seasonLabel = "Specials" }}
+        {{ else }}
         {{ $season := .Params.season | default 1 }}
-        {{ if ne $season $currentSeason }}
-        <div class="season-divider">
-            <span class="season-divider-label">Seizoen {{ $season }}</span>
+        {{ $seasonKey = printf "season-%v" $season }}
+        {{ $seasonLabel = printf "Seizoen %v" $season }}
+        {{ end }}
+        {{ if ne $seasonKey $currentSeasonKey }}
+        <div class="season-divider{{ if $isSpecial }} season-divider--special{{ end }}">
+            <span class="season-divider-label">{{ $seasonLabel }}</span>
             <span class="season-divider-line"></span>
         </div>
-        {{ $currentSeason = $season }}
+        {{ $currentSeasonKey = $seasonKey }}
         {{ end }}
         <article class="episode-card">
             <a class="episode-card-overlay" href="{{ .RelPermalink }}" aria-hidden="true" tabindex="-1"></a>
             <div class="episode-card-header">
-                <div class="episode-number">Aflevering {{ .Params.episode }}</div>
+                <div class="episode-number{{ if $isSpecial }} episode-number--special{{ end }}">{{ partial "episode-badge.html" (dict "page" . "format" "short") }}</div>
                 <div class="spacer"></div>
             </div>
             <h3 class="episode-title-list">

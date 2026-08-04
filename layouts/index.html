@@ -31,7 +31,7 @@
                 <a href="{{ .Permalink }}">
                     {{ partial "episode-thumb.html" (dict "page" . "class" "home-episode-thumbnail" "mobileSocial" true) }}
                     <h3 class="home-episode-title">{{ .Title }}</h3>
-                    <p class="episode-tag">S{{ printf "%02d" .Params.season }}E{{ printf "%02d" .Params.episode }}</p>
+                    <p class="episode-tag{{ if .Params.special }} episode-tag--special{{ end }}">{{ partial "episode-badge.html" (dict "page" .) }}</p>
                 </a>
             </li>
             {{ end }}
