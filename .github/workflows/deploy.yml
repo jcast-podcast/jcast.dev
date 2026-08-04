@@ -41,3 +41,9 @@ jobs:
 
       - name: Sync to S3
         run: aws s3 sync public/ s3://${{ secrets.S3_BUCKET_NAME }}/ --delete
+
+      - name: Wait for deploy to propagate
+        run: sleep 30
+
+      - name: Submit URLs to IndexNow
+        run: bash scripts/submit-indexnow.sh
