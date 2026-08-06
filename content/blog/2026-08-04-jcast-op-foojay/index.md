@@ -5,7 +5,7 @@ authors:
     - id: "oumaima_zerouali"
 image: "thumbnail.webp"
 social_image: "social.png"
-summary:  "Over een toevallige babbel op een BeJug-avond, een uitnodiging voor onze seizoensopener, en hoe ik plots zelf een stuk mocht schrijven voor foojay.io."
+summary:  "Over een toevallige babbel op een BeJUG-avond, een uitnodiging voor onze seizoensopener, en hoe ik plots zelf een stuk mocht schrijven voor foojay.io."
 draft: false
 ---
 
@@ -15,12 +15,12 @@ En het leuke? Het ging niet over een technisch onderwerp, maar over JCast.
 Het artikel staat er ondertussen al een tijdje op, maar ik wilde toch graag nog vertellen hoe dat precies gelopen is. 
 Niet het artikel zelf opnieuw, dat kan je gewoon [hier lezen](https://foojay.io/today/introducing-jcast-conversations-about-java-and-developer-life-in-dutch/), maar het verhaal erachter.
 
-## Een BeJug-avond, zonder plan
+## Een BeJUG-avond, zonder plan
 
-Het begon eigenlijk heel gewoon: op een BeJug-avond raakte ik aan de praat met Frank Delporte. 
+Het begon eigenlijk heel gewoon: op een BeJUG-avond raakte ik aan de praat met Frank Delporte. 
 Java Champion, technical writer bij Azul en, zo bleek, ook iemand met zijn eigen podcast.
 
-Daarna kwamen we elkaar nog een paar keer tegen op BeJug-avonden. 
+Daarna kwamen we elkaar nog een paar keer tegen op BeJUG-avonden. 
 Op een bepaald moment voelde het gewoon logisch: Frank had een podcast, wij hadden een podcast... waarom zouden we daar niets mee doen?
 
 Ik dacht meteen: dit is perfect als opener voor seizoen 2.
@@ -45,7 +45,7 @@ Voor ons voelde het gewoon bijzonder dat een kleine Nederlandstalige podcast eve
 
 ---
 
-**Nieuwsgierig naar de aflevering met Frank?** Luister naar [S02E01](https://jcast.dev/episodes/) op jcast.dev.
+**Nieuwsgierig naar de aflevering met Frank?** Luister naar [S02E01]([https://jcast.dev/episodes/](https://jcast.dev/episodes/s02e01-van-commodore-64-tot-java-champion-code-begrijpelijk-maken/)) op jcast.dev.
 
 **Feedback of vragen?** Bereik ons via:
 
