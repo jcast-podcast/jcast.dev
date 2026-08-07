@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ $isArticlePage := and .IsPage (or (eq .Section "episodes") (eq .Section "blog")) }}
+    {{ $data := partial "data/store.html" . }}
+    {{ $siteFeed := .Site.Home.OutputFormats.Get "RSS" }}
+    {{ $podcastFeed := "" }}
+    {{ with $data.podcast.webFeed }}
+        {{ $podcastFeed = . | absURL }}
+    {{ end }}
 
     <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
@@ -13,7 +20,7 @@
     <link rel="canonical" href="{{ .Permalink }}">
 
     <!-- OpenGraph Meta Tags -->
-    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:type" content="{{ if $isArticlePage }}article{{ else }}website{{ end }}">
     <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}">
     <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
     <meta property="og:url" content="{{ .Permalink }}">
@@ -24,7 +31,7 @@
     {{ else }}
     <meta property="og:image" content="{{ .Site.Params.ogImage | absURL }}">
     {{ end }}
-    {{ if not .IsHome }}
+    {{ if $isArticlePage }}
     <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
     <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
     <meta property="article:author" content="{{ .Site.Params.author }}">
@@ -42,6 +49,12 @@
     <meta name="twitter:image" content="{{ $pageImage.socialURL }}">
     {{ else }}
     <meta name="twitter:image" content="{{ .Site.Params.ogImage | absURL }}">
+    {{ end }}
+    {{ with $siteFeed }}
+    <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }} RSS" href="{{ .Permalink }}">
+    {{ end }}
+    {{ with $podcastFeed }}
+    <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }} podcast feed" href="{{ . }}">
     {{ end }}
 
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260504">

@@ -3,7 +3,7 @@ description: "De podcast over IT, dev life, soft skills en gezonde meningsversch
 url: "https://jcast.dev"
 inLanguage: "nl-BE"
 image: "/images/logo-without-bg.png"
-webFeed: "https://jcast.dev/index.xml"
+webFeed: "https://feeds.transistor.fm/jcast"
 sameAs:
   - "https://open.spotify.com/show/3wfdG6IjCoJjfEx33MsM2W"
 seasons:
