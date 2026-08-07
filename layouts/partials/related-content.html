@@ -1,5 +1,5 @@
 {{ $page := . }}
-{{ $topics := $page.Params.topics | default (slice) }}
+{{ $topics := first 3 ($page.Params.topics | default (slice)) }}
 {{ $guestIds := slice }}
 
 {{ with $page.Params.guests }}
@@ -45,8 +45,9 @@
 {{ if gt (len $topics) 0 }}
     {{ range $candidate := $page.Site.RegularPages.ByDate.Reverse }}
         {{ if ne $candidate.RelPermalink $page.RelPermalink }}
-            {{ $sharedTopics := intersect $topics ($candidate.Params.topics | default (slice)) }}
-            {{ if gt (len $sharedTopics) 0 }}
+            {{ $candidateTopics := first 3 ($candidate.Params.topics | default (slice)) }}
+            {{ $sharedTopics := intersect $topics $candidateTopics }}
+            {{ if or (gt (len $sharedTopics) 1) (and (eq $page.Section "blog") (eq $candidate.Section "episodes") (gt (len $sharedTopics) 0)) }}
                 {{ if and (eq $candidate.Section "episodes") (not (isset $seenEpisodes $candidate.RelPermalink)) }}
                     {{ $relatedEpisodes = $relatedEpisodes | append $candidate }}
                     {{ $seenEpisodes = merge $seenEpisodes (dict $candidate.RelPermalink true) }}
@@ -76,6 +77,13 @@
                 <p class="related-kicker">{{ partial "episode-badge.html" (dict "page" . "format" "short") }}</p>
                 <h4 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
                 <p class="related-summary">{{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}</p>
+                {{ with first 3 (.Params.topics | default (slice)) }}
+                <div class="topic-pills">
+                    {{ range . }}
+                    <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
             </article>
             {{ end }}
         </div>
@@ -97,6 +105,13 @@
                         {{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}
                     {{ end }}
                 </p>
+                {{ with first 3 (.Params.topics | default (slice)) }}
+                <div class="topic-pills">
+                    {{ range . }}
+                    <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
             </article>
             {{ end }}
         </div>

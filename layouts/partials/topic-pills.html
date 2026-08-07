@@ -1,4 +1,4 @@
-{{ $topics := .Params.topics | default (slice) }}
+{{ $topics := first 3 (.Params.topics | default (slice)) }}
 {{ if gt (len $topics) 0 }}
 <section class="content-topics" aria-label="Onderwerpen">
     <h2 class="related-heading">Onderwerpen</h2>

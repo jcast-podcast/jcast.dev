@@ -25,7 +25,7 @@
                     {{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}
                 {{ end }}
             </p>
-            {{ with first 3 (.Params.topics | default (slice)) }}
+            {{ with .Params.topics }}
             <div class="topic-pills">
                 {{ range . }}
                 <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
