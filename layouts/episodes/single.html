@@ -8,6 +8,8 @@
         {{ partial "nl-date.html" .Date }}
     </time>
 
+    {{ partial "topic-pills.html" . }}
+
     {{ with .Params.thumbnail }}
     <div class="episode-thumbnail-container">
         {{ partial "episode-thumb.html" (dict "page" $ "class" "episode-thumbnail") }}
@@ -142,6 +144,8 @@
                 loading="lazy"></iframe>
     </div>
     {{ end }}
+
+    {{ partial "related-content.html" . }}
 
     <div class="post-content">
         <div id="giscus_thread"></div>

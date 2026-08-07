@@ -40,3 +40,4 @@ filename = "sitemap.xml"
     [markup.goldmark.renderer]
       unsafe = true
 [taxonomies]
+topic = "topics"

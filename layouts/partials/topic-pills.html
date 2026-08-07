@@ -1,0 +1,11 @@
+{{ $topics := .Params.topics | default (slice) }}
+{{ if gt (len $topics) 0 }}
+<section class="content-topics" aria-label="Onderwerpen">
+    <h2 class="related-heading">Onderwerpen</h2>
+    <div class="topic-pills">
+        {{ range $topics }}
+        <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

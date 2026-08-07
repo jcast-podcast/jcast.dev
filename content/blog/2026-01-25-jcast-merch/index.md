@@ -5,6 +5,10 @@ authors:
     - id: "oumaima_zerouali"
 summary: "Hoe ik, zonder enige designervaring, JCast-merch ontwierp en liet drukken. Een verhaal over creativiteit, experimenteren en het onverwachte plezier van iets tastbaars maken."
 image: "/images/blog/logo.png"
+topics:
+  - "Design"
+  - "Community"
+  - "Podcasting"
 draft: false
 ---
 

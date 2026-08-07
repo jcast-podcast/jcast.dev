@@ -4,6 +4,10 @@ episode: 4
 title: "Het werkt... maar is het goed?"
 date: 2026-08-03
 description: "In deze aflevering duiken Oumaima, Viktor en Maarten volop in een onderwerp waar elke developer vroeg of laat mee worstelt: clean code. Ze babbelen over technical debt, de spanning tussen snelheid en kwaliteit, legacy codebases vol handtekeningen van collega's die allang vertrokken zijn, en de vraag of clean code eigenlijk ooit botst met een harde deadline. Eerlijk, herkenbaar en met genoeg frustratie om zelf ook even in je eigen codebase te gaan kijken."
+topics:
+  - "Clean Code"
+  - "Software Engineering"
+  - "Developer Life"
 thumbnail: "/images/thumbnails/s02e04-het-werkt-maar-is-het-goed.webp"
 social_image: "social.png"
 player: "https://share.transistor.fm/e/843970b0"

@@ -4,6 +4,10 @@ episode: 3
 title: "Wie is er eigenlijk in charge: jij of je agent?"
 date: 2026-07-06
 description: "In deze aflevering schuift software architect Jeroen Bastijns aan voor een tweede keer en babbelen we over hoe AI stilletjes maar zeker in elke ontwikkelworkflow is geslopen. We hebben het over agent-harnesses, token-gebruik, het belang van goede skills en sensors, en de vraag wie er eigenlijk nog de baas is als je agents voor je aan het werk zet. Een eerlijk en herkenbaar gesprek voor iedereen die al eens zijn AI-setup heeft overengineered of gewoon benieuwd is waar dit allemaal naartoe gaat."
+topics:
+  - "AI"
+  - "Tooling"
+  - "Architectuur"
 thumbnail: "/images/thumbnails/s02e03-wie-is-er-eigenlijk-in-charge-jij-of-je-agent.webp"
 social_image: "social.png"
 player: "https://share.transistor.fm/e/77b9598c"

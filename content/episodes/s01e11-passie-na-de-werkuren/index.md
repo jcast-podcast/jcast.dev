@@ -4,6 +4,10 @@ episode: 11
 title: "Passie na de werkuren: De Hobby’s van Sigriet"
 date: 2026-03-02
 description: "In deze aflevering van JCast praten we met Sigriet over haar vele hobby’s en de passie waarmee ze erover vertelt. Van reizen en Pokémon Go tot naaien, haken en creatieve projecten die nooit lijken te stoppen. Een warme en losse babbel over energie krijgen van wat je graag doet, nieuwsgierig blijven en gewoon plezier maken buiten het werk."
+topics:
+  - "Developer Life"
+  - "Soft Skills"
+  - "Community"
 thumbnail: "/images/thumbnails/s01e11.webp"
 social_image: "social.png"
 player: "https://share.transistor.fm/e/a8cf82bc"

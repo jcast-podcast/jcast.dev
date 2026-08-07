@@ -424,4 +424,38 @@
 {{ end }}
 {{ $graph = $graph | append $webpage }}
 
+{{ if not .IsHome }}
+  {{ $segments := split (strings.Trim .RelPermalink "/") "/" }}
+  {{ $breadcrumbItems := slice (dict "@type" "ListItem" "position" 1 "name" .Site.Title "item" $baseURL) }}
+  {{ $position := 2 }}
+
+  {{ if eq (len $segments) 1 }}
+    {{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) }}
+  {{ else if gt (len $segments) 1 }}
+    {{ $firstSegment := index $segments 0 }}
+    {{ $sectionName := "" }}
+    {{ if eq $firstSegment "episodes" }}
+      {{ $sectionName = "Afleveringen" }}
+    {{ else if eq $firstSegment "blog" }}
+      {{ $sectionName = "Blog" }}
+    {{ else if eq $firstSegment "topics" }}
+      {{ $sectionName = "Topics" }}
+    {{ else }}
+      {{ $sectionName = humanize $firstSegment }}
+    {{ end }}
+
+    {{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" $position "name" $sectionName "item" (printf "%s/%s/" $siteRoot $firstSegment)) }}
+    {{ $position = add $position 1 }}
+    {{ $breadcrumbItems = $breadcrumbItems | append (dict "@type" "ListItem" "position" $position "name" .Title "item" .Permalink) }}
+  {{ end }}
+
+  {{ if gt (len $breadcrumbItems) 1 }}
+    {{ $graph = $graph | append (dict
+      "@type" "BreadcrumbList"
+      "@id" (printf "%s#breadcrumb" .Permalink)
+      "itemListElement" $breadcrumbItems
+    ) }}
+  {{ end }}
+{{ end }}
+
 <script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

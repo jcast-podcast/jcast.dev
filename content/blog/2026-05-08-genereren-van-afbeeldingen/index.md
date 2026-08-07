@@ -4,6 +4,10 @@ date: 2026-01-23
 authors:
     - id: "maarten_casteels"
 image: "/images/blog/logo.png"
+topics:
+  - "AI"
+  - "Design"
+  - "Tooling"
 draft: false
 ---
 

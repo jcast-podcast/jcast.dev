@@ -1,0 +1,106 @@
+{{ $page := . }}
+{{ $topics := $page.Params.topics | default (slice) }}
+{{ $guestIds := slice }}
+
+{{ with $page.Params.guests }}
+    {{ range . }}
+        {{ with .id }}
+            {{ $guestIds = $guestIds | append . }}
+        {{ end }}
+    {{ end }}
+{{ else }}
+    {{ with $page.Params.guest }}
+        {{ $guestIds = $guestIds | append . }}
+    {{ end }}
+{{ end }}
+
+{{ $relatedEpisodes := slice }}
+{{ $relatedPosts := slice }}
+{{ $seenEpisodes := dict }}
+{{ $seenPosts := dict }}
+
+{{ if gt (len $guestIds) 0 }}
+    {{ range $candidate := $page.Site.RegularPages.ByDate.Reverse }}
+        {{ if and (ne $candidate.RelPermalink $page.RelPermalink) (eq $candidate.Section "episodes") }}
+            {{ $candidateGuestIds := slice }}
+            {{ with $candidate.Params.guests }}
+                {{ range . }}
+                    {{ with .id }}
+                        {{ $candidateGuestIds = $candidateGuestIds | append . }}
+                    {{ end }}
+                {{ end }}
+            {{ else }}
+                {{ with $candidate.Params.guest }}
+                    {{ $candidateGuestIds = $candidateGuestIds | append . }}
+                {{ end }}
+            {{ end }}
+            {{ if and (gt (len (intersect $guestIds $candidateGuestIds)) 0) (not (isset $seenEpisodes $candidate.RelPermalink)) }}
+                {{ $relatedEpisodes = $relatedEpisodes | append $candidate }}
+                {{ $seenEpisodes = merge $seenEpisodes (dict $candidate.RelPermalink true) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if gt (len $topics) 0 }}
+    {{ range $candidate := $page.Site.RegularPages.ByDate.Reverse }}
+        {{ if ne $candidate.RelPermalink $page.RelPermalink }}
+            {{ $sharedTopics := intersect $topics ($candidate.Params.topics | default (slice)) }}
+            {{ if gt (len $sharedTopics) 0 }}
+                {{ if and (eq $candidate.Section "episodes") (not (isset $seenEpisodes $candidate.RelPermalink)) }}
+                    {{ $relatedEpisodes = $relatedEpisodes | append $candidate }}
+                    {{ $seenEpisodes = merge $seenEpisodes (dict $candidate.RelPermalink true) }}
+                {{ end }}
+                {{ if and (eq $candidate.Section "blog") (not (isset $seenPosts $candidate.RelPermalink)) }}
+                    {{ $relatedPosts = $relatedPosts | append $candidate }}
+                    {{ $seenPosts = merge $seenPosts (dict $candidate.RelPermalink true) }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ $relatedEpisodes = first 3 $relatedEpisodes }}
+{{ $relatedPosts = first 3 $relatedPosts }}
+
+{{ if or (gt (len $relatedEpisodes) 0) (gt (len $relatedPosts) 0) }}
+<section class="related-content" aria-labelledby="related-content-title">
+    <h2 id="related-content-title" class="related-heading">Verder lezen of luisteren</h2>
+
+    {{ if gt (len $relatedEpisodes) 0 }}
+    <div class="related-group">
+        <h3 class="related-subheading">Gerelateerde afleveringen</h3>
+        <div class="related-grid">
+            {{ range $relatedEpisodes }}
+            <article class="related-card">
+                <p class="related-kicker">{{ partial "episode-badge.html" (dict "page" . "format" "short") }}</p>
+                <h4 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                <p class="related-summary">{{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}</p>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{ if gt (len $relatedPosts) 0 }}
+    <div class="related-group">
+        <h3 class="related-subheading">Gerelateerde blogposts</h3>
+        <div class="related-grid">
+            {{ range $relatedPosts }}
+            <article class="related-card">
+                <p class="related-kicker">Blog</p>
+                <h4 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
+                <p class="related-summary">
+                    {{ with .Params.summary }}
+                        {{ . | plainify | htmlUnescape | truncate 180 "..." }}
+                    {{ else }}
+                        {{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}
+                    {{ end }}
+                </p>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+</section>
+{{ end }}

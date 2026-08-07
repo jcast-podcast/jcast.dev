@@ -7,6 +7,8 @@
         {{ partial "nl-date.html" .Date }}
     </time>
 
+    {{ partial "topic-pills.html" . }}
+
     {{ with .Params.image }}
     <div class="episode-thumbnail-container">
         {{ partial "blog-thumb.html" (dict "page" $ "class" "episode-thumbnail") }}
@@ -112,5 +114,7 @@
     <div class="episode-body">
         {{ .Content }}
     </div>
+
+    {{ partial "related-content.html" . }}
 </article>
 {{ end }}

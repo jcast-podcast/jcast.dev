@@ -4,6 +4,10 @@ episode: 4
 title: "Pixel Perfect? Een blik op UX/UI met Risa Somers"
 date: 2025-08-04
 description: "Risa Somers, UI/UX designer, neemt ons mee in de wereld van design. Van wireframes tot samenwerking tussen developers en designers: wat betekent 'goed design' echt?"
+topics:
+  - "Design"
+  - "Software Engineering"
+  - "Developer Life"
 thumbnail: "/images/thumbnails/s01e04.webp"
 social_image: "social.png"
 player: "https://share.transistor.fm/e/5ec11365"

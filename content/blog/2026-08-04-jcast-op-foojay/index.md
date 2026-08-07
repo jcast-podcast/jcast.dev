@@ -6,6 +6,10 @@ authors:
 image: "thumbnail.webp"
 social_image: "social.png"
 summary:  "Over een toevallige babbel op een BeJUG-avond, een uitnodiging voor onze seizoensopener, en hoe ik plots zelf een stuk mocht schrijven voor foojay.io."
+topics:
+  - "Java"
+  - "Community"
+  - "Podcasting"
 draft: false
 ---
 

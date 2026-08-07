@@ -2104,3 +2104,83 @@ html:has(.about-page) main {
         grid-template-columns: 1fr;
     }
 }
+
+.content-topics,
+.related-content {
+    margin: 1.5rem 0 0;
+}
+
+.topic-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.topic-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: #f5f1ea;
+    color: var(--text);
+    border: 1px solid rgba(62, 67, 75, 0.12);
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.topic-pill:hover {
+    text-decoration: none;
+    background: #efe5d9;
+}
+
+.related-heading,
+.related-subheading {
+    margin: 0 0 0.9rem;
+}
+
+.related-group + .related-group {
+    margin-top: 1.5rem;
+}
+
+.related-grid,
+.topic-directory {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.related-card,
+.topic-directory-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(62, 67, 75, 0.08);
+    border-radius: 14px;
+    padding: 1rem;
+}
+
+.related-kicker {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.related-card-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+}
+
+.related-card-title a {
+    color: inherit;
+}
+
+.related-summary,
+.topic-directory-card p {
+    margin: 0;
+    line-height: 1.55;
+}
+
+.taxonomy-page .content-topics {
+    margin-top: 1rem;
+}
