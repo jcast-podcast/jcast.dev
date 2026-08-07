@@ -3,9 +3,46 @@
 {{ $peopleData := $data.people }}
 <section class="about-page">
     <h1 class="list-page-title">{{ .Title }}</h1>
-    <p class="about-intro">
-        Wij zijn Oumaima, Viktor en Maarten. Drie developers met een liefde voor code en een gezonde dosis chaos.
-    </p>
+    <section class="about-explainer" aria-labelledby="about-jcast-title">
+        <article class="about-summary-card">
+            <h3>Waar het om draait</h3>
+            <p>
+                JCast is voor mensen die graag bezig zijn met software, technologie en alles errond.
+                We praten over Java, software engineering, architectuur, AI, tooling, soft skills en developer life,
+                zonder te doen alsof alles altijd netjes in hokjes past.
+            </p>
+            <p>
+                Soms schuift er een gast uit de community aan, soms babbelen we gewoon met ons drieën.
+                Altijd eerlijk, technisch genoeg om interessant te blijven en menselijk genoeg om niet te klinken als documentatie met een microfoon.
+            </p>
+        </article>
+
+        <div class="about-highlights" aria-label="JCast in het kort">
+            <article class="about-highlight about-fact-card">
+                <h3>Voor wie</h3>
+                <p>Voor developers, architects, tech leads en nieuwsgierige bouwers die graag nadenken over hoe software gemaakt wordt.</p>
+            </article>
+            <article class="about-highlight about-fact-card">
+                <h3>Waarover</h3>
+                <p>Van clean code en architectuur tot AI-agents, teamdynamiek, community, carrière en developerleven.</p>
+            </article>
+            <article class="about-highlight about-fact-card">
+                <h3>Luisteren</h3>
+                <p>
+                    Op <a href="/episodes/">jcast.dev</a>,
+                    {{ with .Site.Params.podcast.platforms.spotify }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Spotify</a>,{{ end }}
+                    {{ with .Site.Params.podcast.platforms.apple }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Apple Podcasts</a>{{ end }}
+                    en via de <a href="https://feeds.transistor.fm/jcast" target="_blank" rel="noopener noreferrer">podcastfeed</a>.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section class="crew-section" aria-labelledby="crew-title">
+        <h2 id="crew-title">De JCrew</h2>
+        <p class="crew-intro">
+            De JCrew, dat zijn wij: Oumaima, Viktor en Maarten. Drie developers met een liefde voor code, een gezonde dosis chaos en een microfoon die iets te snel aanstaat.
+        </p>
 
     <div class="crew-list">
         {{- range .Params.hosts }}
@@ -49,6 +86,7 @@
         {{- end }}
         {{- end }}
     </div>
+    </section>
 
     <div class="jcast-contact">
         <h2>Blijf op de hoogte!</h2>

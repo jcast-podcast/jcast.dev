@@ -1260,11 +1260,70 @@ header .container {
     color: var(--text);
 }
 
-.about-intro {
-    text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
-    color: var(--text);
+.about-explainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.about-explainer h2,
+.crew-section h2 {
+    margin: 0.25rem 0 0.35rem;
+}
+
+.about-section-intro,
+.crew-intro {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.about-summary-card,
+.about-fact-card,
+.crew-member {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.about-summary-card {
+    padding: 1.5rem;
+}
+
+.about-summary-card h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.8rem;
+    line-height: 1.15;
+}
+
+.about-summary-card p {
+    margin: 0 0 1rem;
+    line-height: 1.65;
+}
+
+.about-summary-card p:last-child {
+    margin-bottom: 0;
+}
+
+.about-highlights {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+}
+
+.about-highlight {
+    padding: 1rem 1.15rem;
+}
+
+.about-highlight h3 {
+    margin: 0 0 0.35rem;
+    font-size: 0.95rem;
+}
+
+.about-highlight p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .crew-list {
@@ -1275,10 +1334,7 @@ header .container {
 
 .crew-member {
     display: flex;
-    background-color: white;
-    border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
@@ -1988,15 +2044,40 @@ html:has(.about-page) main {
     text-align: left;
 }
 
-.about-intro {
-    margin: 0;
+.about-explainer {
+    margin-bottom: 0.5rem;
+}
+
+.about-section-intro,
+.crew-intro {
     font-size: 0.95rem;
+}
+
+.about-summary-card {
+    padding: 1.1rem 1.05rem;
+}
+
+.about-summary-card h3 {
+    font-size: 1.35rem;
+}
+
+.about-summary-card p {
+    font-size: 0.95rem;
+}
+
+.about-highlight p {
+    font-size: 0.88rem;
 }
 
 .crew-list {
     flex: 1;
     flex-direction: column;
     gap: 0.6rem;
+}
+
+.crew-intro {
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
 }
 
 .crew-member {

@@ -1,7 +1,7 @@
 ---
-title: "De JCrew"
+title: "Over JCast"
 layout: "about"
-description: "Ontmoet de makers van JCast: Oumaima, Viktor en Maarten. Drie developers met een passie voor code, technologie en het delen van kennis over softwareontwikkeling."
+description: "Leer JCast kennen: een Nederlandstalige developer podcast over Java, software engineering, AI, tooling, soft skills en developer life, gemaakt door Oumaima, Viktor en Maarten."
 hosts:
   - id: "viktor_van_steenweghen"
   - id: "oumaima_zerouali"
