@@ -7,13 +7,22 @@
     {{ $data := partial "data/store.html" . }}
     {{ $siteFeed := .Site.Home.OutputFormats.Get "RSS" }}
     {{ $podcastFeed := "" }}
+    {{ $metaDescription := .Site.Params.description }}
     {{ with $data.podcast.webFeed }}
         {{ $podcastFeed = . | absURL }}
+    {{ end }}
+    {{ with .Params.summary }}
+        {{ if and (eq $.Section "blog") (not $.Params.description) }}
+            {{ $metaDescription = . | plainify | htmlUnescape }}
+        {{ end }}
+    {{ end }}
+    {{ with .Params.description }}
+        {{ $metaDescription = . }}
     {{ end }}
 
     <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
-    <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="description" content="{{ $metaDescription }}">
     <meta name="author" content="{{ .Site.Params.author }}">
     <meta name="keywords" content="{{ with .Params.keywords }}{{ . }}{{ else }}{{ .Site.Params.keywords }}{{ end }}">
 
@@ -22,7 +31,7 @@
     <!-- OpenGraph Meta Tags -->
     <meta property="og:type" content="{{ if $isArticlePage }}article{{ else }}website{{ end }}">
     <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}">
-    <meta property="og:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:url" content="{{ .Permalink }}">
     <meta property="og:site_name" content="{{ .Site.Title }}">
     {{ $pageImage := partial "images/meta.html" (dict "page" . "fallbackKeys" (slice "thumbnail" "image")) | transform.Unmarshal (dict "format" "json") }}
@@ -44,7 +53,7 @@
     <meta name="twitter:creator" content="{{ . }}">
     {{ end }}
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}">
-    <meta name="twitter:description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
     {{ if $pageImage.found }}
     <meta name="twitter:image" content="{{ $pageImage.socialURL }}">
     {{ else }}
