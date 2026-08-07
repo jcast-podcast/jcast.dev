@@ -97,7 +97,7 @@
   {{ end }}
 {{ end }}
 
-{{ if or .IsHome (and .IsSection (eq .Section "episodes")) }}
+{{ if or .IsHome (eq .Section "episodes") }}
   {{ $series := dict
     "@type" "PodcastSeries"
     "@id" $seriesId
