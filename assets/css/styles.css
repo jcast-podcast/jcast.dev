@@ -1260,70 +1260,52 @@ header .container {
     color: var(--text);
 }
 
-.about-explainer {
+.about-lead {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #555;
+    text-align: center;
+    margin: 0 0 1.5rem;
+}
+
+.about-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-card-topics {
     display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-bottom: 1rem;
 }
 
-.about-explainer h2,
-.crew-section h2 {
-    margin: 0.25rem 0 0.35rem;
-}
-
-.about-section-intro,
-.crew-intro {
+.about-card-topics .episode-tag {
     margin: 0;
+}
+
+.about-card-line {
+    margin: 0 0 0.6rem;
     line-height: 1.6;
+    color: var(--text);
 }
 
-.about-summary-card,
-.about-fact-card,
-.crew-member {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.about-summary-card {
-    padding: 1.5rem;
-}
-
-.about-summary-card h3 {
-    margin: 0 0 0.75rem;
-    font-size: 1.8rem;
-    line-height: 1.15;
-}
-
-.about-summary-card p {
-    margin: 0 0 1rem;
-    line-height: 1.65;
-}
-
-.about-summary-card p:last-child {
+.about-card-line--last {
     margin-bottom: 0;
 }
 
-.about-highlights {
-    display: grid;
-    gap: 0.75rem;
-    grid-template-columns: 1fr;
+.about-card-line a {
+    color: var(--accent);
 }
 
-.about-highlight {
-    padding: 1rem 1.15rem;
-}
-
-.about-highlight h3 {
-    margin: 0 0 0.35rem;
-    font-size: 0.95rem;
-}
-
-.about-highlight p {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.5;
+.crew-section h2 {
+    margin: 0.25rem 0 1rem;
+    text-align: center;
+    color: var(--text);
 }
 
 .crew-list {
@@ -1334,6 +1316,9 @@ header .container {
 
 .crew-member {
     display: flex;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     padding: 1.5rem;
     align-items: center;
     gap: 1.5rem;
@@ -2044,40 +2029,29 @@ html:has(.about-page) main {
     text-align: left;
 }
 
-.about-explainer {
-    margin-bottom: 0.5rem;
+.about-lead {
+    text-align: left;
+    font-size: 1em;
+    margin-bottom: 1.25rem;
 }
 
-.about-section-intro,
-.crew-intro {
-    font-size: 0.95rem;
+.about-card {
+    padding: 1.1rem 1.15rem;
+    margin-bottom: 1.5rem;
 }
 
-.about-summary-card {
-    padding: 1.1rem 1.05rem;
+.about-card-line {
+    font-size: 0.92rem;
 }
 
-.about-summary-card h3 {
-    font-size: 1.35rem;
-}
-
-.about-summary-card p {
-    font-size: 0.95rem;
-}
-
-.about-highlight p {
-    font-size: 0.88rem;
+.crew-section h2 {
+    text-align: left;
 }
 
 .crew-list {
     flex: 1;
     flex-direction: column;
     gap: 0.6rem;
-}
-
-.crew-intro {
-    margin-bottom: 0.3rem;
-    font-size: 0.95rem;
 }
 
 .crew-member {
@@ -2116,12 +2090,6 @@ html:has(.about-page) main {
     justify-content: flex-start;
     gap: 0.75rem;
     margin-top: 0.2rem;
-}
-
-.about-intro {
-    text-align: left;
-    font-size: 1rem;
-    margin: 0 0 0;
 }
 
 .jcast-contact {
