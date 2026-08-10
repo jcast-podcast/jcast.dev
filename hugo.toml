@@ -1,6 +1,6 @@
 title = "JCast"
 baseURL = "https://jcast.dev"
-languageCode = "nl-BE"
+locale = "nl-BE"
 defaultContentLanguage = "nl"
 enableRobotsTXT = true
 
