@@ -3,9 +3,34 @@
 {{ $peopleData := $data.people }}
 <section class="about-page">
     <h1 class="list-page-title">{{ .Title }}</h1>
-    <p class="about-intro">
+
+    <p class="about-lead">
         Wij zijn Oumaima, Viktor en Maarten. Drie developers met een liefde voor code en een gezonde dosis chaos.
+        Elke maand praten we over Java, software engineering, architectuur, AI, tooling en developer life,
+        soms met een gast uit de community, soms gewoon met ons drieën.
     </p>
+
+    <article class="about-card">
+        <div class="about-card-topics" aria-label="Onderwerpen">
+            <span class="episode-tag">Java</span>
+            <span class="episode-tag">Clean code</span>
+            <span class="episode-tag">Architectuur</span>
+            <span class="episode-tag">AI</span>
+            <span class="episode-tag">Developer life</span>
+        </div>
+        <p class="about-card-line">
+            <strong>Voor wie:</strong> developers, architects, tech leads en iedereen die nieuwsgierig is naar hoe software echt gemaakt wordt.
+        </p>
+        <p class="about-card-line about-card-line--last">
+            <strong>Luisteren:</strong> via <a href="/episodes/">jcast.dev</a>,
+            {{ with .Site.Params.podcast.platforms.spotify }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Spotify</a>,{{ end }}
+            {{ with .Site.Params.podcast.platforms.apple }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Apple Podcasts</a>{{ end }}
+            of de <a href="https://feeds.transistor.fm/jcast" target="_blank" rel="noopener noreferrer">podcastfeed</a>.
+        </p>
+    </article>
+
+    <section class="crew-section" aria-labelledby="crew-title">
+        <h2 id="crew-title">De JCrew</h2>
 
     <div class="crew-list">
         {{- range .Params.hosts }}
@@ -49,6 +74,7 @@
         {{- end }}
         {{- end }}
     </div>
+    </section>
 
     <div class="jcast-contact">
         <h2>Blijf op de hoogte!</h2>

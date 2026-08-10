@@ -16,6 +16,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Full history is needed so the IndexNow step can diff against the
+          # previous commit (github.event.before) to find what content actually
+          # changed. A shallow clone (the default) won't have that commit object.
+          fetch-depth: 0
 
       - name: Set up Hugo
         uses: peaceiris/actions-hugo@2752ce1d29631191ea3f27c23495fa06139a5b78 # v3.2.1
@@ -45,5 +50,25 @@ jobs:
       - name: Wait for deploy to propagate
         run: sleep 30
 
+      - name: Restore IndexNow submission state
+        uses: actions/cache/restore@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: .indexnow-state.json
+          # No hashFiles input on purpose - this state file is intentionally
+          # mutated on every run, so it's keyed by branch, not by content hash.
+          key: indexnow-state-${{ github.ref_name }}
+          restore-keys: |
+            indexnow-state-
+
       - name: Submit URLs to IndexNow
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
         run: bash scripts/submit-indexnow.sh
+
+      - name: Save IndexNow submission state
+        if: always()
+        uses: actions/cache/save@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: .indexnow-state.json
+          key: indexnow-state-${{ github.ref_name }}-${{ github.run_id }}

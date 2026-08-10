@@ -1260,10 +1260,51 @@ header .container {
     color: var(--text);
 }
 
-.about-intro {
+.about-lead {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #555;
     text-align: center;
-    font-size: 1.1rem;
-    margin-bottom: 3rem;
+    margin: 0 0 1.5rem;
+}
+
+.about-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-card-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-card-topics .episode-tag {
+    margin: 0;
+}
+
+.about-card-line {
+    margin: 0 0 0.6rem;
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.about-card-line--last {
+    margin-bottom: 0;
+}
+
+.about-card-line a {
+    color: var(--accent);
+}
+
+.crew-section h2 {
+    margin: 0.25rem 0 1rem;
+    text-align: center;
     color: var(--text);
 }
 
@@ -1276,9 +1317,9 @@ header .container {
 .crew-member {
     display: flex;
     background-color: white;
-    border-radius: 8px;
-    padding: 1.5rem;
+    border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    padding: 1.5rem;
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
@@ -1988,9 +2029,23 @@ html:has(.about-page) main {
     text-align: left;
 }
 
-.about-intro {
-    margin: 0;
-    font-size: 0.95rem;
+.about-lead {
+    text-align: left;
+    font-size: 1em;
+    margin-bottom: 1.25rem;
+}
+
+.about-card {
+    padding: 1.1rem 1.15rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-card-line {
+    font-size: 0.92rem;
+}
+
+.crew-section h2 {
+    text-align: left;
 }
 
 .crew-list {
@@ -2035,12 +2090,6 @@ html:has(.about-page) main {
     justify-content: flex-start;
     gap: 0.75rem;
     margin-top: 0.2rem;
-}
-
-.about-intro {
-    text-align: left;
-    font-size: 1rem;
-    margin: 0 0 0;
 }
 
 .jcast-contact {
