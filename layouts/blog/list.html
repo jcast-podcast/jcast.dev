@@ -38,6 +38,13 @@
                             {{ partial "ui/icon.html" (dict "name" "clock" "decorative" true) }}
                             {{ $readingTime }} min lezen
                         </span>
+                        {{ with first 3 (.Params.topics | default (slice)) }}
+                        <div class="topic-pills">
+                            {{ range . }}
+                            <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
                     </div>
                 </div>
             </div>

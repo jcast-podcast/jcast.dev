@@ -4,9 +4,18 @@
 {{ $pageSize := 3 }}
 {{ $totalItems := add (len $episodes) (len $posts) }}
 {{ $totalPages := div (sub (add $totalItems $pageSize) 1) $pageSize }}
+{{ $currentTerm := .Data.Term }}
 <section class="taxonomy-page">
     <h1 class="list-page-title">{{ .Title }}</h1>
-    <p class="blog-intro">{{ len .Pages }} {{ if eq (len .Pages) 1 }}stuk{{ else }}stukken{{ end }} content over {{ .Title | lower }}.</p>
+    <div class="topic-switcher">
+        <p class="blog-intro">{{ len .Pages }} {{ if eq (len .Pages) 1 }}stuk{{ else }}stukken{{ end }} content over {{ .Title | lower }}.</p>
+        <label for="topic-select" class="sr-only">Ander onderwerp</label>
+        <select id="topic-select" class="topic-select">
+            {{ range .Site.Taxonomies.topics.Alphabetical }}
+            <option value="{{ .Page.RelPermalink }}" {{ if eq .Page.Data.Term $currentTerm }}selected{{ end }}>{{ .Page.Title }} ({{ .Count }})</option>
+            {{ end }}
+        </select>
+    </div>
 
     {{ if gt (len $episodes) 0 }}
     <div class="taxonomy-group" id="episodes-section">
@@ -68,4 +77,5 @@
 </section>
 
 <script src="/js/topic-pagination.js" defer></script>
+<script src="/js/topic-switcher.js" defer></script>
 {{ end }}

@@ -44,6 +44,16 @@
                     <div class="episode-summary">
                         {{ .Summary | plainify | htmlUnescape | truncate 250 "..." }}
                     </div>
+                    <div class="episode-card-meta-footer">
+                        <span class="card-date">{{ partial "nl-date.html" .Date }}</span>
+                        {{ with first 3 (.Params.topics | default (slice)) }}
+                        <div class="topic-pills">
+                            {{ range . }}
+                            <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                        {{ end }}
+                    </div>
                     <div class="episode-listen">
                         <span class="listen-label">Beluister via:</span>
                         <div class="platform-icons">

@@ -1,13 +1,21 @@
 {{ define "main" }}
+{{ $descriptions := .Site.Data.topics }}
 <section class="taxonomy-page taxonomy-page--terms">
-    <h1 class="list-page-title">Topics</h1>
+    <h1 class="list-page-title">{{ .Title }}</h1>
     <p class="blog-intro">Verken afleveringen en blogposts per onderwerp. We houden topics bewust beperkt en concreet.</p>
 
     <div class="topic-directory">
         {{ range .Data.Terms.Alphabetical }}
         <article class="topic-directory-card">
-            <h2><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
-            <p>{{ .Count }} {{ if eq .Count 1 }}item{{ else }}items{{ end }}</p>
+            <a class="topic-directory-card-link" href="{{ .Page.RelPermalink }}">
+                <div class="topic-directory-card-header">
+                    <h2>{{ .Page.Title }}</h2>
+                    <span class="topic-directory-count">{{ .Count }} {{ if eq .Count 1 }}item{{ else }}items{{ end }}</span>
+                </div>
+                {{ with index $descriptions (.Page.Data.Term | urlize) }}
+                <p class="topic-directory-description">{{ . }}</p>
+                {{ end }}
+            </a>
         </article>
         {{ end }}
     </div>

@@ -85,9 +85,15 @@
         <a href="/" class="logo-link">
             <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" loading="eager" decoding="async">
         </a>
-        <nav class="nav" role="navigation" aria-label="Hoofdmenu">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu openen">
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+            <span class="nav-toggle-bar"></span>
+        </button>
+        <nav class="nav" id="site-nav" role="navigation" aria-label="Hoofdmenu">
             <a href="/episodes/">Afleveringen</a>
             <a href="/blog/">Blog</a>
+            <a href="/topics/">Onderwerpen</a>
             <a href="/about/">Over ons</a>
         </nav>
     </div>
@@ -122,5 +128,6 @@
 </dialog>
 
 <script src="/js/cookie-consent.js" defer></script>
+<script src="/js/nav-toggle.js" defer></script>
 </body>
 </html>
