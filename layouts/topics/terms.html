@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ $descriptions := .Site.Data.topics }}
+{{ $descriptions := hugo.Data.topics }}
 <section class="taxonomy-page taxonomy-page--terms">
     <h1 class="list-page-title">{{ .Title }}</h1>
     <p class="blog-intro">Verken afleveringen en blogposts per onderwerp. We houden topics bewust beperkt en concreet.</p>

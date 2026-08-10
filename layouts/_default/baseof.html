@@ -20,7 +20,7 @@
         {{ $metaDescription = . }}
     {{ end }}
     {{ if eq .Kind "term" }}
-        {{ with index .Site.Data.topics (.Data.Term | urlize) }}
+        {{ with index hugo.Data.topics (.Data.Term | urlize) }}
             {{ $metaDescription = . }}
         {{ end }}
     {{ end }}
