@@ -43,7 +43,7 @@
             decoding="async"
             {{- with $width }} width="{{ . }}"{{ end }}
             {{- with $height }} height="{{ . }}"{{ end }}
-            {{- with $style }} style="{{ . }}"{{ end }}
+            {{- with $style }} style="{{ . | safeCSS }}"{{ end }}
     >
 </picture>
 {{- else -}}
@@ -55,6 +55,6 @@
         decoding="async"
         {{- with $width }} width="{{ . }}"{{ end }}
         {{- with $height }} height="{{ . }}"{{ end }}
-        {{- with $style }} style="{{ . }}"{{ end }}
+        {{- with $style }} style="{{ . | safeCSS }}"{{ end }}
 >
 {{- end -}}

@@ -1,39 +1,129 @@
 {{ define "main" }}
+{{ $episodes := where .Pages "Section" "episodes" }}
+{{ $posts := where .Pages "Section" "blog" }}
+{{ $pageSize := 3 }}
+{{ $totalItems := add (len $episodes) (len $posts) }}
+{{ $totalPages := div (sub (add $totalItems $pageSize) 1) $pageSize }}
 <section class="taxonomy-page">
     <h1 class="list-page-title">{{ .Title }}</h1>
     <p class="blog-intro">{{ len .Pages }} {{ if eq (len .Pages) 1 }}stuk{{ else }}stukken{{ end }} content over {{ .Title | lower }}.</p>
 
-    <div class="related-grid taxonomy-grid">
-        {{ range .Pages.ByDate.Reverse }}
-        <article class="related-card taxonomy-entry">
-            <p class="related-kicker">
-                {{ if eq .Section "episodes" }}
-                    {{ partial "episode-badge.html" (dict "page" . "format" "short") }}
-                {{ else }}
-                    Blog
-                {{ end }}
-            </p>
-            <h2 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-            <p class="related-summary">
-                {{ if eq .Section "blog" }}
-                    {{ with .Params.summary }}
-                        {{ . | plainify | htmlUnescape | truncate 180 "..." }}
-                    {{ else }}
-                        {{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}
+    {{ if gt (len $episodes) 0 }}
+    <div class="taxonomy-group" id="episodes-section">
+        <h2 class="related-subheading">Afleveringen</h2>
+        <div class="related-grid taxonomy-grid-wide" id="episodes-grid">
+            {{ range $episodes.ByDate.Reverse }}
+            <article class="related-card taxonomy-entry">
+                <p class="related-kicker">{{ partial "episode-badge.html" (dict "page" . "format" "short") }}</p>
+                <h3 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <p class="related-summary">{{ .Summary | plainify | htmlUnescape | truncate 220 "..." }}</p>
+                {{ with first 3 (.Params.topics | default (slice)) }}
+                <div class="topic-pills">
+                    {{ range . }}
+                    <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
                     {{ end }}
-                {{ else }}
-                    {{ .Summary | plainify | htmlUnescape | truncate 180 "..." }}
+                </div>
                 {{ end }}
-            </p>
-            {{ with first 3 (.Params.topics | default (slice)) }}
-            <div class="topic-pills">
-                {{ range . }}
-                <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
-                {{ end }}
-            </div>
+            </article>
             {{ end }}
-        </article>
-        {{ end }}
+        </div>
     </div>
+    {{ end }}
+
+    {{ if gt (len $posts) 0 }}
+    <div class="taxonomy-group" id="posts-section">
+        <h2 class="related-subheading">Blog</h2>
+        <div class="related-grid taxonomy-grid-wide" id="posts-grid">
+            {{ range $posts.ByDate.Reverse }}
+            <article class="related-card taxonomy-entry">
+                <p class="related-kicker">Blog</p>
+                <h3 class="related-card-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+                <p class="related-summary">
+                    {{ with .Params.summary }}
+                        {{ . | plainify | htmlUnescape | truncate 220 "..." }}
+                    {{ else }}
+                        {{ .Summary | plainify | htmlUnescape | truncate 220 "..." }}
+                    {{ end }}
+                </p>
+                {{ with first 3 (.Params.topics | default (slice)) }}
+                <div class="topic-pills">
+                    {{ range . }}
+                    <a class="topic-pill" href="{{ printf "/topics/%s/" (. | urlize) | relURL }}">{{ . }}</a>
+                    {{ end }}
+                </div>
+                {{ end }}
+            </article>
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
+
+    {{ if gt $totalPages 1 }}
+    <nav class="pagination" aria-label="Paginering" id="content-pagination">
+        <button type="button" class="pagination-btn" data-action="prev" aria-label="Vorige pagina">← Vorige</button>
+        <span class="pagination-info"><span data-current>1</span> / <span data-total>{{ $totalPages }}</span></span>
+        <button type="button" class="pagination-btn" data-action="next" aria-label="Volgende pagina">Volgende →</button>
+    </nav>
+    {{ end }}
 </section>
+
+<script>
+(function () {
+    var nav = document.getElementById('content-pagination');
+    if (!nav) return;
+
+    var pageSize = 3;
+    var sections = [
+        { section: document.getElementById('episodes-section'), grid: document.getElementById('episodes-grid') },
+        { section: document.getElementById('posts-section'), grid: document.getElementById('posts-grid') }
+    ].filter(function (s) { return s.section && s.grid; });
+
+    sections.forEach(function (s) {
+        s.cards = Array.prototype.slice.call(s.grid.children);
+    });
+
+    var flatCards = [];
+    sections.forEach(function (s) {
+        s.cards.forEach(function (card) {
+            flatCards.push(card);
+        });
+    });
+
+    var totalPages = Math.max(1, Math.ceil(flatCards.length / pageSize));
+    var current = 0;
+    var prevBtn = nav.querySelector('[data-action="prev"]');
+    var nextBtn = nav.querySelector('[data-action="next"]');
+    var currentEl = nav.querySelector('[data-current]');
+
+    function render() {
+        flatCards.forEach(function (card, i) {
+            card.style.display = Math.floor(i / pageSize) === current ? '' : 'none';
+        });
+        sections.forEach(function (s) {
+            var anyVisible = s.cards.some(function (card) {
+                return card.style.display !== 'none';
+            });
+            s.section.style.display = anyVisible ? '' : 'none';
+        });
+        currentEl.textContent = current + 1;
+        prevBtn.classList.toggle('pagination-btn--disabled', current === 0);
+        nextBtn.classList.toggle('pagination-btn--disabled', current === totalPages - 1);
+    }
+
+    prevBtn.addEventListener('click', function () {
+        if (current === 0) return;
+        current -= 1;
+        render();
+        nav.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    nextBtn.addEventListener('click', function () {
+        if (current === totalPages - 1) return;
+        current += 1;
+        render();
+        nav.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    render();
+})();
+</script>
 {{ end }}
