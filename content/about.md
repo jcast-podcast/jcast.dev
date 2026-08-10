@@ -6,4 +6,10 @@ hosts:
   - id: "viktor_van_steenweghen"
   - id: "oumaima_zerouali"
   - id: "maarten_casteels"
+topics:
+  - "Java"
+  - "Clean Code"
+  - "Architectuur"
+  - "AI"
+  - "Developer Life"
 ---
