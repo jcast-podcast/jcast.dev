@@ -28,7 +28,7 @@
             {{ range first 3 $episodes.Pages }}
             <li class="home-episode-card">
                 <a href="{{ .Permalink }}">
-                    {{ partial "episode-thumb.html" (dict "page" . "class" "home-episode-thumbnail" "mobileSocial" true) }}
+                    {{ partial "episode-thumb.html" (dict "page" . "class" "home-episode-thumbnail") }}
                     <h3 class="home-episode-title">{{ .Title }}</h3>
                     <p class="episode-tag{{ if .Params.special }} episode-tag--special{{ end }}">{{ partial "episode-badge.html" (dict "page" .) }}</p>
                 </a>
