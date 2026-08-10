@@ -29,7 +29,7 @@ En toen had ik, op een compleet willekeurige dag, een gedachte:
 Niet voor luisteraars. Niet voor advertenties. Gewoon voor ons.
 Voor Viktor, Maarten en mijzelf. Iets simpels. Iets leuks. Een klein symbool dat zei: “Ja, dit is nu echt.”
 
-### Van Java naar Pinterest
+## Van Java naar Pinterest
 
 Er was alleen één klein probleem.
 
@@ -57,7 +57,7 @@ Dus deed ik de enige logische volgende stap.
 
 Ik opende Figma.
 
-### Een T-shirt Ontwerpen Alsof Het Een Poster Was
+## Een T-shirt Ontwerpen Alsof Het Een Poster Was
 
 In plaats van te denken in stof, begon ik te denken in iets dat ik *wel* kende: layout.
 Ik maakte A4-ontwerpen.
@@ -99,7 +99,7 @@ De helft verwijderen en opnieuw beginnen.
 
 Het was rustig. Creatief. Bijna therapeutisch.
 
-### De Eerste Print
+## De Eerste Print
 
 Uiteindelijk had ik iets waar ik echt blij mee was.
 
@@ -131,7 +131,7 @@ iets wat andere mensen ook wilden. We maakten er meer. Andere kleuren. Andere ma
 
 En mensen begonnen ze daadwerkelijk te dragen.
 
-### Het onverwachte trotsmoment
+## Het onverwachte trotsmoment
 
 Het moment dat me het meest is bijgebleven, is dit: Iemand zien, die geen deel uitmaakt van de podcast, die een T-shirt draagt met een ontwerp dat ik heb gemaakt.
 
