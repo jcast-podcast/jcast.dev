@@ -1851,11 +1851,6 @@ footer {
     opacity: 0.9;
 }
 
-.footer-section button:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--accent);
-}
-
 .footer-section-button {
     color: #ffffff;
 }
