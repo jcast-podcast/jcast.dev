@@ -316,5 +316,6 @@ Avatar afbeeldingen staan in `static/images/avatars/`.
 
 MIT — gebruik gerust, met liefde ✨
 
+
 **JCast – Developers met een mening.**
 [https://jcast.dev](https://jcast.dev)
