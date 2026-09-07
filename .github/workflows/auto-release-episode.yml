@@ -1,10 +1,17 @@
 name: Auto Release Episode
 
+# GitHub Actions cron runs in UTC and cannot express "first Monday of the month"
+# nor the Europe/Brussels timezone (which shifts between CET/UTC+1 and CEST/UTC+2
+# for daylight saving time). To still fire at 08:00 Brussels local time on the
+# first Monday of every month, we schedule a wider hourly window in UTC that
+# always contains 08:00 Brussels (06:00 UTC in summer, 07:00 UTC in winter) on
+# every possible date of the first Monday (days 1-7), then use a shell guard that
+# re-evaluates the real date/time in Europe/Brussels and lets the job proceed
+# only for the genuine first Monday at 08:00. Manual workflow_dispatch runs skip
+# the guard and always execute.
 on:
   schedule:
-    # Runs every hour from 06:00–08:00 UTC on days 1–7 of each month
-    # Local-time check will ensure first Monday at 08:00 Europe/Brussels
-    - cron: '0 6-8 1-7 * *'
+    - cron: '0 6-7 1-7 * *'
   workflow_dispatch:
 
 permissions:
@@ -14,16 +21,26 @@ jobs:
   release-episode:
     runs-on: ubuntu-latest
     steps:
-      - name: Check if it's Monday 08:00 in Belgium
+      - name: Check first Monday 08:00 Europe/Brussels
         id: check-time
         run: |
-          HOUR=$(TZ=Europe/Brussels date +%H)
-          DAY=$(TZ=Europe/Brussels date +%u)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "Manual run - bypassing date/time guard"
+            echo "run_job=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
 
-          if [ "$HOUR" -eq 8 ] && [ "$DAY" -eq 1 ]; then
-            echo "run_job=true" >> $GITHUB_OUTPUT
+          HOUR=$(TZ=Europe/Brussels date +%H)
+          DOW=$(TZ=Europe/Brussels date +%u)   # 1 = Monday
+          DOM=$(TZ=Europe/Brussels date +%d)   # 01-31, zero-padded
+
+          # First Monday = the only Monday whose day-of-month is between 1 and 7.
+          if [ "$HOUR" = "08" ] && [ "$DOW" = "1" ] && [ "$DOM" -ge 1 ] && [ "$DOM" -le 7 ]; then
+            echo "First Monday 08:00 Europe/Brussels - running job"
+            echo "run_job=true" >> "$GITHUB_OUTPUT"
           else
-            echo "run_job=false" >> $GITHUB_OUTPUT
+            echo "Not the first Monday 08:00 Europe/Brussels (hour=$HOUR dow=$DOW dom=$DOM) - skipping"
+            echo "run_job=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Checkout repository
