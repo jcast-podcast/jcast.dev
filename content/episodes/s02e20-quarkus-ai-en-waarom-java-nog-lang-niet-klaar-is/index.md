@@ -1,7 +1,7 @@
 ---
 season: 2
 episode: 20
-date: 2026-08-15
+date: 2026-09-21
 title: "Quarkus, AI en waarom Java nog lang niet klaar is"
 description: "In deze aflevering schuift Kevin Dubois aan tafel, principal software engineer bij Red Hat en één van de drijvende krachten achter Quarkus en LangChain4j. We babbelen over zijn parcours van Cold Fusion en PHP tot cloud native Java, en over hoe AI zijn weg vindt naar de echte enterprise wereld. Een eerlijk en levendig gesprek over frameworkkeuzes, community bouwen en wat er écht blijft hangen als de hype voorbij is."
 thumbnail: "/images/thumbnails/s02e22-van-cold-fusion-tot-ai-agents-java-lange-weg-naar-de-cloud.webp"
