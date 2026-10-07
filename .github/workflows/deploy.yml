@@ -33,6 +33,14 @@ jobs:
           hugo-version: "0.167.0"
           extended: true
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+        with:
+          ruby-version: "3.3"
+
+      - name: Install Asciidoctor
+        run: gem install asciidoctor rouge --no-document
+
       - name: Build site with Hugo
         run: hugo --minify
 
