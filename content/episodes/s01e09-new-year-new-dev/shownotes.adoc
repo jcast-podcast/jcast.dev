@@ -1,0 +1,7 @@
+== Show notes
+
+* https://bejug.github.io/[BeJUG]
+* https://www.meetup.com/belgian-java-user-group/[BeJUG - Meetup]
+* https://wouter-bauweraerts.github.io/UnitSocializer/[UnitSocializer]
+* https://podcastfestival.standaard.be[DS Podcastfestival]
+* https://belgianpodcastawards.be[Belgian Podcast Awards]

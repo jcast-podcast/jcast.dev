@@ -19,7 +19,7 @@ We zijn met drie developers: Oumaima, Viktor en ikzelf. En zoals dat vaak gaat b
 
 In deze blogpost neem ik je mee door de onderdelen waar we uiteindelijk het meeste tijd aan gespendeerd hebben. Niet altijd de onderdelen die we vooraf verwacht hadden.
 
-## Van Java-tooling naar Bash-pipeline
+== Van Java-tooling naar Bash-pipeline
 
 Ja, echt.
 
@@ -31,13 +31,14 @@ Vandaag draait bijna alles in Bash. Gewoon scripts, `curl`, `jq`, ImageMagick en
 
 Dat werkt verrassend goed.
 
-## Eén opname, volledige pipeline
+== Eén opname, volledige pipeline
 
 Wat gestart is als “een scriptje voor transcripties” is ondertussen uitgegroeid tot een volledige publishing pipeline.
 
 Vandaag loopt een aflevering ongeveer zo door ons systeem:
 
-```text
+[source,text]
+----
 episode.wav
   -> transcribe.sh    ->  transcript + tekst
   -> shownotes.sh     ->  index.md met show notes
@@ -47,7 +48,7 @@ episode.wav
   -> upscale.sh       ->  3000×3000 PNG voor Transistor, 1200×1200 WebP voor website
   -> artwork.sh       ->  coverafbeelding hosten en koppelen
   -> announce.sh      ->  posts voor Bluesky en LinkedIn
-```
+----
 
 Het grootste voordeel is eigenlijk niet de tijdswinst. Het is dat we minder moeten nadenken. We nemen een aflevering op, starten de workflow en volgen de stappen. Minder context switching, minder dingen vergeten en vooral meer consistentie tussen afleveringen.
 
@@ -55,15 +56,16 @@ Ik ben trouwens rampzalig in command-line parameters onthouden.
 
 Daarom gebruik ik meestal gewoon:
 
-```bash
+[source,bash]
+----
 make studio
-```
+----
 
 Dat opent een interactief menu waarmee ik de volledige workflow volg van A tot Z. Transcriptie, show notes, thumbnails, uploaden, socials… alles zit daarin verwerkt.
 
 Uiteraard kan alles ook afzonderlijk via scripts, maar meestal wil ik gewoon zo snel mogelijk van ruwe opname naar gepubliceerde aflevering gaan zonder eerst opnieuw syntax te moeten opzoeken.
 
-## Verrassend veel iteraties voor iets "simpels"
+== Verrassend veel iteraties voor iets “simpels”
 
 De thumbnails leken in het begin het gemakkelijkste onderdeel. Dat waren ze absoluut niet.
 
@@ -83,7 +85,7 @@ Dus ja, uiteindelijk zaten we in Bash dynamisch hoogtes te berekenen via ImageMa
 
 En als dat allemaal klaar is, genereert hetzelfde script ook automatisch een 1200×630 Open Graph-afbeelding voor sociale media. Zelfde achtergrond, ander formaat, andere layout, zodat de preview er op Bluesky of LinkedIn ook netjes uitziet zonder dat we daar apart iets voor moeten doen.
 
-## Avatar generatie: AI blijft koppig
+== Avatar generatie: AI blijft koppig
 
 Voor gasten genereren we ook een mooie avatar op basis van een referentiefoto.
 
@@ -111,7 +113,7 @@ We samplen nu automatisch de haarkleur uit de referentiefoto en filteren vervolg
 
 Dat soort dingen begint als “even snel een scriptje schrijven” en eindigt plots in echte logica.
 
-## Van scripts naar software
+== Van scripts naar software
 
 Wat gestart was als wat losse scripts begon meer en meer op echte software te lijken.
 
@@ -130,7 +132,7 @@ Daarom hebben we alles injectable gemaakt. Elke `curl` call loopt via een variab
 
 Daardoor kunnen we volledige scripts testen zonder één echte API-call te doen.
 
-## Het leukste deel? Dat het blijft evolueren
+== Het leukste deel? Dat het blijft evolueren
 
 JCast Studio is nog altijd geen product. Het is gewoon een interne toolkit die blijft groeien telkens wanneer we ergens tegenaan lopen.
 
@@ -142,10 +144,11 @@ Ondertussen merken we dat JCast Studio meer geworden is dan dat. Nieuwe ideeën 
 
 Wat begon als een paar losse scripts is ondertussen een vast onderdeel van JCast geworden.
 
----
+'''''
 
-**Benieuwd naar de content achter deze tech?** Luister naar onze [laatste aflevering](https://jcast.dev/episodes/).
+*Benieuwd naar de content achter deze tech?* Luister naar onze https://jcast.dev/episodes/[laatste aflevering].
 
-**Feedback of vragen?** Bereik ons via:
-- **Instagram:** [@jcast_crew](https://www.instagram.com/jcast_crew/)
-- **Email:** hello.jcast@gmail.com
+*Feedback of vragen?* Bereik ons via:
+
+* *Instagram:* https://www.instagram.com/jcast_crew/[@jcast_crew]
+* *Email:* hello.jcast@gmail.com

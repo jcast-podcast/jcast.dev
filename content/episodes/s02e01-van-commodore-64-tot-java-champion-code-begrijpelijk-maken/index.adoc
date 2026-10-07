@@ -28,4 +28,6 @@ Via CoderDojo brengt Frank al meer dan elf jaar zijn passie voor technologie bij
 
 Deze aflevering is een aanrader voor iedereen die ooit een README heeft geschreven en dacht dat het wel goed genoeg was, voor wie zich afvraagt wat een Java Champion eigenlijk doet en voor wie ooit als kind ook geprobeerd heeft een spelletje over te typen uit een magazine. Luister mee en laat je inspireren door iemand die technologie al decennialang menselijk probeert te houden.
 
+++++
 {{< shownotes >}}
+++++
