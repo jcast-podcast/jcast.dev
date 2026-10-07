@@ -1,0 +1,39 @@
+= Lokaal draaien
+
+== Eenmalig installeren
+
+[source,bash]
+----
+brew install hugo asciidoctor
+gem install rouge          # syntax highlighting in codeblokken
+hugo version               # moet 'extended' bevatten
+----
+
+Asciidoctor is een Ruby-tool die Hugo als externe binary aanroept.
+Zonder Asciidoctor bouwt de site niet meer.
+
+== Site starten
+
+[source,bash]
+----
+hugo server -D
+----
+
+Open http://localhost:1313.
+`-D` toont ook drafts.
+
+== Productiebuild testen
+
+[source,bash]
+----
+hugo --minify
+sh scripts/verify-image-output.sh
+----
+
+== Deze documentatie bekijken
+
+[source,bash]
+----
+npx -y -p @antora/cli@3.1 -p @antora/site-generator@3.1 antora antora-playbook.yml
+open build/docs/index.html
+----

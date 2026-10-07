@@ -1,0 +1,33 @@
+= Gast of auteur toevoegen
+
+Hosts, gasten en blogauteurs zitten allemaal in `data/people/`.
+
+. Maak `data/people/voornaam_achternaam.yml`:
++
+[source,yaml]
+----
+name: "Voornaam Achternaam"
+id: "https://jcast.dev/#person-voornaam_achternaam"
+image: "/images/avatars/voornaam-achternaam.webp"
+url: "https://persoonlijke-site.be/"
+description: "Bio in de JCast-stijl: 3 tot 5 zinnen, tegenwoordige tijd, eindigt op iets persoonlijks."
+socials:
+  linkedin: "https://www.linkedin.com/in/..."
+  github: "https://github.com/..."
+sameAs:
+  - "https://www.linkedin.com/in/..."
+  - "https://github.com/..."
+----
+. Zet de avatar in `static/images/avatars/`.
+. Verwijs ernaar met de bestandsnaam zonder extensie:
++
+[source,yaml]
+----
+guests:            # in een aflevering
+  - id: "voornaam_achternaam"
+authors:           # in een blogpost
+  - id: "voornaam_achternaam"
+----
+
+`sameAs` komt in de JSON-LD terecht en helpt zoekmachines om de persoon te herkennen.
+De oude `guest: "slug"` (één string) werkt nog, maar gebruik `guests`.

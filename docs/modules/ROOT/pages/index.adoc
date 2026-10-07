@@ -1,0 +1,47 @@
+= jcast.dev
+:description: Documentatie van de website van JCast.
+
+De website van JCast: een statische Hugo-site met afleveringen, blog en crew-info, gehost op AWS (S3 + CloudFront).
+
+Deze documentatie leeft naast de code, in `docs/`, en wordt mee gereviewd in elke pull request.
+Pas je iets aan aan de site? Dan pas je de pagina hier mee aan.
+
+== Voor wie is wat?
+
+Niet iedereen heeft hetzelfde detailniveau nodig.
+Kies op basis van wie je bent en wat je wil doen.
+
+[%autowidth.stretch,options="header"]
+|===
+| Je bent... | Je wil... | Lees
+
+| Host of crewlid
+| een aflevering, blogpost of gast toevoegen
+| xref:how-to/aflevering-toevoegen.adoc[], xref:how-to/blogpost-toevoegen.adoc[], xref:how-to/persoon-toevoegen.adoc[]
+
+| Developer
+| templates, CSS of build aanpassen
+| xref:architectuur.adoc[], xref:content-model.adoc[], xref:how-to/lokaal-draaien.adoc[]
+
+| Iemand die wil weten _waarom_
+| begrijpen waarom iets is zoals het is
+| xref:adr/0001-asciidoc-als-contentformaat.adoc[Beslissingen (ADR's)]
+
+| AI-agent
+| een taak uitvoeren in deze repo
+| deze pagina’s als context, plus de lokale `AGENTS.md` (niet in git)
+|===
+
+== Drie niveaus
+
+Architectuur:: Hoe de stukken in elkaar passen. Zie xref:architectuur.adoc[].
+Content en conventies:: Front matter, mappenstructuur, schrijfregels. Zie xref:content-model.adoc[] en xref:asciidoc-schrijven.adoc[].
+Code:: Templates en scripts documenteren zichzelf met commentaar waar het niet vanzelf spreekt. Die documentatie hoort in de code, niet hier.
+
+== Deze docs bekijken
+
+[source,bash]
+----
+npx -y -p @antora/cli@3.1 -p @antora/site-generator@3.1 antora antora-playbook.yml
+open build/docs/index.html
+----

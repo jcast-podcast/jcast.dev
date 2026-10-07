@@ -1,0 +1,80 @@
+= Contentmodel
+:description: Contenttypes, front matter en de data achter de site.
+
+== Contenttypes
+
+Elke pagina is een https://gohugo.io/content-management/page-bundles/[page bundle]: een map met een `index.adoc` en de bijhorende afbeeldingen.
+
+[%autowidth.stretch,options="header"]
+|===
+| Type | Map | URL
+
+| Aflevering | `content/episodes/<slug>/index.adoc` | `/episodes/<slug>/`
+| Shownotes | `content/episodes/<slug>/shownotes.adoc` | geen eigen pagina, ingeladen via `{{< shownotes >}}`
+| Blogpost | `content/blog/<datum>-<slug>/index.adoc` | `/blog/<datum>-<slug>/`
+| Over ons | `content/about.adoc` | `/about/`
+| Topics | `data/topics.yaml` + `topics` in front matter | `/topics/<topic>/`
+|===
+
+== Aflevering
+
+[source,yaml]
+----
+---
+season: 2                 # integer
+episode: 7                # integer
+title: "Titel van de aflevering"
+date: 2026-11-02          # YYYY-MM-DD, eerste maandag van de maand
+description: "Korte beschrijving voor SEO en social"
+topics:
+  - "AI"
+thumbnail: "/images/thumbnails/s02e07.webp"   # legacy URL, zie hieronder
+social_image: "social.png"                     # in de bundle, voor Open Graph
+player: "https://share.transistor.fm/e/..."
+section: episodes
+guests:                   # optioneel, verwijst naar data/people/<id>.yml
+  - id: "voornaam_achternaam"
+---
+----
+
+`thumbnail.(webp|png|jpg)` in de bundle is de echte afbeelding.
+Het `thumbnail`-pad in de front matter is de oude URL; `scripts/export-legacy-images.sh` kopieert de afbeelding daarnaartoe na de build.
+
+=== Specials
+
+Een special heeft geen `season` en `episode`, maar `special: true` en optioneel `special_label`.
+Zet die velden dan niet op `0`, laat ze gewoon weg.
+De badge, de lijst en de JSON-LD vallen automatisch terug op het label.
+
+== Blogpost
+
+[source,yaml]
+----
+---
+title: "Titel van de post"
+date: 2026-11-10
+authors:
+  - id: "oumaima_zerouali"
+summary: "Korte samenvatting voor de lijst en social"
+image: "thumbnail.webp"   # optioneel, in de bundle
+social_image: "social.png"
+topics:
+  - "Java"
+draft: false
+---
+----
+
+Leestijd wordt berekend op basis van het aantal woorden (~200 per minuut).
+
+== Mensen
+
+Hosts, gasten en auteurs staan allemaal in `data/people/<id>.yml`.
+De bestandsnaam zonder extensie is het `id` waarnaar je verwijst in `guests` of `authors`.
+De vaste hosts per seizoen staan in `data/podcast.yml`.
+
+Zie xref:how-to/persoon-toevoegen.adoc[] voor het schema.
+
+== Topics
+
+De sleutels in `data/topics.yaml` zijn de topics die op `/topics/` verschijnen, met hun omschrijving.
+In de front matter gebruik je de leesbare naam (`"AI"`, `"Software Engineering"`); Hugo maakt er een slug van.

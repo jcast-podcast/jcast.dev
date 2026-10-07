@@ -1,0 +1,61 @@
+= ADR 0001: AsciiDoc als contentformaat
+:revdate: 2026-10-07
+
+[horizontal]
+Status:: Voorgesteld
+Datum:: 7 oktober 2026
+Betrokken:: Oumaima, Maarten, Viktor
+
+== Context
+
+Alle content van jcast.dev (afleveringen, shownotes, blogposts) stond in Markdown.
+Dat werkte, maar we liepen tegen de grenzen aan:
+
+* Voor alles buiten tekst en lijsten (een grid van afbeeldingen, een figuur met bijschrift) schreven we ruwe HTML in de Markdown. Daarvoor stond `unsafe = true` aan in Goldmark.
+* Markdown heeft geen standaard. Wat GitHub toont, wat Hugo rendert en wat een andere tool doet, verschilt.
+* We willen dezelfde documentatieaanpak ook gebruiken voor projectdocumentatie (deze `docs/`), en later met Antora op het werk. Eén formaat voor beide is eenvoudiger.
+
+Aanleiding: de talk _Why Documentation Won't Write Itself, and AI Won't Save You_ van Christian Heitzmann op Devoxx Belgium 2026.
+
+== Beslissing
+
+We schrijven alle content en documentatie in AsciiDoc.
+Hugo blijft de sitegenerator en rendert `.adoc` via Asciidoctor.
+De projectdocumentatie staat als Antora-component in `docs/`.
+
+== Overwogen alternatieven
+
+Markdown houden::
+Nul migratiewerk. Maar de HTML-in-Markdown blijft, en we hebben twee formaten zodra we docs in Antora willen.
+
+Hele site naar Antora::
+Antora is gemaakt voor documentatie, niet voor een podcastsite met afleveringen, RSS-achtige lijsten, JSON-LD en een eigen design.
+We zouden alle templates opnieuw moeten bouwen.
+
+reStructuredText + Sphinx::
+Even krachtig als AsciiDoc, maar Hugo ondersteunt het slechter en niemand van ons kent het.
+
+== Gevolgen
+
+Positief::
+* Tabellen, admonitions, cross-references en include zitten in de taal zelf.
+* Raw HTML staat expliciet in passthrough-blokken (`{plus}{plus}{plus}{plus}`) in plaats van verspreid door de tekst.
+* Dezelfde syntax voor site en docs.
+
+Negatief::
+* Asciidoctor (Ruby) is een extra dependency, lokaal en in CI.
+* Hugo-render hooks werken enkel voor Markdown. Afbeeldingen moeten via de `image`-shortcode om responsive te blijven.
+* Asciidoctor heeft geen typographer: krulquotes en `…` typen we zelf.
+* Asciidoctor genereert andere HTML (`div.paragraph`, `div.ulist`, `p.tableblock`). Een paar CSS-selectors moesten mee.
+* Hugo-shortcodes binnen AsciiDoc horen in passthrough-blokken.
+
+== Wat er concreet veranderde
+
+* `hugo.toml`: `security.exec.allow` bevat `asciidoctor`, plus attributen voor Rouge en heading-id's.
+* `deploy.yml`: installeert Ruby, Asciidoctor en Rouge.
+* `shownotes`-shortcode: leest `shownotes.adoc` (of nog `shownotes.md`) met de juiste renderer.
+* `styles.css`: selectors voor de Asciidoctor-structuur, geen kleuren of layout gewijzigd.
+* Scripts voor legacy-afbeeldingen en IndexNow herkennen `index.adoc`.
+* Alle 32 contentbestanden omgezet met pandoc, daarna nagekeken.
+
+Verificatie: de gerenderde tekst van alle 52 pagina's is identiek aan voor de migratie, op typografie na. JSON-LD en meta-tags zijn ongewijzigd.

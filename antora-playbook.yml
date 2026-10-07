@@ -1,0 +1,17 @@
+# Bouwt de projectdocumentatie uit docs/ naar build/docs.
+#   npx -y -p @antora/cli@3.1 -p @antora/site-generator@3.1 antora antora-playbook.yml
+site:
+  title: JCast docs
+  start_page: jcast-dev::index.adoc
+content:
+  sources:
+    - url: .
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+  supplemental_files: ./docs/ui
+output:
+  dir: build/docs

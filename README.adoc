@@ -1,0 +1,44 @@
+= JCast – De Podcast over IT, Dev Life & Gezonde Meningsverschillen
+
+De codebase van https://jcast.dev[jcast.dev]: een statische https://gohugo.io/[Hugo]-site, gehost op AWS en onderhouden door de JCast crew: Oumaima, Viktor en Maarten.
+
+== Snel starten
+
+[source,bash]
+----
+brew install hugo asciidoctor
+gem install rouge
+hugo server -D
+----
+
+Open http://localhost:1313.
+
+== Documentatie
+
+De volledige documentatie staat in link:docs/modules/ROOT/pages/index.adoc[`docs/`], als Antora-component.
+
+[%autowidth.stretch]
+|===
+| Aflevering toevoegen | link:docs/modules/ROOT/pages/how-to/aflevering-toevoegen.adoc[how-to]
+| Blogpost toevoegen | link:docs/modules/ROOT/pages/how-to/blogpost-toevoegen.adoc[how-to]
+| Gast of auteur toevoegen | link:docs/modules/ROOT/pages/how-to/persoon-toevoegen.adoc[how-to]
+| Hoe het in elkaar zit | link:docs/modules/ROOT/pages/architectuur.adoc[architectuur]
+| Front matter en data | link:docs/modules/ROOT/pages/content-model.adoc[contentmodel]
+| AsciiDoc op deze site | link:docs/modules/ROOT/pages/asciidoc-schrijven.adoc[spiekbrief]
+| Waarom AsciiDoc | link:docs/modules/ROOT/pages/adr/0001-asciidoc-als-contentformaat.adoc[ADR 0001]
+|===
+
+Als website bekijken:
+
+[source,bash]
+----
+npx -y -p @antora/cli@3.1 -p @antora/site-generator@3.1 antora antora-playbook.yml
+open build/docs/index.html
+----
+
+
+== Licentie
+
+MIT — gebruik gerust, met liefde ✨
+
+*JCast – Developers met een mening.*
