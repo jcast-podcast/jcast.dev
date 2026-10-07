@@ -514,11 +514,11 @@ header .container {
     letter-spacing: -0.01em;
 }
 
-.episode-body h2 + ul {
+.episode-body :is(h2 + ul, h2 + .sectionbody > .ulist:first-child > ul) {
     margin-top: 1.5rem;
 }
 
-.episode-body h3 + ul {
+.episode-body :is(h3 + ul, h3 + .ulist > ul) {
     margin-top: 0.75rem;
 }
 
@@ -536,13 +536,13 @@ header .container {
 }
 
 /* Subsectie lijsten (na h4) krijgen 2 kolommen voor korte links */
-.episode-body h3 + ul {
+.episode-body :is(h3 + ul, h3 + .ulist > ul) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0.15rem 1.5rem;
 }
 
-.episode-body h3 + ul li {
+.episode-body :is(h3 + ul, h3 + .ulist > ul) li {
     margin-bottom: 0;
     align-self: start;
     display: flex;
@@ -551,9 +551,14 @@ header .container {
     padding-left: 0;
 }
 
-.episode-body h3 + ul li::before {
+.episode-body :is(h3 + ul, h3 + .ulist > ul) li::before {
     position: static;
     flex-shrink: 0;
+}
+
+/* AsciiDoc: Asciidoctor zet lijsttekst in een <p> */
+.episode-body li > p {
+    margin: 0;
 }
 
 .episode-body ul li::before {
@@ -872,11 +877,11 @@ header .container {
         margin-bottom: 0.75rem;
     }
 
-    .episode-body h2 + ul {
+    .episode-body :is(h2 + ul, h2 + .sectionbody > .ulist:first-child > ul) {
         margin-top: 1rem;
     }
 
-    .episode-body h3 + ul {
+    .episode-body :is(h3 + ul, h3 + .ulist > ul) {
         margin-top: 0.5rem;
         grid-template-columns: 1fr;
     }
