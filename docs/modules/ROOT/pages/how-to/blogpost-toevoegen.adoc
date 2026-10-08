@@ -1,0 +1,14 @@
+= Blogpost toevoegen
+
+. Maak de post aan vanuit het archetype:
++
+[source,bash]
+----
+hugo new content blog/2026-11-10-korte-titel/index.adoc
+----
+. Vul `title`, `summary`, `authors` en `topics` in (zie xref:content-model.adoc#blogpost[Contentmodel]).
+. Zet de hero-afbeelding als `thumbnail.webp` in de map en verwijs ernaar met `image: "thumbnail.webp"`.
+. Schrijf in AsciiDoc. Twijfel je over syntax: xref:asciidoc-schrijven.adoc[].
+. Zet `draft: false` als het klaar is en open een pull request.
+
+Blogposts hebben geen comments (Giscus staat enkel op afleveringen).

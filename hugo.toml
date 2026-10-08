@@ -39,5 +39,20 @@ filename = "sitemap.xml"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+  [markup.asciidocExt]
+    # Asciidoctor rendert alle .adoc content. Rouge geeft dezelfde
+    # Pygments-klassen (.k, .s, ...) als Chroma, dus de bestaande CSS blijft werken.
+    [markup.asciidocExt.attributes]
+      source-highlighter = "rouge"
+      rouge-css = "class"
+      # Heading-id's zoals Goldmark ze maakte (#show-notes i.p.v. #_show_notes)
+      idprefix = ""
+      idseparator = "-"
+      lang = "nl"
+
 [taxonomies]
 topic = "topics"
+
+# Hugo roept asciidoctor aan als externe binary: expliciet toelaten.
+[security.exec]
+  allow = ['^(dart-)?sass$', '^go$', '^git$', '^node$', '^postcss$', '^asciidoctor$']

@@ -1,0 +1,36 @@
+= Aflevering toevoegen
+
+. Maak een branch volgens het releasepatroon:
++
+[source,bash]
+----
+git switch -c feature/s02e07
+----
+. Maak de aflevering aan vanuit het archetype:
++
+[source,bash]
+----
+hugo new content episodes/s02e07-korte-titel/index.adoc
+----
+. Vul de front matter in (zie xref:content-model.adoc#aflevering[Contentmodel]) en zet `draft: false`.
+. Zet `thumbnail.webp` en `social.png` in dezelfde map.
+. Shownotes? Maak `shownotes.adoc` in dezelfde map:
++
+[source,asciidoc]
+----
+== Show notes
+
+* https://example.com[Een link uit de aflevering]
+
+=== Tools
+
+* https://example.com[Tool]
+----
++
+Lijsten onder een `===` kop worden automatisch in twee kolommen getoond.
+Heb je geen shownotes, verwijder dan het `{plus}{plus}{plus}{plus}`-blok met `{{< shownotes >}}` uit `index.adoc`.
+. Gasten toevoegen die nog niet bestaan: zie xref:how-to/persoon-toevoegen.adoc[].
+. Lokaal nakijken met `hugo server -D`, committen en de branch pushen.
+
+De branch wordt op de eerste maandag van de maand om 08:00 automatisch in `trunk` gemerged en gepubliceerd.
+Zie xref:architectuur.adoc#geautomatiseerde-release[Geautomatiseerde release].

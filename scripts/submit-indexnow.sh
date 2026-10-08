@@ -142,13 +142,13 @@ while IFS= read -r file; do
   base="$(basename "$file")"
 
   case "$base" in
-    _index.md|index.md)
+    _index.md|index.md|_index.adoc|index.adoc)
       url_path="$dir"
       [ "$url_path" = "content" ] && url_path=""
       url_path="${url_path#content/}"
       ;;
-    *.md)
-      slug="${base%.md}"
+    *.md|*.adoc)
+      slug="${base%.*}"
       url_path="${dir#content/}"
       [ "$url_path" = "content" ] && url_path=""
       if [ -n "$url_path" ]; then
@@ -159,7 +159,7 @@ while IFS= read -r file; do
       ;;
     *)
       # Non-markdown file inside a page bundle (image, etc.) - the bundle's
-      # own index.md change (if any) already covers it; nothing to derive here.
+      # own index.md/index.adoc change (if any) already covers it; nothing to derive here.
       continue
       ;;
   esac

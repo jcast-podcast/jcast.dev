@@ -1,0 +1,63 @@
+= Architectuur
+:description: Hoe jcast.dev in elkaar zit, van content tot CDN.
+
+Opgebouwd volgens de eerste twee niveaus van het https://c4model.com[C4-model]: context en containers.
+
+== Context
+
+[source,text]
+----
+ Luisteraar ──(HTTPS)──▶ jcast.dev ──(embed)──▶ Transistor.fm (audio + RSS)
+                             │
+                             ├──(embed)──▶ Giscus / GitHub Discussions (comments)
+                             └──(ping)───▶ IndexNow (Bing, DuckDuckGo, Ecosia)
+
+ Crew ──(git push)──▶ GitHub jcast-podcast/jcast.dev ──(Actions)──▶ AWS
+----
+
+De audio zelf staat niet op jcast.dev.
+Transistor.fm host de afleveringen en levert de RSS-feed aan Spotify, Apple Podcasts en co.
+De site embedt de Transistor-player en linkt naar de platformen uit `hugo.toml` (`params.podcast.platforms`).
+
+== Containers
+
+[%autowidth.stretch,options="header"]
+|===
+| Onderdeel | Technologie | Waar
+
+| Content | AsciiDoc + YAML front matter | `content/`
+| Mensen, seizoenen, topics | YAML | `data/`
+| Templates | Hugo templates, handgeschreven | `layouts/`
+| Styling | Pure CSS met custom properties | `assets/css/styles.css`
+| Rendering | Hugo extended + Asciidoctor + Rouge | `hugo.toml`
+| Hosting | S3 (privé bucket) + CloudFront, met een CloudFront Function die `/pad/` naar `/pad/index.html` herschrijft | `terraform/`
+| CI/CD | GitHub Actions | `.github/workflows/`
+| Documentatie | AsciiDoc, Antora | `docs/`
+|===
+
+== Build- en deploy-flow
+
+. Een push naar `trunk` start `deploy.yml`.
+. Ruby + Asciidoctor + Rouge worden geïnstalleerd, Hugo bouwt de site naar `public/`.
+. `scripts/export-legacy-images.sh` kopieert thumbnails naar hun oude `/images/...` URL's, zodat bestaande links blijven werken.
+. `scripts/verify-image-output.sh` controleert dat alle afbeeldingen er zijn.
+. `aws s3 sync` zet `public/` online, CloudFront serveert.
+. `scripts/submit-indexnow.sh` meldt enkel de pagina's waarvan content veranderde bij IndexNow.
+
+== Geautomatiseerde release
+
+`auto-release-episode.yml` draait op de eerste maandag van de maand om 08:00 (Brussel).
+Het merget de eerste branch die matcht met `feature/sXXeXX` in `trunk` en verwijdert de branch.
+Een nieuwe aflevering klaarzetten is dus: branch `feature/s02e07` pushen en wachten.
+
+WARNING: Er wordt maar één episode-branch per run gemerged. Staan er twee klaar, dan komt de tweede pas de maand erna mee.
+
+== Belangrijke keuzes
+
+* Geen CSS-framework en geen JavaScript-framework. Alle templates en CSS zijn handgeschreven.
+* Merkkleuren staan als custom properties in `:root` van `styles.css` en veranderen niet zonder afspraak.
+* Contentbreedte is max. 800px; geen geneste containers die allebei een `max-width` zetten.
+* Toegankelijkheid: semantische HTML, één `h1` per pagina, zichtbare `:focus-visible`, zinvolle `alt`-teksten.
+* Eén centrale JSON-LD graph per pagina (`layouts/partials/seo/jsonld.html`).
+* Afbeeldingen in page bundles of `assets/` worden door Hugo responsive gemaakt (WebP + JPG, 320/640/1024w).
+* Content in AsciiDoc: zie xref:adr/0001-asciidoc-als-contentformaat.adoc[ADR 0001].

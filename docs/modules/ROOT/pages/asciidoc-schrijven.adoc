@@ -1,0 +1,74 @@
+= AsciiDoc schrijven op jcast.dev
+:description: Spiekbrief voor wie content schrijft, met de valkuilen van Hugo + Asciidoctor.
+
+Alle content is AsciiDoc.
+Zie https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[de quick reference] voor de volledige syntax.
+Deze pagina gaat over wat specifiek is voor deze site.
+
+== Basis
+
+[%autowidth.stretch,options="header"]
+|===
+| Wat | Markdown (vroeger) | AsciiDoc
+
+| Kop (h2) | `+## Titel+` | `+== Titel+`
+| Vet / cursief | `+**vet**+` / `+_cursief_+` | `+*vet*+` / `+_cursief_+`
+| Link | `+[tekst](https://...)+` | `+https://...[tekst]+`
+| Interne link | `+[tekst](/episodes/)+` | `+link:/episodes/[tekst]+`
+| Lijst | `+- item+` | `+* item+`
+| Genummerde lijst | `+1. item+` | `+. item+`
+| Code | `+```java+` | `+[source,java]+` met een `+----+` blok
+|===
+
+== Shortcodes en HTML
+
+Hugo-shortcodes en ruwe HTML zet je in een passthrough-blok.
+Anders wikkelt Asciidoctor er een `<div class="paragraph">` rond, of escapet het de HTML.
+
+[source,asciidoc]
+----
+++++
+{{< shownotes >}}
+++++
+----
+
+Inline in een zin mag een shortcode wel gewoon, zoals `+{{< image src="foto.png" alt="..." >}}+`.
+
+== Typografie
+
+Goldmark maakte automatisch "`krulquotes`" en `…`; Asciidoctor doet dat niet.
+Typ ze dus gewoon: `“zo”`, `’s nachts`, `…`.
+
+TIP: Drie puntjes `+...+` worden door Asciidoctor wel een `…`, maar met een onzichtbaar teken erachter. Gebruik liever meteen `…`.
+
+== Tabellen
+
+Gebruik `[%autowidth.stretch]` zodat kolommen zich aanpassen aan de inhoud, zoals op de rest van de site:
+
+[source,asciidoc]
+----
+[%autowidth.stretch,options="header"]
+|===
+| Onderdeel | Technologie
+
+| Hosting | AWS S3
+|===
+----
+
+== Afbeeldingen
+
+Gebruik de `image`-shortcode, niet `image::[]`.
+De shortcode maakt responsive WebP/JPG-varianten; het AsciiDoc-macro doet dat niet, want Hugo's render hooks werken enkel voor Markdown.
+
+[source,asciidoc]
+----
+++++
+{{< image src="foto.png" alt="Beschrijving voor screenreaders" >}}
+++++
+----
+
+== Lokaal checken
+
+`hugo server -D` rendert alles zoals in productie.
+Krijg je `"asciidoctor" is not whitelisted`, dan draai je een oude `hugo.toml`.
+Krijg je `asciidoctor: command not found`, zie xref:how-to/lokaal-draaien.adoc[].

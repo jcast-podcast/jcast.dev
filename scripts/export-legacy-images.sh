@@ -13,11 +13,19 @@ copy_legacy_image() {
   page_dir="$1"
   param_key="$2"
 
-  if [ ! -f "$page_dir/index.md" ]; then
+  index_file=""
+  for candidate in "$page_dir/index.adoc" "$page_dir/index.md"; do
+    if [ -f "$candidate" ]; then
+      index_file="$candidate"
+      break
+    fi
+  done
+
+  if [ -z "$index_file" ]; then
     return
   fi
 
-  target_path="$(awk -F'"' -v key="$param_key" '$1 == key ": " { print $2; exit }' "$page_dir/index.md")"
+  target_path="$(awk -F'"' -v key="$param_key" '$1 == key ": " { print $2; exit }' "$index_file")"
   case "$target_path" in
     /images/*) ;;
     *) return ;;

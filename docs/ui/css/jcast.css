@@ -1,0 +1,23 @@
+/* JCast-huisstijl bovenop de standaard Antora UI (die CSS-variabelen wegcompileert) */
+.navbar { background: #3e434b; }
+.navbar-item, .navbar-link { color: #eae6df; }
+.navbar-brand .navbar-item:first-child { font-weight: 700; letter-spacing: -0.01em; }
+
+.nav, .nav-container, .nav-panel-menu, .nav-panel-explore { background: #eae6df; }
+.nav-panel-explore .context { background: #eae6df; }
+
+.doc a, .doc a:visited, .toc a:hover, .breadcrumbs a:hover { color: #e76f51; }
+.doc a:hover { color: #c95a3f; }
+
+.doc h1, .doc h2, .doc h3 { color: #3e434b; }
+
+.doc h2::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 0.9em;
+  margin-right: 0.6rem;
+  vertical-align: -0.05em;
+  background: #e76f51;
+  border-radius: 2px;
+}

@@ -1,0 +1,12 @@
+* xref:index.adoc[Overzicht]
+* xref:architectuur.adoc[Architectuur]
+* xref:content-model.adoc[Contentmodel]
+* xref:asciidoc-schrijven.adoc[AsciiDoc schrijven]
+* How-to's
+** xref:how-to/lokaal-draaien.adoc[Lokaal draaien]
+** xref:how-to/aflevering-toevoegen.adoc[Aflevering toevoegen]
+** xref:how-to/blogpost-toevoegen.adoc[Blogpost toevoegen]
+** xref:how-to/persoon-toevoegen.adoc[Gast of auteur toevoegen]
+** xref:how-to/deployen.adoc[Deployen]
+* Beslissingen
+** xref:adr/0001-asciidoc-als-contentformaat.adoc[0001 AsciiDoc als contentformaat]

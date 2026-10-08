@@ -1,0 +1,14 @@
+== Show notes
+
+* https://www.youtube.com/watch?v=ZO-619lqjK0[Outcoded by Our Kids: It Took Us 20 Years&#44; They Used 20 Prompts! by Jan Van Wassenhove&#44; Bart Wullems]
+* https://www.youtube.com/watch?v=wY2JEeRZSI8[Unveiling the simple math that powers AI by Marianne Hoornenborg]
+* https://www.youtube.com/watch?v=sCkJURhQZUM[Accelerating Maven Builds: From Snail's Pace 🐌 to Rocket Speed 🚀 by Maarten Mulders]
+* https://www.youtube.com/watch?v=HeQErLzvnhc[Local Development in the AI Era by Kevin Dubois]
+
+=== AI Tools
+
+* https://www.bolt.new/[Bolt]
+* https://chatgpt.com/[ChatGPT]
+* https://lovable.dev/[Lovable]
+* https://claude.ai/[Claude]
+* https://replit.com/[replit]

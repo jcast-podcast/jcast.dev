@@ -1,0 +1,19 @@
+---
+season: 2
+episode: 0
+title: "{{ replace .File.ContentBaseName "-" " " | title }}"
+date: {{ .Date | time.Format "2006-01-02" }}
+description: ""
+topics: []
+thumbnail: ""
+player: ""
+section: episodes
+guests: []
+draft: true
+---
+Beschrijving van de aflevering.
+
+// Shownotes komen uit shownotes.adoc in dezelfde map:
+++++
+{{ "{{< shownotes >}}" }}
+++++

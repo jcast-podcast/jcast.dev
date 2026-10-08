@@ -1,0 +1,10 @@
+name: jcast-dev
+title: jcast.dev
+version: ~
+start_page: index.adoc
+nav:
+  - modules/ROOT/nav.adoc
+asciidoc:
+  attributes:
+    idprefix: ''
+    idseparator: '-'

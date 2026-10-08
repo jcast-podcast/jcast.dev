@@ -1,5 +1,8 @@
-{{- $localPath := printf "%sshownotes.md" $.Page.File.Dir -}}
-{{- if fileExists $localPath -}}
-  {{- $content := readFile $localPath -}}
-  {{- $content | $.Page.RenderString -}}
+{{- /* Rendert shownotes.adoc (of het oudere shownotes.md) uit dezelfde page bundle. */ -}}
+{{- $adoc := printf "%sshownotes.adoc" $.Page.File.Dir -}}
+{{- $md := printf "%sshownotes.md" $.Page.File.Dir -}}
+{{- if fileExists $adoc -}}
+  {{- $.Page.RenderString (dict "markup" "asciidocext" "display" "block") (readFile $adoc) -}}
+{{- else if fileExists $md -}}
+  {{- $.Page.RenderString (dict "markup" "markdown" "display" "block") (readFile $md) -}}
 {{- end -}}

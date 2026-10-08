@@ -1,0 +1,28 @@
+= Deployen
+
+Normaal deploy je niet zelf: elke push naar `trunk` gaat via `.github/workflows/deploy.yml` online.
+
+== Wat de pipeline nodig heeft
+
+[%autowidth.stretch,options="header"]
+|===
+| Secret | Waarvoor
+
+| `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` | S3 sync
+| `S3_BUCKET_NAME` | doelbucket
+|===
+
+== Manueel (noodgeval)
+
+[source,bash]
+----
+hugo --minify
+sh scripts/verify-image-output.sh
+aws s3 sync public/ s3://<bucket>/ --delete
+aws cloudfront create-invalidation --distribution-id <id> --paths "/*"
+----
+
+== Infrastructuur
+
+S3, CloudFront en de CloudFront Function staan in `terraform/`.
+Wijzigingen daar lopen via `.github/workflows/terraform.yml`.
