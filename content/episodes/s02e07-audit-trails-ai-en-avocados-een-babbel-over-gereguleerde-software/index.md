@@ -5,11 +5,16 @@ title: "Audit trails, AI en avocado's: een babbel over gereguleerde software"
 date: 2026-11-02
 description: "In deze aflevering neemt Benjamin Claes ons mee in een wereld die de meeste developers nooit van binnenuit zien: de IT van de farmaceutische industrie, waar software uiteindelijk mee bepaalt of een medicijn veilig bij een patiënt geraakt. We hebben het over waarom die sector zo streng gereguleerd is, wat computerized system validation inhoudt, waarom een audit trail meer is dan een applicatielog, en hoe AI daar ooit een plek moet krijgen. Met onderweg een verrassende uitstap naar rijpe tomaten."
 thumbnail: "/images/thumbnails/s02e07-audit-trails-ai-en-avocados-een-babbel-over-gereguleerde-software.webp"
+social_image: "social.png"
 player: "https://share.transistor.fm/e/f27f94fe"
 transistor_id: "3685919"
 section: episodes
 guests:
   - id: "benjamin_claes"
+topics:
+  - "Software Engineering"
+  - "AI"
+  - "Architectuur"
 ---
 
 De meeste JCast-afleveringen spelen zich af in een wereld die je kent: code, teams, cloud. Deze keer niet. Oumaima, Viktor en Maarten verwelkomen **Benjamin Claes**, quality and compliance engineer bij Sopra Steria, chemicus van opleiding en luisteraar van het eerste uur. Benjamin werkt in de IT van farma en biotech, een sector waar software niet zomaar op een server draait, maar mee bepaalt of een medicijn veilig bij een patiënt terechtkomt. Voorkennis heb je niet nodig: Benjamin begint bij nul.
