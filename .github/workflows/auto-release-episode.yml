@@ -1,14 +1,5 @@
-name: Auto Release Episode
+name: Auto release episode on first Monday of the month at 08:00 Europe/Brussels
 
-# GitHub Actions cron runs in UTC and cannot express "first Monday of the month"
-# nor the Europe/Brussels timezone (which shifts between CET/UTC+1 and CEST/UTC+2
-# for daylight saving time). To still fire at 08:00 Brussels local time on the
-# first Monday of every month, we schedule a wider hourly window in UTC that
-# always contains 08:00 Brussels (06:00 UTC in summer, 07:00 UTC in winter) on
-# every possible date of the first Monday (days 1-7), then use a shell guard that
-# re-evaluates the real date/time in Europe/Brussels and lets the job proceed
-# only for the genuine first Monday at 08:00. Manual workflow_dispatch runs skip
-# the guard and always execute.
 on:
   schedule:
     - cron: '0 6-7 1-7 * *'
@@ -16,6 +7,11 @@ on:
 
 permissions:
   contents: write
+  actions: write
+
+concurrency:
+  group: auto-release-episode
+  cancel-in-progress: false
 
 jobs:
   release-episode:
@@ -35,11 +31,11 @@ jobs:
           DOM=$(TZ=Europe/Brussels date +%d)   # 01-31, zero-padded
 
           # First Monday = the only Monday whose day-of-month is between 1 and 7.
-          if [ "$HOUR" = "08" ] && [ "$DOW" = "1" ] && [ "$DOM" -ge 1 ] && [ "$DOM" -le 7 ]; then
-            echo "First Monday 08:00 Europe/Brussels - running job"
+          if [ "$((10#$HOUR))" -ge 8 ] && [ "$DOW" = "1" ] && [ "$DOM" -ge 1 ] && [ "$DOM" -le 7 ]; then
+            echo "First Monday, 08:00 Europe/Brussels or later - running job"
             echo "run_job=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Not the first Monday 08:00 Europe/Brussels (hour=$HOUR dow=$DOW dom=$DOM) - skipping"
+            echo "Not the first Monday after 08:00 Europe/Brussels (hour=$HOUR dow=$DOW dom=$DOM) - skipping"
             echo "run_job=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -51,6 +47,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Find and merge episode branch
+        id: merge
         if: steps.check-time.outputs.run_job == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -58,20 +55,45 @@ jobs:
 
           git fetch --all
 
-          EPISODE_BRANCH=$(git branch -r | grep -E 'origin/feature/s[0-9]{2}e[0-9]{2}$' | head -n 1 | xargs)
+          # Accept feature/sXXeXX and feat/sXXeXX. S02E07 lived on feat/s02e07,
+          # was never matched and the job stayed green without releasing.
+          MATCHES=$(git branch -r | sed 's/^ *//' | grep -E '^origin/(feat|feature)/s[0-9]{2}e[0-9]{2}$' || true)
+          COUNT=$(printf '%s' "$MATCHES" | grep -c . || true)
 
-          if [ -z "$EPISODE_BRANCH" ]; then
-            echo "No episode branch found matching pattern feature/sXXeXX"
-            exit 0
+          if [ "$COUNT" -eq 0 ]; then
+            # Two cron runs can pass the guard (summer: 06 and 07 UTC) or a late
+            # run can follow an earlier one; the second must not fail.
+            if git log origin/trunk --since="12 hours ago" --grep='^Auto-release: Merge' --format=%h | grep -q .; then
+              echo "Already released in the last 12 hours - nothing to do"
+              exit 0
+            fi
+            echo "::error::No episode branch found matching (feat|feature)/sXXeXX"
+            exit 1
           fi
+          if [ "$COUNT" -gt 1 ]; then
+            echo "::error::Multiple episode branches found, refusing to guess:"
+            echo "$MATCHES"
+            exit 1
+          fi
+          EPISODE_BRANCH="$MATCHES"
 
           BRANCH_NAME=${EPISODE_BRANCH#origin/}
           echo "Found episode branch: $BRANCH_NAME"
 
           git checkout trunk
+          echo "before_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git merge "$EPISODE_BRANCH" --no-ff -m "Auto-release: Merge $BRANCH_NAME"
           git push origin trunk
 
           git push origin --delete "$BRANCH_NAME"
 
+          echo "released=true" >> "$GITHUB_OUTPUT"
           echo "Successfully merged and deleted $BRANCH_NAME"
+
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, so the
+      # trunk push above never started deploy.yml. Start it explicitly.
+      - name: Trigger deploy
+        if: steps.merge.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref trunk -f before_sha="${{ steps.merge.outputs.before_sha }}"
