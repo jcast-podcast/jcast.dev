@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: auto-release-episode
+  cancel-in-progress: false
+
 jobs:
   release-episode:
     runs-on: ubuntu-latest
@@ -26,11 +30,11 @@ jobs:
           DOM=$(TZ=Europe/Brussels date +%d)   # 01-31, zero-padded
 
           # First Monday = the only Monday whose day-of-month is between 1 and 7.
-          if [ "$HOUR" = "08" ] && [ "$DOW" = "1" ] && [ "$DOM" -ge 1 ] && [ "$DOM" -le 7 ]; then
-            echo "First Monday 08:00 Europe/Brussels - running job"
+          if [ "$((10#$HOUR))" -ge 8 ] && [ "$DOW" = "1" ] && [ "$DOM" -ge 1 ] && [ "$DOM" -le 7 ]; then
+            echo "First Monday, 08:00 Europe/Brussels or later - running job"
             echo "run_job=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Not the first Monday 08:00 Europe/Brussels (hour=$HOUR dow=$DOW dom=$DOM) - skipping"
+            echo "Not the first Monday after 08:00 Europe/Brussels (hour=$HOUR dow=$DOW dom=$DOM) - skipping"
             echo "run_job=false" >> "$GITHUB_OUTPUT"
           fi
 
@@ -55,6 +59,12 @@ jobs:
           COUNT=$(printf '%s' "$MATCHES" | grep -c . || true)
 
           if [ "$COUNT" -eq 0 ]; then
+            # Two cron runs can pass the guard (summer: 06 and 07 UTC) or a late
+            # run can follow an earlier one; the second must not fail.
+            if git log origin/trunk --since="12 hours ago" --grep='^Auto-release: Merge' --format=%h | grep -q .; then
+              echo "Already released in the last 12 hours - nothing to do"
+              exit 0
+            fi
             echo "::error::No episode branch found matching (feat|feature)/sXXeXX"
             exit 1
           fi
