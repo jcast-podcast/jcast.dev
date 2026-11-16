@@ -1,14 +1,5 @@
-name: Auto Release Episode
+name: Auto release episode on first Monday of the month at 08:00 Europe/Brussels
 
-# GitHub Actions cron runs in UTC and cannot express "first Monday of the month"
-# nor the Europe/Brussels timezone (which shifts between CET/UTC+1 and CEST/UTC+2
-# for daylight saving time). To still fire at 08:00 Brussels local time on the
-# first Monday of every month, we schedule a wider hourly window in UTC that
-# always contains 08:00 Brussels (06:00 UTC in summer, 07:00 UTC in winter) on
-# every possible date of the first Monday (days 1-7), then use a shell guard that
-# re-evaluates the real date/time in Europe/Brussels and lets the job proceed
-# only for the genuine first Monday at 08:00. Manual workflow_dispatch runs skip
-# the guard and always execute.
 on:
   schedule:
     - cron: '0 6-7 1-7 * *'
