@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - trunk
+  workflow_dispatch:
+    inputs:
+      before_sha:
+        description: Previous trunk SHA, used by IndexNow to find changed content (set by auto-release)
+        required: false
 
 permissions:
   contents: read
@@ -67,7 +72,7 @@ jobs:
 
       - name: Submit URLs to IndexNow
         env:
-          BEFORE_SHA: ${{ github.event.before }}
+          BEFORE_SHA: ${{ github.event.before || inputs.before_sha }}
           AFTER_SHA: ${{ github.sha }}
         run: bash scripts/submit-indexnow.sh
 

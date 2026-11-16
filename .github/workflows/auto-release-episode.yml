@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: auto-release-episode
@@ -46,6 +47,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Find and merge episode branch
+        id: merge
         if: steps.check-time.outputs.run_job == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -79,9 +81,19 @@ jobs:
           echo "Found episode branch: $BRANCH_NAME"
 
           git checkout trunk
+          echo "before_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           git merge "$EPISODE_BRANCH" --no-ff -m "Auto-release: Merge $BRANCH_NAME"
           git push origin trunk
 
           git push origin --delete "$BRANCH_NAME"
 
+          echo "released=true" >> "$GITHUB_OUTPUT"
           echo "Successfully merged and deleted $BRANCH_NAME"
+
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows, so the
+      # trunk push above never started deploy.yml. Start it explicitly.
+      - name: Trigger deploy
+        if: steps.merge.outputs.released == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref trunk -f before_sha="${{ steps.merge.outputs.before_sha }}"
