@@ -9,6 +9,9 @@ social_image: "social.png"
 player: "https://share.transistor.fm/e/42ee2f23"
 transistor_id: "3611492"
 section: episodes
+topics:
+  - "Meetings"
+  - "Corporate"
 ---
 
 Een werkdag van 8 uur voelt al snel aan als 800 uur. Meetings, dailies, syncs, ad-hocbelletjes en die ene collega die even snel iets wil bespreken. Voor je het weet is het halfvijf en vraag je je af wat je vandaag nu eigenlijk gedaan hebt. Precies daar trapt Oumaima deze aflevering mee af, en ze raakt meteen een snaar.

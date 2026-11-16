@@ -11,6 +11,11 @@ section: episodes
 special: true
 guests:
   - id: "kevin_dubois"
+topics:
+  - "Special"
+  - "AI"
+  - "Quarkus"
+  - "Java"
 ---
 
 Kevin Dubois is geen onbekende in de Java-wereld. Als principal software engineer bij Red Hat is hij nauw betrokken bij Quarkus en LangChain4j, en je vindt hem regelmatig op het podium van grote conferenties. Maar het begint zoals zo vaak met een lange omweg: studies in Rome, een eerste job in de States met het weinig gemiste Cold Fusion, een tussenstop bij PHP, en uiteindelijk de terugkeer naar Java. Die pijn van die andere talen heeft hem nooit meer verlaten, en het maakt zijn keuzes des te bewuster.
