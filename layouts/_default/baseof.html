@@ -88,7 +88,7 @@
     <div class="container">
         <a href="/" class="logo-link">
             {{- with resources.Get "images/logo-without-bg.png" -}}
-            {{- $logo := .Resize "x120 webp q90" -}}
+            {{- $logo := .Resize "x240 webp q92 lanczos" -}}
             <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="JCast logo" class="logo" loading="eager" decoding="async">
             {{- else -}}
             <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" loading="eager" decoding="async">
