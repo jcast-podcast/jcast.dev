@@ -4,6 +4,16 @@ locale = "nl-BE"
 defaultContentLanguage = "nl"
 enableRobotsTXT = true
 
+# Bronbestanden in de episode-bundles (opname, transcripts, social-bronnen) blijven
+# in de repo voor de tooling, maar horen niet op de site.
+ignoreFiles = [
+  '/source\.mp3$',
+  '/transcript\.(json|txt)$',
+  '/thumbnail-3000\.(png|webp)$',
+  '/instagram(-caption)?\.(png|txt)$',
+  '/background\.png$',
+]
+
 [pagination]
 pagerSize = 10
 

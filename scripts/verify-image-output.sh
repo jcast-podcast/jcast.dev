@@ -44,7 +44,7 @@ require_file "public/images/logo-without-bg.png"
 require_grep 's01e01[^"]+\.webp 320w' "public/episodes/s01e01-professional-developer-what/index.html"
 require_grep 'thumbnail[^"]+\.webp 320w' "public/blog/2026-05-08-genereren-van-afbeeldingen/index.html"
 require_grep 'maarten-avatar[^"]+\.webp 96w' "public/blog/2026-05-08-genereren-van-afbeeldingen/index.html"
-require_grep 'src="?/images/logo-without-bg\.png"?' "public/index.html"
+require_grep 'src="?/images/logo-without-bg[^" >]*\.webp' "public/index.html"
 require_grep 'width="[0-9]+"' "public/about/index.html"
 require_grep 'height="[0-9]+"' "public/about/index.html"
 require_grep 'og:image" content="https://jcast.dev/episodes/s01e01-professional-developer-what/social.png"' "public/episodes/s01e01-professional-developer-what/index.html"
@@ -54,5 +54,14 @@ require_grep '"image":"https://jcast.dev/images/thumbnails/s01e01.webp"' "public
 
 reject_grep 'og:image" content=""' "public/blog/index.html"
 reject_grep 'twitter:image content=""' "public/blog/index.html"
+
+if find public \( -name '*.mp3' -o -name 'transcript.*' -o -name 'background.png' \) | grep -q .; then
+  echo "bronbestanden (mp3, transcript, background) staan in public/" >&2
+  exit 1
+fi
+if grep -rq 'favicon\.svg' public/index.html; then
+  echo "favicon.svg hoort niet meer gelinkt te worden" >&2
+  exit 1
+fi
 
 echo "image output verification passed"
