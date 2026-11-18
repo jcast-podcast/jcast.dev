@@ -74,7 +74,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=20260504">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=20260504">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=20260504" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260504" />
     <link rel="shortcut icon" href="/favicon.ico?v=20260504" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=20260504" />
     <meta name="apple-mobile-web-app-title" content="JCast" />
@@ -88,7 +87,12 @@
 <header role="banner">
     <div class="container">
         <a href="/" class="logo-link">
+            {{- with resources.Get "images/logo-without-bg.png" -}}
+            {{- $logo := .Resize "x120 webp q90" -}}
+            <img src="{{ $logo.RelPermalink }}" width="{{ $logo.Width }}" height="{{ $logo.Height }}" alt="JCast logo" class="logo" loading="eager" decoding="async">
+            {{- else -}}
             <img src="/images/logo-without-bg.png" alt="JCast logo" class="logo" loading="eager" decoding="async">
+            {{- end }}
         </a>
         <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu openen">
             <span class="nav-toggle-bar"></span>
