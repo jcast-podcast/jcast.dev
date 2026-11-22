@@ -9,6 +9,7 @@ player: "https://share.transistor.fm/e/54974a3e"
 transistor_id: "54974a3e"
 section: episodes
 special: true
+special_number: 1
 guests:
   - id: "kevin_dubois"
 topics:
